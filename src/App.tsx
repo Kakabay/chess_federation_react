@@ -1,13 +1,18 @@
-import { Outlet } from 'react-router-dom';
-import { Button } from './components/ui/button';
+import { Outlet } from "react-router-dom";
+import Header from "./components/shared/header";
+import Footer from "./components/shared/footer";
 
 function App() {
   return (
-    <div>
-      <header>Header</header>
-      <Outlet />
-      <footer>Footer</footer>
-    </div>
+    <main className="flex flex-col h-screen">
+      <Header />
+
+      <div className="flex-auto">
+        <Outlet />
+      </div>
+
+      <Footer />
+    </main>
   );
 }
 
