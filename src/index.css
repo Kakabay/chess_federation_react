@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 :root {
-  font-family: "Open Sans", sans-serif;
-  line-height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 120%;
   font-weight: 400;
+
+  font-size: 16px;
 
   color-scheme: light dark;
   color: #262626;
@@ -138,7 +140,7 @@ button:focus-visible {
   }
 
   .h2 {
-    @apply text-[40px] font-semibold;
+    @apply text-[40px] font-semibold leading-[100%];
   }
 
   .h3 {
