@@ -1,6 +1,5 @@
-import Container from "../layout/container";
-import EventCard from "../shared/event-card";
-import { Separator } from "../ui/separator";
+import Container from '../layout/container';
+import EventCard from '../shared/event-card';
 
 interface Props {
   date: string;
@@ -16,17 +15,15 @@ const EventsMonth = ({ date }: Props) => {
         </div>
 
         {[...Array(3)].map((_, i) => (
-          <div key={i} className="flex flex-col gap-10">
+          <div key={i} className="flex flex-col gap-5">
             <EventCard
               key={i}
-              start={"4 марта"}
-              end={"3 апреля"}
-              title={
-                "Высшая лига Чемпионата Туркменистана среди мужчин и женщин."
-              }
-              venue={"Шахматно-шашечная школа, г. Ашхабад"}
+              start={'4 марта'}
+              end={'3 апреля'}
+              title={'Высшая лига Чемпионата Туркменистана среди мужчин и женщин.'}
+              venue={'Шахматно-шашечная школа, г. Ашхабад'}
+              line={i !== 0 ? 'top' : 'none'}
             />
-            {i < 3 - 1 && <Separator />}
           </div>
         ))}
       </div>
