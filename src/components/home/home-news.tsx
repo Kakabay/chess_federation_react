@@ -9,7 +9,7 @@ const HomeNews = () => {
         <SectionHeader
           title="Новости"
           icon="/images/home/chess-tower.svg"
-          link={{ path: '', text: 'все новости' }}
+          link={{ path: '/news', text: 'все новости' }}
           className="mb-10"
         />
 
@@ -17,10 +17,12 @@ const HomeNews = () => {
           {[...Array(3)].map((_, i) => (
             <NewsCard
               key={i}
+              id={i}
               animationDelay={i}
               date={'06.11.2023'}
               title={'Шахматная молодежь пробирается к национальному олимпу'}
               img={'/images/home/news.png'}
+              type="big"
             />
           ))}
         </div>
