@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   line-height: 120%;
   font-weight: 400;
 
@@ -30,11 +30,6 @@ body {
   place-items: center;
   min-width: 320px; */
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
 }
 
 button {
@@ -140,10 +135,14 @@ button:focus-visible {
   }
 
   .h2 {
-    @apply text-[40px] font-semibold leading-[100%];
+    @apply text-[40px] font-semibold leading-[100%] font-[bitter] text-BROWN;
   }
 
   .h3 {
     @apply text-[30px] font-semibold leading-[120%];
+  }
+
+  .h4 {
+    @apply text-[20px] font-semibold leading-[130%];
   }
 }
