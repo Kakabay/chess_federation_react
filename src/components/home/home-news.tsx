@@ -1,5 +1,5 @@
 import Container from '../layout/container';
-import NewsCard from './news-card';
+import NewsCard from '../shared/news-card';
 import SectionHeader from './section-header';
 
 const HomeNews = () => {
