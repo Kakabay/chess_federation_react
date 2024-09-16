@@ -1,4 +1,4 @@
-import NewsCard from '@/components/home/news-card';
+import NewsCard from '@/components/shared/news-card';
 import Container from '@/components/layout/container';
 import PageTitle from '@/components/shared/page-title';
 import useScrollToTop from '@/lib/hooks/useScrollToTop';
