@@ -1,20 +1,25 @@
-import NewsCard from "@/components/home/news-card";
-import Container from "@/components/layout/container";
+import NewsCard from '@/components/home/news-card';
+import Container from '@/components/layout/container';
+import PageTitle from '@/components/shared/page-title';
+import useScrollToTop from '@/lib/hooks/useScrollToTop';
 
 const News = () => {
-  return (
-    <main className="pb-[200px]">
-      <Container>
-        <h1 className="h1 font-[bitter] text-BROWN my-20">Новости</h1>
+  useScrollToTop();
 
+  return (
+    <main className="pb-[200px] pt-20 bg-PAGE_BG">
+      <Container>
+        <PageTitle title="Новости" />
         <div className="grid grid-cols-3 gap-10">
           {[...Array(9)].map((_, i) => (
             <NewsCard
               key={i}
+              id={i}
               // animationDelay={i}
-              date={"06.11.2023"}
-              title={"Шахматная молодежь пробирается к национальному олимпу"}
-              img={"/images/home/news.png"}
+              date={'06.11.2023'}
+              title={'Шахматная молодежь пробирается к национальному олимпу'}
+              img={'/images/home/news.png'}
+              type="big"
             />
           ))}
         </div>
