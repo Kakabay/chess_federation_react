@@ -20,7 +20,7 @@ const LangMenu = () => {
           setActiveLang(selectedLang);
         }
       }}>
-      <SelectTrigger className="bg-transparent focus:outline-none border-none w-[166px] p-[20px] flex items-center gap-[8px]">
+      <SelectTrigger className="bg-transparent focus:outline-none border-none w-[170px] p-[20px] flex items-center gap-[8px]">
         <img
           src={
             activeLang.value === 'ru'
