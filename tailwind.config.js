@@ -17,7 +17,9 @@ export default {
         HEADER_BG: '#EDEBE4',
         PAGE_BG: '#F6F4EC',
         LBROWN: '#A6785E',
+        LBROWN2: '#D6C2B4',
         GRAY1: '#999999',
+        RED_PASTEL: '#BF3030',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -58,6 +60,12 @@ export default {
           4: 'hsl(var(--chart-4))',
           5: 'hsl(var(--chart-5))',
         },
+      },
+      boxShadow: {
+        HEADER_SHADOW: '0 1px 14px rgba(0, 0, 0, 0.25)',
+      },
+      transitionTimingFunction: {
+        TRANSITIOM_ONE: 'cubic-bezier(0.55, 0, 0.1, 1)',
       },
     },
   },

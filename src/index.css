@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   line-height: 120%;
   font-weight: 400;
 
@@ -11,7 +11,7 @@
 
   color-scheme: light dark;
   color: #262626;
-  background-color: white;
+  background-color: #f6f4ec;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -54,7 +54,7 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: #f6f4ec;
   }
   a:hover {
     color: #747bff;
@@ -66,7 +66,7 @@ button:focus-visible {
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: #f6f4ec;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
@@ -125,13 +125,13 @@ button:focus-visible {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-PAGE_BG text-foreground;
   }
 }
 
 @layer utilities {
   .h1 {
-    @apply text-[60px] font-bold leading-[110%];
+    @apply text-[60px] font-bold leading-[110%] font-[bitter] text-BROWN;
   }
 
   .h2 {
