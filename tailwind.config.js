@@ -20,6 +20,7 @@ export default {
         LBROWN2: '#D6C2B4',
         GRAY1: '#999999',
         RED_PASTEL: '#BF3030',
+        IMAGE_GRADIENT: '',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -60,6 +61,9 @@ export default {
           4: 'hsl(var(--chart-4))',
           5: 'hsl(var(--chart-5))',
         },
+      },
+      backgroundImage: {
+        IMAGE_GRADIENT: 'linear-gradient(rgba(3, 5, 29, 0.85) 0%, rgba(255, 0, 0, 0.85) 100%)',
       },
       boxShadow: {
         HEADER_SHADOW: '0 1px 14px rgba(0, 0, 0, 0.25)',

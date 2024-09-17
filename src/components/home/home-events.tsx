@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Container from '../layout/container';
 import EventCard from '../shared/event-card';
 import { Calendar } from '../ui/calendar';
@@ -6,6 +7,8 @@ import SectionHeader from './section-header';
 import { ru } from 'date-fns/locale';
 
 const HomeEvents = () => {
+  const [date, setDate] = useState<Date | undefined>(new Date());
+
   return (
     <section>
       <Container>
@@ -33,7 +36,7 @@ const HomeEvents = () => {
             ))}
           </div>
 
-          <Calendar className="w-[350px]" locale={ru} />
+          <Calendar mode="single" selected={date} onSelect={setDate} className="" locale={ru} />
         </div>
       </Container>
     </section>
