@@ -5,14 +5,13 @@ import { motion } from 'framer-motion';
 interface Props {
   start: string;
   end: string;
-  title: string;
-  venue: string;
+  name: string;
+  place: string;
   className?: string;
   line?: 'top' | 'bottom' | 'none';
 }
 
-const EventCard = ({ start, end, className, venue, title, line }: Props) => {
-  console.log(start);
+const EventCard = ({ start, end, className, place, name, line }: Props) => {
   return (
     <motion.div
       className={cn('flex items-start gap-10 max-w-[952px]', className, {
@@ -28,20 +27,18 @@ const EventCard = ({ start, end, className, venue, title, line }: Props) => {
       transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}>
       <div className="flex flex-col gap-[9px] flex-[1_1_100px] text-DGRAY2 leading-[120%]">
         <h3 className="">
-          <span className="h3 text-BLACK">{start.split(' ')[0]} </span>
-          {start.split(' ')[1]}
+          <span className="h3 text-BLACK">{start.slice(6, 7)} </span>
         </h3>
         <Separator className="h-[2px] bg-BLACK" />
 
         <h3 className="">
-          <span className="h3 text-BLACK">{end.split(' ')[0]} </span>
-          {end.split(' ')[1]}
+          <span className="h3 text-BLACK">{end.slice(6, 7)} </span>
         </h3>
       </div>
 
       <div className="flex flex-col gap-5">
-        <h3 className="h3 font-[bitter]">{title}</h3>
-        <div className="text-DGRAY2 leading-none">{venue}</div>
+        <h3 className="h3 font-[bitter]">{name}</h3>
+        <div className="text-DGRAY2 leading-none">{place}</div>
       </div>
     </motion.div>
   );

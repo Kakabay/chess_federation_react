@@ -1,5 +1,11 @@
 import { useZusLang } from '@/zustand/use-zus-lang';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu';
+import { ChevronDown } from 'lucide-react';
 
 export const langs = [
   { view: 'Русский', value: 'ru', img: '/images/header/flag-ru.svg' },
@@ -11,16 +17,19 @@ const LangMenu = () => {
   const { activeLang } = useZusLang();
   const { setActiveLang } = useZusLang();
 
+  console.log(activeLang);
+
   return (
-    <Select
-      value={activeLang.value}
-      onValueChange={(value) => {
-        const selectedLang = langs.find((lang) => lang.value === value);
-        if (selectedLang) {
-          setActiveLang(selectedLang);
-        }
-      }}>
-      <SelectTrigger className="bg-transparent focus:outline-none border-none w-[170px] p-[20px] flex items-center gap-[8px]">
+    <DropdownMenu
+    // value={activeLang.value}
+    // onValueChange={(value) => {
+    //   const selectedLang = langs.find((lang) => lang.value === value);
+    //   if (selectedLang) {
+    //     setActiveLang(selectedLang);
+    //   }
+    // }}
+    >
+      <DropdownMenuTrigger className="bg-transparent focus:outline-none border-none w-[170px] p-[20px] flex items-center gap-[8px]">
         <img
           src={
             activeLang.value === 'ru'
@@ -29,15 +38,19 @@ const LangMenu = () => {
               ? '/images/header/flag-en.svg'
               : '/images/header/flag-tm.svg'
           }
-          alt=""
+          alt="flag"
         />
-        <SelectValue className="w-fit">{activeLang.view}</SelectValue>
-      </SelectTrigger>
-      <SelectContent className="bg-HEADER_BG shadow-HEADER_SHADOW">
+        {activeLang.view}
+        <ChevronDown />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="bg-HEADER_BG shadow-HEADER_SHADOW">
         {langs
           .filter((item) => item.value !== activeLang.value)
           .map((item, i) => (
-            <SelectItem key={i} value={item.value} className="cursor-pointer p-[20px]">
+            <DropdownMenuItem
+              onClick={() => setActiveLang(item)}
+              key={i}
+              className="cursor-pointer p-[20px]">
               <div className="w-full flex gap-[8px]">
                 <div className="flex w-[28px] h-[20px]">
                   <img src={item.img} alt={item.view} />
@@ -45,10 +58,10 @@ const LangMenu = () => {
 
                 <h4 className="text-[16px] leading-[120%] font-semibold">{item.view}</h4>
               </div>
-            </SelectItem>
+            </DropdownMenuItem>
           ))}
-      </SelectContent>
-    </Select>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 

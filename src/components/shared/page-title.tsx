@@ -1,7 +1,5 @@
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 interface Props {
   title: string;

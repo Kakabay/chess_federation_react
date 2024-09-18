@@ -22,7 +22,8 @@ const EventsHero = () => {
               whileInView={{ height: '100%' }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}
-              className="w-full h-full absolute right-0 top-0 bg-gradient-to-b from-[#a6785e00] to-[#A6785E] opacity-20 z-10"></motion.div>
+              className="w-full h-full absolute right-0 top-0 bg-gradient-to-b from-[#a6785e00] to-[#A6785E] opacity-20 z-10"
+            />
             <motion.img
               src="/images/events/1.png"
               alt=""

@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import Container from '../layout/container';
+import { motion } from 'framer-motion';
 
 export const achievmentsData = [
   {
@@ -22,7 +23,12 @@ export const achievmentsData = [
 
 const AboutAchievments = () => {
   return (
-    <section className="h-[360px] relative bg-BROWN after:bg-[#533321] after:absolute after:top-0 after:right-0 after:bottom-0 after:w-[50%] after:h-full">
+    <motion.section
+      initial={{ translateY: '20%', opacity: 0 }}
+      whileInView={{ translateY: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}
+      className="h-[360px] relative bg-BROWN after:bg-[#533321] after:absolute after:top-0 after:right-0 after:bottom-0 after:w-[50%] after:h-full">
       <Container className="flex justify-between h-full">
         {achievmentsData.map((item, i) => (
           <div
@@ -38,7 +44,7 @@ const AboutAchievments = () => {
           </div>
         ))}
       </Container>
-    </section>
+    </motion.section>
   );
 };
 

@@ -5,9 +5,14 @@ import { Calendar } from '../ui/calendar';
 import { Separator } from '../ui/separator';
 import SectionHeader from './section-header';
 import { ru } from 'date-fns/locale';
+import { useGetEvents } from '@/hooks/useGetHome';
 
 const HomeEvents = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
+
+  const { data } = useGetEvents();
+
+  console.log(data);
 
   return (
     <section>
@@ -22,18 +27,13 @@ const HomeEvents = () => {
 
         <div className="flex items-start justify-between">
           <div className="flex flex-col gap-10 max-w-[952px]">
-            {[...Array(3)].map((_, i) => (
-              <div key={i} className="flex flex-col gap-10">
-                <EventCard
-                  key={i}
-                  start={'4 марта'}
-                  end={'3 апреля'}
-                  title={'Высшая лига Чемпионата Туркменистана среди мужчин и женщин.'}
-                  venue={'Шахматно-шашечная школа, г. Ашхабад'}
-                />
-                {i < 3 - 1 && <Separator />}
-              </div>
-            ))}
+            {data &&
+              data[1].events.map((item, i) => (
+                <div key={i} className="flex flex-col gap-10">
+                  <EventCard key={i} {...item} />
+                  {i < 3 - 1 && <Separator />}
+                </div>
+              ))}
           </div>
 
           <Calendar mode="single" selected={date} onSelect={setDate} className="" locale={ru} />
