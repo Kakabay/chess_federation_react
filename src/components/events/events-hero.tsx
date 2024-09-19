@@ -45,8 +45,8 @@ const EventsHero = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.6, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}
             className="flex flex-col gap-5 -mt-10 z-50">
-            <h1 className="text-[109px] font-[bitter] text-BROWN uppercase font-bold leading-[110%] z-20">
-              Предстоящие события
+            <h1 className="text-[109px] font-[bitter] text-BROWN uppercase font-bold leading-[110%] z-20 text-center">
+              Турниры и события
             </h1>
             <div className="text-center text-BROWN">
               Список предстоящих шахматных событий в Туркменистане

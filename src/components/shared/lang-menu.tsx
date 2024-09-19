@@ -8,9 +8,9 @@ import {
 import { ChevronDown } from 'lucide-react';
 
 export const langs = [
-  { view: 'Русский', value: 'ru', img: '/images/header/flag-ru.svg' },
-  { view: 'English', value: 'en', img: '/images/header/flag-en.svg' },
   { view: 'Türkmen', value: 'tm', img: '/images/header/flag-tm.svg' },
+  { view: 'Русский', value: 'ru', img: '/images/header/flag-ru.svg' },
+  // { view: 'English', value: 'en', img: '/images/header/flag-en.svg' },
 ];
 
 const LangMenu = () => {
@@ -50,7 +50,7 @@ const LangMenu = () => {
             <DropdownMenuItem
               onClick={() => setActiveLang(item)}
               key={i}
-              className="cursor-pointer p-[20px]">
+              className="cursor-pointer p-[20px] hover:bg-transparent">
               <div className="w-full flex gap-[8px]">
                 <div className="flex w-[28px] h-[20px]">
                   <img src={item.img} alt={item.view} />

@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
 interface Store {
   activeLang: {
@@ -10,9 +10,8 @@ interface Store {
 
 export const useZusLang = create<Store>((set) => ({
   activeLang: {
-    view: "Русский",
-    value: "ru",
+    view: 'Русский',
+    value: 'ru',
   },
-  setActiveLang: (value) =>
-    set((state) => ({ activeLang: (state.activeLang = value) })),
+  setActiveLang: (value) => set((state) => ({ activeLang: (state.activeLang = value) })),
 }));

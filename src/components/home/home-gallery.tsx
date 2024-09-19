@@ -7,7 +7,7 @@ const HomeGallery = () => {
     <section className="bg-[#A6785E] text-white py-10">
       <Container className="flex flex-col gap-10">
         <motion.h2
-          className="h2 !text-white"
+          className="h2 !text-white font-[open_sans]"
           initial={{
             translateY: '25%',
             opacity: 0,

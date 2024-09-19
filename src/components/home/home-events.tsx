@@ -5,14 +5,16 @@ import { Calendar } from '../ui/calendar';
 import { Separator } from '../ui/separator';
 import SectionHeader from './section-header';
 import { ru } from 'date-fns/locale';
-import { useGetEvents } from '@/hooks/useGetHome';
+import { useGetEvents } from '@/lib/hooks/useGetEvents';
+import { useZusLang } from '@/zustand/use-zus-lang';
+import { Event } from '@/types/events.type';
 
 const HomeEvents = () => {
+  const activeLang = useZusLang().activeLang;
+
   const [date, setDate] = useState<Date | undefined>(new Date());
 
-  const { data } = useGetEvents();
-
-  console.log(data);
+  const { data } = useGetEvents(activeLang.value);
 
   return (
     <section>
@@ -28,9 +30,9 @@ const HomeEvents = () => {
         <div className="flex items-start justify-between">
           <div className="flex flex-col gap-10 max-w-[952px]">
             {data &&
-              data[1].events.map((item, i) => (
+              data[1].events.map((item: Event, i: number) => (
                 <div key={i} className="flex flex-col gap-10">
-                  <EventCard key={i} {...item} />
+                  <EventCard key={i} {...item} isCurrent={false} />
                   {i < 3 - 1 && <Separator />}
                 </div>
               ))}

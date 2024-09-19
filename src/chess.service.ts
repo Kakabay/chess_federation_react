@@ -1,6 +1,8 @@
 import axios from 'axios';
-import { HomeEventsTypes, HomeSliderTypes } from './types/home.type';
+import { HomeSliderTypes } from './types/homeSlider.type';
+import { EventsTypes } from './types/events.type';
 
+export const URL = 'http://216.250.12.9:8088/api/v1';
 class ChessService {
   private URL = 'http://216.250.12.9:8088/api/v1';
 
@@ -9,7 +11,7 @@ class ChessService {
   };
 
   getEvents = async () => {
-    return await axios.get<HomeEventsTypes>(`${this.URL}/events`);
+    return await axios.get<EventsTypes>(`${this.URL}/events`);
   };
 }
 

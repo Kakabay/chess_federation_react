@@ -3,8 +3,9 @@ import { Carousel, CarouselContent, CarouselItem } from '../ui/carousel';
 import { useState, useEffect } from 'react';
 import { type CarouselApi } from '@/components/ui/carousel';
 import clsx from 'clsx';
-import { useGetSlider } from '@/hooks/useGetHome';
+import { useGetSlider } from '@/lib/hooks/useGetSlider';
 import { useZusLang } from '@/zustand/use-zus-lang';
+import { URL } from '@/chess.service';
 
 const HomeSlider = () => {
   const activeLang = useZusLang().activeLang;
@@ -41,10 +42,10 @@ const HomeSlider = () => {
       <Carousel setApi={setApi} className="relative">
         <CarouselContent>
           {data &&
-            data.map((_, i) => (
+            data.map((slide, i) => (
               <CarouselItem key={i} className="">
                 <img
-                  src="/images/home/main-banner-slider.png"
+                  src={URL + slide.img}
                   // src={data ? data[0].img : ''}
 
                   alt="slider image"
@@ -54,15 +55,19 @@ const HomeSlider = () => {
             ))}
         </CarouselContent>
         <div className="absolute bottom-10 right-[13.5%] flex gap-3 ">
-          {[...Array(count)].map((_, i) => (
-            <div
-              onClick={() => api?.scrollTo(i)}
-              key={i}
-              className={clsx('w-[12px] h-[12px] border border-white rounded-full cursor-pointer', {
-                'bg-white': i + 1 === current,
-              })}
-            />
-          ))}
+          {data &&
+            data.map((_, i) => (
+              <div
+                onClick={() => api?.scrollTo(i)}
+                key={i}
+                className={clsx(
+                  'w-[12px] h-[12px] border border-white rounded-full cursor-pointer',
+                  {
+                    'bg-white': i + 1 === current,
+                  },
+                )}
+              />
+            ))}
         </div>
       </Carousel>
     </motion.section>
