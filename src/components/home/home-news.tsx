@@ -1,8 +1,20 @@
+import { useGetNews } from '@/lib/hooks/useGetNews';
 import Container from '../layout/container';
 import NewsCard from '../shared/news-card';
 import SectionHeader from './section-header';
+import { useZusLang } from '@/zustand/use-zus-lang';
+import { Carousel, CarouselContent, CarouselItem } from '../ui/carousel';
+import clsx from 'clsx';
 
 const HomeNews = () => {
+  const activeLang = useZusLang().activeLang;
+  const { data: newsData } = useGetNews({
+    lang: activeLang.value,
+    per_page: 3,
+    page: 1,
+    sort: 'asc',
+  });
+
   return (
     <section>
       <Container>
@@ -10,22 +22,44 @@ const HomeNews = () => {
           title="Новости"
           icon="/images/home/chess-tower.svg"
           link={{ path: '/news', text: 'все новости' }}
-          className="mb-10"
         />
 
-        <div className="flex items-center gap-10">
-          {[...Array(3)].map((_, i) => (
+        <div className="md:grid hidden grid-cols-3 gap-10">
+          {newsData?.data.map((news, i) => (
             <NewsCard
-              key={i}
-              id={i}
+              className="flex-[0_0_33.33333%]"
+              key={news.id}
+              id={news.id}
               animationDelay={i}
-              date={'06.11.2023'}
-              title={'Шахматная молодежь пробирается к национальному олимпу'}
-              img={'/images/home/news.png'}
+              date={news.published_at}
+              title={news.title}
+              img={news.featured_images[0].path}
               type="big"
             />
           ))}
         </div>
+
+        <Carousel className="md:hidden">
+          <CarouselContent>
+            {newsData?.data.map((news, i) => (
+              <CarouselItem
+                key={news.id}
+                className={clsx('', {
+                  'mr-4': i + 1 !== newsData.data.length,
+                })}>
+                <NewsCard
+                  id={news.id}
+                  animationDelay={i}
+                  date={news.published_at}
+                  title={news.title}
+                  img={news.featured_images[0].path}
+                  type="big"
+                  titleClassName="!text-[16px] !leading-[150%]"
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </Container>
     </section>
   );

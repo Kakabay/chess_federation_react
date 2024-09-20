@@ -6,6 +6,8 @@ import clsx from 'clsx';
 import { useGetSlider } from '@/lib/hooks/useGetSlider';
 import { useZusLang } from '@/zustand/use-zus-lang';
 import { URL } from '@/chess.service';
+import { HOSTING } from '@/lib/constants';
+import Container from '../layout/container';
 
 const HomeSlider = () => {
   const activeLang = useZusLang().activeLang;
@@ -31,7 +33,7 @@ const HomeSlider = () => {
 
   return (
     <motion.section
-      className="h-[850px]"
+      className="max-h-[850px] !min-h-[228px]"
       initial={{
         translateY: '-10%',
         opacity: 0,
@@ -43,14 +45,33 @@ const HomeSlider = () => {
         <CarouselContent>
           {data &&
             data.map((slide, i) => (
-              <CarouselItem key={i} className="">
-                <img
-                  src={URL + slide.img}
-                  // src={data ? data[0].img : ''}
-
-                  alt="slider image"
-                  className="w-full mx-auto object-cover object-top"
-                />
+              <CarouselItem key={i} className="max-h-[850px] relative">
+                <div className="w-full h-full relative">
+                  {slide.header || slide.txt ? (
+                    <div className="absolute bottom-0 left-0 right-0 h-full w-full bg-SLIDER_IMAGE_GRADIENT"></div>
+                  ) : null}
+                  <img
+                    src={HOSTING + slide.img}
+                    alt="slider image"
+                    className="w-full mx-auto h-full object-cover object-center"
+                  />
+                </div>
+                <div className="absolute left-0 w-full bottom-[80px] z-10">
+                  <Container>
+                    <div className="flex flex-col gap-[40px] max-w-[1000px]">
+                      {slide.header && (
+                        <h1 className="text-[22px] md:text-[60px] leading-[110%] font-bold text-white">
+                          {slide.header}
+                        </h1>
+                      )}
+                      {slide.txt && (
+                        <h4 className="text-[20px] leading-[150%] font-semibold text-white">
+                          {slide.txt}
+                        </h4>
+                      )}
+                    </div>
+                  </Container>
+                </div>
               </CarouselItem>
             ))}
         </CarouselContent>

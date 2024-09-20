@@ -37,7 +37,7 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
           cell: 'h-9 w-9 text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20',
           day: cn(
             buttonVariants({ variant: 'default' }),
-            'h-10 w-10 p-2 cursor-pointer bg-transparent transition-all rounded-full text-[18px] text-BLACK font-normal aria-selected:opacity-100 hover:border-BROWN',
+            'h-10 w-10 !p-2 cursor-pointer bg-transparent transition-all rounded-full text-[18px] text-BLACK font-normal aria-selected:opacity-100 hover:border-BROWN',
           ),
           day_range_end: 'day-range-end',
           day_selected: '!bg-BROWN text-white bg-primary focus:text-primary-foreground',

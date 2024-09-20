@@ -7,8 +7,6 @@
   line-height: 120%;
   font-weight: 400;
 
-  font-size: 16px;
-
   color-scheme: light dark;
   color: #262626;
   background-color: #f6f4ec;
@@ -125,7 +123,7 @@ button:focus-visible {
     @apply border-border;
   }
   body {
-    @apply bg-PAGE_BG text-foreground;
+    @apply bg-PAGE_BG text-foreground text-[14px] md:!text-[16px];
   }
 }
 
@@ -135,14 +133,18 @@ button:focus-visible {
   }
 
   .h2 {
-    @apply text-[40px] font-semibold leading-[100%] font-[bitter] text-BROWN;
+    @apply md:text-[40px] text-[22px] font-semibold leading-[130%] md:leading-[100%] font-[bitter] text-BROWN;
   }
 
   .h3 {
-    @apply text-[30px] font-semibold leading-[120%];
+    @apply md:text-[30px] text-[18px] font-semibold leading-[120%];
   }
 
   .h4 {
     @apply text-[20px] font-semibold leading-[130%];
+  }
+
+  .burger-span {
+    @apply bg-BLACK h-0.5 w-[18px];
   }
 }

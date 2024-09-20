@@ -26,7 +26,7 @@ const NewsCard = ({
 }: Props) => {
   return (
     <motion.div
-      className={cn('p-5 rounded-sm border border-LBROWN group', className)}
+      className={cn('md:p-5 p-4 rounded-sm border border-LBROWN group', className)}
       initial={{
         translateY: '25%',
         opacity: 0,
@@ -38,21 +38,21 @@ const NewsCard = ({
         duration: 0.6,
         ease: [0.55, 0, 0.1, 1],
       }}>
-      <Link to={`/news/${id}`} className="flex flex-col gap-5">
-        <h3 className="text-GRAY1 leading-none">{date}</h3>
+      <Link to={`/news/${id}`} className="flex flex-col w-full md:gap-5 gap-2">
+        <h3 className="text-GRAY1 leading-none md:text-[16px] text-[10px]">{date}</h3>
         <h2
           className={cn(
-            'h3 font-[bitter] group-hover:text-LBROWN transition-all ease-TRANSITIOM_ONE duration-300',
+            'h3 font-[bitter] group-hover:text-LBROWN transition-all ease-TRANSITIOM_ONE duration-300 line-clamp-3',
             titleClassName,
           )}>
           {title}
         </h2>
         <div
-          className={clsx(' min-h-[149px] h-full rounded-[2px] overflow-hidden', {
-            'max-h-[148px]': type === 'small',
-            'max-h-[400px]': type === 'big',
+          className={clsx('rounded-[2px] overflow-hidden', {
+            'h-[148px] w-[280px]': type === 'small',
+            'h-[160px] md:h-[300px] w-full': type === 'big',
           })}>
-          <img src={img} alt="image" className=" w-full h-full object-cover" />
+          <img src={img} alt="image" className="w-full h-full overflow-hidden object-cover" />
         </div>
       </Link>
     </motion.div>

@@ -4,7 +4,7 @@ import Footer from './components/shared/footer';
 
 function App() {
   return (
-    <main className="flex flex-col h-screen">
+    <main className="flex flex-col h-screen overflow-x-hidden">
       <Header />
 
       <div className="flex-auto bg-PAGE_BG">

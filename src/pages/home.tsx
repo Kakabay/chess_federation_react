@@ -9,7 +9,7 @@ import useScrollToTop from '@/lib/hooks/useScrollToTop';
 const Home = () => {
   useScrollToTop();
   return (
-    <main className="flex flex-col gap-[120px] pb-[120px] bg-PAGE_BG">
+    <main className="flex flex-col gap-[72px] md:gap-[120px] md:pb-[120px] pb-[72px] bg-PAGE_BG">
       <HomeSlider />
       <HomeEvents />
       <HomeNews />

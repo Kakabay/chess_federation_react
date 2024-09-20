@@ -24,15 +24,20 @@ const SectionHeader = ({ title, icon, className, link, titleClassName }: Props) 
       whileInView={{ translateY: 0, opacity: 1 }}
       viewport={{ once: true }}
       transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}
-      className={cn('flex items-end justify-between pb-2.5 relative', className)}>
-      <div className="flex items-end gap-5">
-        {icon && <img src={icon} alt="icon" />}
+      className={cn(
+        'flex items-end justify-between pb-2 md:pb-2.5 relative md:mb-10 mb-6',
+        className,
+      )}>
+      <div className="flex items-start md:items-end gap-5">
+        {icon && <img src={icon} alt="icon" className="size-6 md:size-[50px] " />}
         <h2 className={cn('h2 text-BROWN', titleClassName)}>{title}</h2>
       </div>
 
       {link && (
         <Link to={link.path} className="flex items-center gap-[5px]">
-          <div className="text-BROWN">{link.text}</div>
+          <div className="text-BROWN text-[12px] md:text-[16px] leading-[130%] md:leading-none">
+            {link.text}
+          </div>
           <ChevronRight size={20} color="#401D09" />
         </Link>
       )}

@@ -64,6 +64,7 @@ export default {
       },
       backgroundImage: {
         IMAGE_GRADIENT: 'linear-gradient(rgba(3, 5, 29, 0.85) 0%, rgba(255, 0, 0, 0.85) 100%)',
+        SLIDER_IMAGE_GRADIENT: 'linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)',
       },
       boxShadow: {
         HEADER_SHADOW: '0 1px 14px rgba(0, 0, 0, 0.25)',

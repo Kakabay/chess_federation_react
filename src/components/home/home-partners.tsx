@@ -10,13 +10,13 @@ const HomePartners = () => {
         <SectionHeader
           title="Партнёры"
           icon="/images/home/chess-elephant.svg"
-          className="font-[bitter] mb-10"
+          className="font-[bitter]"
         />
 
         <Carousel className="flex items-center">
           <CarouselContent>
             {[...Array(12)].map((_, i) => (
-              <CarouselItem key={i} className="mr-10 pl-0 basis-[200px]">
+              <CarouselItem key={i} className="mr-10 pl-0 basis-[150px] md:basis-[200px]">
                 <motion.div
                   initial={{
                     translateY: '25%',

@@ -3,71 +3,61 @@ import SectionHeader from '@/components/home/section-header';
 import Container from '@/components/layout/container';
 import useScrollToTop from '@/lib/hooks/useScrollToTop';
 import { useParams } from 'react-router-dom';
+import { useGetSingleNews } from '@/lib/hooks/useGetSingleNews';
+import { useZusLang } from '@/zustand/use-zus-lang';
+import { useGetNews } from '@/lib/hooks/useGetNews';
 
 const NewsSingle = () => {
   let { pageId } = useParams();
+  const activeLang = useZusLang().activeLang;
 
   useScrollToTop(pageId);
+
+  const { data: singleNewsData } = useGetSingleNews({
+    pageId,
+    locale: activeLang.value,
+  });
+  const { data: newsData } = useGetNews({
+    lang: activeLang.value,
+    per_page: 4,
+    page: 1,
+    sort: 'asc',
+  });
 
   return (
     <main className=" pt-20 pb-[200px]">
       <Container className="flex flex-col gap-[200px]">
         <section className="flex flex-col gap-10 items-center">
-          <h1 className="h1 text-center">Шахматная молодежь пробирается к национальному олимпу</h1>
-          <div className="leading-none text-GRAY1">06.11.2023</div>
-          <div className="max-w-[1000px] w-full h-[500px]">
-            <img src="/images/home/news.png" alt="" className="w-full h-full object-cover" />
-          </div>
+          <h1 className="h1 text-center">{singleNewsData?.data.title}</h1>
+          <div className="leading-none text-GRAY1">{singleNewsData?.data.published_at}</div>
+          {singleNewsData &&
+            singleNewsData.data.featured_images &&
+            singleNewsData.data.featured_images[0].path && (
+              <div className="max-w-[1000px] w-full h-[500px]">
+                <img
+                  src={singleNewsData.data.featured_images[0].path}
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
 
-          <div className="w-full max-w-[800px] mx-auto flex flex-col gap-10 font-[bitter] text-[20px] leading-[150%]">
-            <p>
-              Студент Туркменского государственного института физкультуры и спорта Мухаммет Эзизов
-              выиграл ашхабадский квалификационный этап первой лиги чемпионата Туркменистана по
-              шахматам среди мужчин, который проходил в столице с 31 октября по 4 ноября.{' '}
-            </p>
-            <p>
-              Мухаммет, являвшийся рейтинг-фаворитом турнира с международным рейтингом FIDE 1905, с
-              первых же туров захватил лидерство и довёл дело до общей победы. Набрав 8 очков из 9
-              возможных, Мухаммет на пол-очка опередил своего ближайшего преследователя – товарища
-              по учёбе Ибраима Сердарова (рейтинг – 1556). А третье место занял студент Туркменского
-              государственного института экономики и менеджмента Азатгельди Аннагельдиев (1781),
-              набравший в итоге 7 очков. 
-            </p>
-            <p>
-              В отличие от мужского турнира в чемпионате среди женщин борьба за чемпионство шла до
-              последнего тура. Школьницы Арзыгуль Мухамова и Первана Сердарова показали одинаковый
-              результат - 7,5 очка из 9 возможных. В итоге только по дополнительным показателям
-              чемпионкой ашхабадского квалификационного этапа первой лиги среди женщин стала
-              Арзыгуль, которая в очной встрече выиграла свою соперницу. Третье место в турнире
-              заняла еще одна ашхабадская школьница Айша Аширова, набравшая 7 очков.
-            </p>
-            <p>
-              По итогам каждого турнира первые 10 мест квалифицировались в первую лигу чемпионата
-              Туркменистана. Всего же в первой лиге сыграют около 60 игроков, отобранных из разных
-              регионов и чемпионатов. Как отмечают в Федерации шахмат Туркменистана, данная система
-              квалификации в первую лигу через региональные этапы впервые вводится в этом году с
-              целью популяризации шахмат в регионах страны, выявления новых молодых талантов,
-              повышения уровня мастерства первой и высшей лиг чемпионата страны.
-            </p>
-            <p>
-              В понедельник, 6 ноября, стартовал дашогузский этап квалификации в первую лигу.
-              Лебапский и марыйский этапы будут также проведены в течение этого месяца.
-              Представители балканского и ахалского регионов в этом году присоединились к участию в
-              ашхабадском этапе.
-            </p>
-          </div>
+          <div
+            className="w-full max-w-[800px] mx-auto flex flex-col gap-10 font-[bitter] text-[20px] leading-[150%]"
+            dangerouslySetInnerHTML={singleNewsData && { __html: singleNewsData.data.content_html }}
+          />
         </section>
         <section>
           <SectionHeader title={'Последние новости'} className="mb-10" />
 
           <div className="flex gap-10">
-            {[...Array(4)].map((_, i) => (
+            {newsData?.data.map((news) => (
               <NewsCard
-                key={i}
-                id={i}
-                date={'06.11.2023'}
-                title={'Шахматная молодежь пробирается к национальному олимпу'}
-                img={'/images/home/news.png'}
+                key={news.id}
+                id={news.id}
+                date={news.published_at}
+                title={news.title}
+                img={news.featured_images[0].path}
                 titleClassName="h4"
                 className=""
                 type="small"

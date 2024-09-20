@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
-import { ReactNode } from "react";
+import { cn } from '@/lib/utils';
+import { ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;
@@ -7,11 +7,7 @@ interface Props {
 }
 
 const Container = ({ children, className }: Props) => {
-  return (
-    <div className={cn(className, "w-full max-w-[1448px] mx-auto px-6")}>
-      {children}
-    </div>
-  );
+  return <div className={cn(className, 'w-full max-w-[1432px] mx-auto px-4')}>{children}</div>;
 };
 
 export default Container;

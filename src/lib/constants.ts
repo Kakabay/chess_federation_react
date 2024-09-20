@@ -42,3 +42,5 @@ export const months = {
     'dekabr',
   ],
 };
+
+export const HOSTING = 'http://216.250.12.9:8088';

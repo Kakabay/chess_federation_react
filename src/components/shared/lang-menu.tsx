@@ -13,55 +13,57 @@ export const langs = [
   // { view: 'English', value: 'en', img: '/images/header/flag-en.svg' },
 ];
 
-const LangMenu = () => {
+const LangMenu = ({ className }: { className?: string }) => {
   const { activeLang } = useZusLang();
   const { setActiveLang } = useZusLang();
 
   console.log(activeLang);
 
   return (
-    <DropdownMenu
-    // value={activeLang.value}
-    // onValueChange={(value) => {
-    //   const selectedLang = langs.find((lang) => lang.value === value);
-    //   if (selectedLang) {
-    //     setActiveLang(selectedLang);
-    //   }
-    // }}
-    >
-      <DropdownMenuTrigger className="bg-transparent focus:outline-none border-none w-[170px] p-[20px] flex items-center gap-[8px]">
-        <img
-          src={
-            activeLang.value === 'ru'
-              ? '/images/header/flag-ru.svg'
-              : activeLang.value === 'en'
-              ? '/images/header/flag-en.svg'
-              : '/images/header/flag-tm.svg'
-          }
-          alt="flag"
-        />
-        {activeLang.view}
-        <ChevronDown />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-HEADER_BG shadow-HEADER_SHADOW">
-        {langs
-          .filter((item) => item.value !== activeLang.value)
-          .map((item, i) => (
-            <DropdownMenuItem
-              onClick={() => setActiveLang(item)}
-              key={i}
-              className="cursor-pointer p-[20px] hover:bg-transparent">
-              <div className="w-full flex gap-[8px]">
-                <div className="flex w-[28px] h-[20px]">
-                  <img src={item.img} alt={item.view} />
-                </div>
+    <div className={className}>
+      <DropdownMenu
+      // value={activeLang.value}
+      // onValueChange={(value) => {
+      //   const selectedLang = langs.find((lang) => lang.value === value);
+      //   if (selectedLang) {
+      //     setActiveLang(selectedLang);
+      //   }
+      // }}
+      >
+        <DropdownMenuTrigger className="bg-transparent focus:outline-none border-none w-[170px] p-[20px] flex items-center gap-[8px]">
+          <img
+            src={
+              activeLang.value === 'ru'
+                ? '/images/header/flag-ru.svg'
+                : activeLang.value === 'en'
+                ? '/images/header/flag-en.svg'
+                : '/images/header/flag-tm.svg'
+            }
+            alt="flag"
+          />
+          {activeLang.view}
+          <ChevronDown />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="bg-HEADER_BG shadow-HEADER_SHADOW">
+          {langs
+            .filter((item) => item.value !== activeLang.value)
+            .map((item, i) => (
+              <DropdownMenuItem
+                onClick={() => setActiveLang(item)}
+                key={i}
+                className="cursor-pointer p-[20px] hover:bg-transparent">
+                <div className="w-full flex gap-[8px]">
+                  <div className="flex w-[28px] h-[20px]">
+                    <img src={item.img} alt={item.view} />
+                  </div>
 
-                <h4 className="text-[16px] leading-[120%] font-semibold">{item.view}</h4>
-              </div>
-            </DropdownMenuItem>
-          ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+                  <h4 className="text-[16px] leading-[120%] font-semibold">{item.view}</h4>
+                </div>
+              </DropdownMenuItem>
+            ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
   );
 };
 

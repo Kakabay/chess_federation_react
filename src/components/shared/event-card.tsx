@@ -19,7 +19,7 @@ const EventCard = ({ start, end, className, place, name, line, isCurrent }: Prop
 
   return !isCurrent ? (
     <motion.div
-      className={cn('flex items-start gap-10 w-[952px]', className, {
+      className={cn('flex items-start md:gap-10 gap-2 w-full lg:w-[952px]', className, {
         'border-t-2 pt-[20px] border-LBROWN': line === 'top',
         'border-b-2 pb-[20px] border-LBROWN': line === 'bottom',
       })}
@@ -30,7 +30,7 @@ const EventCard = ({ start, end, className, place, name, line, isCurrent }: Prop
       whileInView={{ translateY: 0, opacity: 1 }}
       viewport={{ once: true }}
       transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}>
-      <div className="flex flex-col gap-[9px]  text-DGRAY2 leading-[120%]">
+      <div className="flex flex-col gap-[9px] text-DGRAY2 leading-[120%]">
         <h3 className="">
           <span className="h3 text-BLACK">{end.slice(8, 10)} </span>{' '}
           {activeLang.value === 'tm'
@@ -59,8 +59,8 @@ const EventCard = ({ start, end, className, place, name, line, isCurrent }: Prop
   ) : (
     <motion.div
       className={cn('flex items-start gap-10 w-[952px] rounded-[24px] text-white', className, {
-        'border-t-2 pt-[20px] border-white': line === 'top',
-        'border-b-2 pb-[20px] border-white': line === 'bottom',
+        'border-t-2 pt-5 border-white': line === 'top',
+        'border-b-2 pb-5 border-white': line === 'bottom',
       })}
       initial={{
         translateY: '50%',
