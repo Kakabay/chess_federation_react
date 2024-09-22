@@ -4,7 +4,7 @@ const AboutPlayer = () => {
   return (
     <section>
       <Container>
-        <h2 className="h2 mb-10">Вводный видео ролик</h2>
+        <h2 className="h2 md:mb-10 mb-6">Вводный видео ролик</h2>
 
         <video
           src=""

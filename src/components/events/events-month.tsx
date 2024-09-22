@@ -1,10 +1,7 @@
-import { PropsWithChildren } from 'react';
-import Container from '../layout/container';
-import EventCard from '../shared/event-card';
-import { Event } from '@/types/events.type';
-import { useZusLang } from '@/zustand/use-zus-lang';
-import { months } from '@/lib/constants';
-import { motion } from 'framer-motion';
+import Container from "../layout/container";
+import EventCard from "../shared/event-card";
+import { Event } from "@/types/events.type";
+import { motion } from "framer-motion";
 
 interface Props {
   date: string;
@@ -13,14 +10,10 @@ interface Props {
 }
 
 const EventsMonth = ({ date, eventsData, isCurrent }: Props) => {
-  const activeLang = useZusLang().activeLang;
-
-  console.log(eventsData);
-
   return (
     <Container>
-      <div className="flex flex-col items-center gap-[60px] w-full">
-        <div className="flex flex-col gap-[40px] w-full">
+      <div className="flex flex-col items-center gap-4 md:gap-[60px] w-full">
+        <div className="flex flex-col gap-2 md:gap-10 w-full">
           <h2 className="h2 text-center text-BROWN leading-none">
             {/* {activeLang.value === 'tm'
               ? months.tm[+eventsData.events[0].start.slice(5, 7)]
@@ -36,21 +29,27 @@ const EventsMonth = ({ date, eventsData, isCurrent }: Props) => {
         {!isCurrent ? (
           <div className="flex flex-col gap-5">
             {eventsData.map((item: Event, i: number) => (
-              <EventCard key={i} {...item} line={i !== 0 ? 'top' : 'none'} isCurrent={false} />
+              <EventCard key={i} {...item} line={i !== 0 ? "top" : "none"} />
             ))}
           </div>
         ) : (
           <motion.div
             initial={{
-              translateY: '50%',
+              translateY: "50%",
               opacity: 0,
             }}
             whileInView={{ translateY: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}
-            className="flex flex-col gap-10 bg-BROWN p-[40px] rounded-[24px]">
+            className="flex flex-col gap-10 bg-BROWN p-6 md:p-10 rounded-[24px]"
+          >
             {eventsData.map((item: Event, i: number) => (
-              <EventCard key={i} {...item} line={i !== 0 ? 'top' : 'none'} isCurrent={true} />
+              <EventCard
+                key={i}
+                {...item}
+                line={i !== 0 ? "top" : "none"}
+                isCurrent
+              />
             ))}
           </motion.div>
         )}

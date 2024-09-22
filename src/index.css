@@ -3,8 +3,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: 'Open Sans', sans-serif;
-  line-height: 120%;
+  font-family: "Open Sans", sans-serif;
   font-weight: 400;
 
   color-scheme: light dark;
@@ -123,13 +122,13 @@ button:focus-visible {
     @apply border-border;
   }
   body {
-    @apply bg-PAGE_BG text-foreground text-[14px] md:!text-[16px];
+    @apply bg-PAGE_BG text-foreground text-[14px] leading-[120%] md:!text-[16px];
   }
 }
 
 @layer utilities {
   .h1 {
-    @apply text-[60px] font-bold leading-[110%] font-[bitter] text-BROWN;
+    @apply md:text-[60px] text-[32px] font-bold leading-[110%] font-[bitter] text-BROWN;
   }
 
   .h2 {
@@ -137,11 +136,11 @@ button:focus-visible {
   }
 
   .h3 {
-    @apply md:text-[30px] text-[18px] font-semibold leading-[120%];
+    @apply md:text-[30px] text-[18px] font-semibold leading-[150%] md:leading-[120%];
   }
 
   .h4 {
-    @apply text-[20px] font-semibold leading-[130%];
+    @apply md:text-[20px] text-[16px] font-semibold leading-[130%];
   }
 
   .burger-span {

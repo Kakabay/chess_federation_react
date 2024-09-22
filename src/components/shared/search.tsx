@@ -21,7 +21,7 @@ const Search = ({ search, setSearch }: Props) => {
         initial={{ translateY: "-100%", opacity: 0 }}
         animate={search ? { translateY: 0, opacity: 1 } : {}}
         transition={{ duration: 0.6, ease: [0.55, 0, 0.1, 1] }}
-        className="h-screen py-[100px] bg-BROWN  absolute z-10 top-0 left-0 w-full overflow-hidden"
+        className="h-screen py-[100px] px-4 md:px-0 bg-BROWN absolute z-30 top-0 left-0 w-full overflow-hidden"
       >
         <motion.div
           initial={{
@@ -29,24 +29,24 @@ const Search = ({ search, setSearch }: Props) => {
           }}
           animate={search ? { opacity: 1 } : {}}
           transition={search ? { delay: 0.6, duration: 0.3 } : { delay: 0 }}
-          className="w-[700px] mx-auto"
+          className="max-w-[700px] mx-auto"
         >
           <div
             onClick={() => setSearch(false)}
-            className="flex justify-end mb-10 p-2 cursor-pointer"
+            className="flex justify-end mb-10 p-2 mt-2 cursor-pointer"
           >
             <X stroke="white" size={24} />
           </div>
 
-          <div className="flex flex-col gap-10 item-center">
+          <div className="flex flex-col gap-4 md:gap-10 item-center">
             <div className="h3 text-center text-white">Поиск</div>
 
             <Input
-              className="bg-transparent p-5 focus:outline-none leading-none text-white"
+              className="bg-transparent px-2 py-4 md:p-5 focus:outline-none leading-none text-white"
               placeholder="Искать на сайте"
             />
 
-            <Button className="mx-[50px]">Найти</Button>
+            <Button className="md:mx-[50px] md:py-0 py-2.5">Найти</Button>
           </div>
         </motion.div>
       </motion.div>

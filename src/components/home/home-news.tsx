@@ -1,10 +1,10 @@
-import { useGetNews } from '@/lib/hooks/useGetNews';
-import Container from '../layout/container';
-import NewsCard from '../shared/news-card';
-import SectionHeader from './section-header';
-import { useZusLang } from '@/zustand/use-zus-lang';
-import { Carousel, CarouselContent, CarouselItem } from '../ui/carousel';
-import clsx from 'clsx';
+import { useGetNews } from "@/lib/hooks/useGetNews";
+import Container from "../layout/container";
+import NewsCard from "../shared/news-card";
+import SectionHeader from "./section-header";
+import { useZusLang } from "@/zustand/use-zus-lang";
+import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
+import clsx from "clsx";
 
 const HomeNews = () => {
   const activeLang = useZusLang().activeLang;
@@ -12,7 +12,7 @@ const HomeNews = () => {
     lang: activeLang.value,
     per_page: 3,
     page: 1,
-    sort: 'asc',
+    sort: "asc",
   });
 
   return (
@@ -21,7 +21,7 @@ const HomeNews = () => {
         <SectionHeader
           title="Новости"
           icon="/images/home/chess-tower.svg"
-          link={{ path: '/news', text: 'все новости' }}
+          link={{ path: "/news", text: "все новости" }}
         />
 
         <div className="md:grid hidden grid-cols-3 gap-10">
@@ -31,7 +31,7 @@ const HomeNews = () => {
               key={news.id}
               id={news.id}
               animationDelay={i}
-              date={news.published_at}
+              published_at={news.published_at}
               title={news.title}
               img={news.featured_images[0].path}
               type="big"
@@ -44,13 +44,14 @@ const HomeNews = () => {
             {newsData?.data.map((news, i) => (
               <CarouselItem
                 key={news.id}
-                className={clsx('', {
-                  'mr-4': i + 1 !== newsData.data.length,
-                })}>
+                className={clsx("", {
+                  "mr-4": i + 1 !== newsData.data.length,
+                })}
+              >
                 <NewsCard
                   id={news.id}
                   animationDelay={i}
-                  date={news.published_at}
+                  published_at={news.published_at}
                   title={news.title}
                   img={news.featured_images[0].path}
                   type="big"
