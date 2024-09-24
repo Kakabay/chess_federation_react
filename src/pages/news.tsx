@@ -1,10 +1,10 @@
-import NewsCard from "@/components/shared/news-card";
-import Container from "@/components/layout/container";
-import PageTitle from "@/components/shared/page-title";
-import useScrollToTop from "@/lib/hooks/useScrollToTop";
-import { useGetNews } from "@/lib/hooks/useGetNews";
-import { useZusLang } from "@/zustand/use-zus-lang";
-import { useState } from "react";
+import NewsCard from '@/components/shared/news-card';
+import Container from '@/components/layout/container';
+import PageTitle from '@/components/shared/page-title';
+import useScrollToTop from '@/lib/hooks/useScrollToTop';
+import { useGetNews } from '@/lib/hooks/useGetNews';
+import { useZusLang } from '@/zustand/use-zus-lang';
+import { useState } from 'react';
 
 const News = () => {
   useScrollToTop();
@@ -15,7 +15,7 @@ const News = () => {
     lang: activeLang.value,
     per_page: 9,
     page: curentPage,
-    sort: "asc",
+    sort: 'asc',
   });
 
   return (

@@ -45,7 +45,7 @@ const HomeSlider = () => {
         <CarouselContent>
           {data &&
             data.map((slide, i) => (
-              <CarouselItem key={i} className="max-h-[850px] relative">
+              <CarouselItem key={slide.id} className="max-h-[850px] relative">
                 <div className="w-full h-full relative">
                   {slide.header || slide.txt ? (
                     <div className="absolute bottom-0 left-0 right-0 h-full w-full bg-SLIDER_IMAGE_GRADIENT"></div>
@@ -77,10 +77,10 @@ const HomeSlider = () => {
         </CarouselContent>
         <div className="absolute bottom-10 right-[13.5%] flex gap-3 ">
           {data &&
-            data.map((_, i) => (
+            data.map((slide, i) => (
               <div
                 onClick={() => api?.scrollTo(i)}
-                key={i}
+                key={slide.id}
                 className={clsx(
                   'w-[12px] h-[12px] border border-white rounded-full cursor-pointer',
                   {

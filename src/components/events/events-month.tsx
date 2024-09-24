@@ -1,7 +1,7 @@
-import Container from "../layout/container";
-import EventCard from "../shared/event-card";
-import { Event } from "@/types/events.type";
-import { motion } from "framer-motion";
+import Container from '../layout/container';
+import EventCard from '../shared/event-card';
+import { Event } from '@/types/events.type';
+import { motion } from 'framer-motion';
 
 interface Props {
   date: string;
@@ -29,27 +29,21 @@ const EventsMonth = ({ date, eventsData, isCurrent }: Props) => {
         {!isCurrent ? (
           <div className="flex flex-col gap-5">
             {eventsData.map((item: Event, i: number) => (
-              <EventCard key={i} {...item} line={i !== 0 ? "top" : "none"} />
+              <EventCard key={item.name} {...item} line={i !== 0 ? 'top' : 'none'} />
             ))}
           </div>
         ) : (
           <motion.div
             initial={{
-              translateY: "50%",
+              translateY: '50%',
               opacity: 0,
             }}
             whileInView={{ translateY: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}
-            className="flex flex-col gap-10 bg-BROWN p-6 md:p-10 rounded-[24px]"
-          >
+            className="flex flex-col gap-10 bg-BROWN p-6 md:p-10 rounded-[24px]">
             {eventsData.map((item: Event, i: number) => (
-              <EventCard
-                key={i}
-                {...item}
-                line={i !== 0 ? "top" : "none"}
-                isCurrent
-              />
+              <EventCard key={item.name} {...item} line={i !== 0 ? 'top' : 'none'} isCurrent />
             ))}
           </motion.div>
         )}

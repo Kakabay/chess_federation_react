@@ -69,7 +69,7 @@ const HomeGallery = () => {
               {data.map(
                 (video, i) =>
                   i !== selectedVideo && (
-                    <CarouselItem key={i} className="h-[150px] basis-[315px] pl-0 mr-5">
+                    <CarouselItem key={video.id} className="h-[150px] basis-[315px] pl-0 mr-5">
                       <motion.div
                         className="h-full relative"
                         initial={{
@@ -100,7 +100,7 @@ const HomeGallery = () => {
           <Carousel className="md:hidden " setApi={setApi}>
             <CarouselContent>
               {data.map((video, i) => (
-                <CarouselItem key={i} className="mr-5">
+                <CarouselItem key={video.id} className="mr-5">
                   <motion.div
                     className="h-full relative"
                     initial={{
@@ -126,10 +126,10 @@ const HomeGallery = () => {
               ))}
             </CarouselContent>
             <div className="flex justify-center gap-3 mt-2">
-              {data.map((_, i) => (
+              {data.map((video, i) => (
                 <div
                   onClick={() => api?.scrollTo(i)}
-                  key={i}
+                  key={video.id}
                   className={clsx(
                     'w-[12px] h-[12px] border border-white rounded-full cursor-pointer',
                     {

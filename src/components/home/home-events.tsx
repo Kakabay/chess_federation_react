@@ -1,16 +1,16 @@
-import { useState } from "react";
-import Container from "../layout/container";
-import EventCard from "../shared/event-card";
-import { Calendar } from "../ui/calendar";
-import { Separator } from "../ui/separator";
-import SectionHeader from "./section-header";
-import { ru } from "date-fns/locale";
-import { useGetEvents } from "@/lib/hooks/useGetEvents";
-import { useZusLang } from "@/zustand/use-zus-lang";
-import { Event } from "@/types/events.type";
-import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
-import { Button } from "../ui/button";
-import CalendarMobile from "../shared/calendar-mobile";
+import { useState } from 'react';
+import Container from '../layout/container';
+import EventCard from '../shared/event-card';
+import { Calendar } from '../ui/calendar';
+import { Separator } from '../ui/separator';
+import SectionHeader from './section-header';
+import { ru } from 'date-fns/locale';
+import { useGetEvents } from '@/lib/hooks/useGetEvents';
+import { useZusLang } from '@/zustand/use-zus-lang';
+import { Event } from '@/types/events.type';
+import { Carousel, CarouselContent, CarouselItem } from '../ui/carousel';
+import { Button } from '../ui/button';
+import CalendarMobile from '../shared/calendar-mobile';
 
 const HomeEvents = () => {
   const activeLang = useZusLang().activeLang;
@@ -29,7 +29,7 @@ const HomeEvents = () => {
           <SectionHeader
             title="Предстоящие события"
             icon="/images/home/chess-horse.svg"
-            link={{ text: "все события", path: "/events" }}
+            link={{ text: 'все события', path: '/events' }}
             titleClassName="font-[bitter] leading-none"
           />
 
@@ -39,11 +39,11 @@ const HomeEvents = () => {
                 data[1].events.map(
                   (item: Event, i: number) =>
                     i < 2 && (
-                      <div key={i} className="flex flex-col gap-10">
-                        <EventCard key={i} {...item} isCurrent={false} />
+                      <div key={item.name} className="flex flex-col gap-10">
+                        <EventCard {...item} isCurrent={false} />
                         {i < 3 - 1 && <Separator />}
                       </div>
-                    )
+                    ),
                 )}
             </div>
 
@@ -56,10 +56,7 @@ const HomeEvents = () => {
             />
           </div>
 
-          <Button
-            onClick={() => setCalendar(true)}
-            className="lg:hidden uppercase w-full mb-6"
-          >
+          <Button onClick={() => setCalendar(true)} className="lg:hidden uppercase w-full mb-6">
             ОТКРЫТЬ КАЛЕНДАРЬ
           </Button>
 
@@ -67,11 +64,8 @@ const HomeEvents = () => {
             <CarouselContent>
               {data &&
                 data[1].events.map((item: Event, i: number) => (
-                  <CarouselItem
-                    key={i}
-                    className="flex flex-col p-0 basis-[100%]"
-                  >
-                    <EventCard key={i} {...item} isCurrent={false} />
+                  <CarouselItem key={item.name} className="flex flex-col p-0 basis-[100%]">
+                    <EventCard {...item} isCurrent={false} />
                     {i < 3 - 1 && <Separator className="lg:block hidden" />}
                   </CarouselItem>
                 ))}
