@@ -18,6 +18,10 @@ class ChessService {
     return await axios.get<EventsTypes>(`${this.URL}/events`);
   };
 
+  getEventByDate = async (date: string) => {
+    return await axios.get<EventsTypes>(`${this.URL}/events/date?date=${date}`);
+  };
+
   getNews = async (per_page: number, locale: string, page: number = 1, sort: string = 'asc') => {
     return await axios.get<NewsType>(
       `${this.URL}/posts?locale=${locale}&per_page=${per_page}&sort_order=${sort}`,
