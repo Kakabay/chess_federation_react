@@ -21,7 +21,7 @@ const rating = [
 const HomeRating = () => {
   return (
     <section>
-      <Container>
+      <Container className="overflow-auto">
         <SectionHeader
           title="Рейтинг игроков"
           icon="/images/home/chess-crown.svg"
@@ -48,6 +48,7 @@ const HomeRating = () => {
 
         <Slider
           className="md:hidden"
+          itemClass="basis-[90%]"
           array={rating}
           renderElement={(item, i) => (
             <motion.div

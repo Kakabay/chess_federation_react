@@ -131,11 +131,13 @@ const Carousel = React.forwardRef<
 Carousel.displayName = 'Carousel';
 
 const CarouselContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => {
+  ({ className, isVisble = false, ...props }, ref) => {
     const { carouselRef, orientation } = useCarousel();
 
     return (
-      <div ref={carouselRef} className="overflow-hidden">
+      <div
+        ref={carouselRef}
+        className={cn({ 'overflow-hidden': !isVisble, 'overflow-visible': isVisble })}>
         <div
           ref={ref}
           className={cn('flex', orientation === 'horizontal' ? '' : '-mt-4 flex-col', className)}

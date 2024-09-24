@@ -10,7 +10,7 @@ interface IProps {
 
 export const useGetNews = ({ per_page, lang, page, sort }: IProps) => {
   const { data, isLoading, isError, isSuccess } = useQuery({
-    queryKey: ['eventsData', lang, per_page, sort, page],
+    queryKey: ['newsData', lang, per_page, sort, page],
     queryFn: () => chessService.getNews(per_page, lang, page, sort),
     select: ({ data }) => data,
   });

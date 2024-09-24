@@ -72,6 +72,9 @@ export default {
       transitionTimingFunction: {
         TRANSITIOM_ONE: 'cubic-bezier(0.55, 0, 0.1, 1)',
       },
+      margin: {
+        // SLIDER_MARGIN: 'calc(29vw - 260px)',
+      },
     },
   },
   plugins: [require('tailwindcss-animate')],
