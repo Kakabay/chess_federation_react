@@ -8,6 +8,7 @@ import { PartnersType } from './types/partners.type';
 import { StructureType } from './types/structure.type';
 import { AboutType } from './types/about.type';
 import { PlayersType } from './types/players.type';
+import { ContactInfoType } from './types/contactInfo.type';
 
 export const URL = 'http://216.250.12.9:8088/api/v1';
 class ChessService {
@@ -53,6 +54,18 @@ class ChessService {
 
   getPlayers = async () => {
     return await axios.get<PlayersType>(`${this.URL}/players`);
+  };
+
+  getContactInfo = async () => {
+    return await axios.get<ContactInfoType>(`${this.URL}/contact-info`);
+  };
+
+  postContactForm = async (body: { name: string; email: string; message: string }) => {
+    return await axios.post(`${this.URL}/send-contact-form`, body, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
   };
 }
 
