@@ -6,6 +6,8 @@ import { SingleNewsType } from './types/singleNews.type';
 import { VideosTypes } from './types/videos.type';
 import { PartnersType } from './types/partners.type';
 import { StructureType } from './types/structure.type';
+import { AboutType } from './types/about.type';
+import { PlayersType } from './types/players.type';
 
 export const URL = 'http://216.250.12.9:8088/api/v1';
 class ChessService {
@@ -43,6 +45,14 @@ class ChessService {
 
   getStructure = async () => {
     return await axios.get<StructureType>(`${this.URL}/structure`);
+  };
+
+  getAbout = async () => {
+    return await axios.get<AboutType>(`${this.URL}/about`);
+  };
+
+  getPlayers = async () => {
+    return await axios.get<PlayersType>(`${this.URL}/players`);
   };
 }
 
