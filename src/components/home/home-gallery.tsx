@@ -46,7 +46,7 @@ const HomeGallery = () => {
 
         {data && (
           <motion.div
-            className="max-h-[512px] relative md:block hidden overflow-hidden"
+            className="max-h-[512px] relative md:block hidden overflow-hidden cursor-pointer"
             initial={{
               translateY: '25%',
               opacity: 0,
@@ -69,7 +69,9 @@ const HomeGallery = () => {
               {data.map(
                 (video, i) =>
                   i !== selectedVideo && (
-                    <CarouselItem key={video.id} className="h-[150px] basis-[315px] pl-0 mr-5">
+                    <CarouselItem
+                      key={video.id}
+                      className="h-[150px] basis-[315px] pl-0 mr-5 cursor-pointer">
                       <motion.div
                         className="h-full relative"
                         initial={{
@@ -100,7 +102,7 @@ const HomeGallery = () => {
           <Carousel className="md:hidden " setApi={setApi}>
             <CarouselContent>
               {data.map((video, i) => (
-                <CarouselItem key={video.id} className="mr-5">
+                <CarouselItem key={video.id} className="mr-5 cursor-pointer">
                   <motion.div
                     className="h-full relative"
                     initial={{
