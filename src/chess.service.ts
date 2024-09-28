@@ -18,17 +18,17 @@ class ChessService {
     return await axios.get<HomeSliderTypes>(`${this.URL}/sliders`);
   };
 
-  getEvents = async () => {
-    return await axios.get<EventsTypes>(`${this.URL}/events`);
+  // getEvents = async () => {
+  //   return await axios.get<EventsTypes>(`${this.URL}/new_events`);
+  // };
+
+  getEventsByDate = async (date: string) => {
+    return await axios.get<EventsTypes>(`${this.URL}/new_events?date=${date}`);
   };
 
-  getEventByDate = async (date: string) => {
-    return await axios.get<EventsTypes>(`${this.URL}/events/date?date=${date}`);
-  };
-
-  getNews = async (per_page: number, locale: string, page: number = 1, sort: string = 'asc') => {
+  getNews = async (per_page: number, locale: string, page: number = 2, sort: string = 'asc') => {
     return await axios.get<NewsType>(
-      `${this.URL}/posts?locale=${locale}&per_page=${per_page}&sort_order=${sort}`,
+      `${this.URL}/posts?locale=${locale}&per_page=${per_page}&sort_order=${sort}&page=${page}`,
     );
   };
 
@@ -57,7 +57,7 @@ class ChessService {
   };
 
   getContactInfo = async () => {
-    return await axios.get<ContactInfoType>(`${this.URL}/contact-info`);
+    return await axios.get<ContactInfoType>(`${this.URL}/our_contacts`);
   };
 
   postContactForm = async (body: { name: string; email: string; message: string }) => {

@@ -1,29 +1,40 @@
 import EventsHero from '@/components/events/events-hero';
 import EventsMonth from '@/components/events/events-month';
-import { useGetEvents } from '@/lib/hooks/useGetEvents';
+import { useGetCurrentDate } from '@/lib/hooks/useGetCurrentDate';
+import { useGetEventsByDate } from '@/lib/hooks/useGetEventsByDate';
 import useScrollToTop from '@/lib/hooks/useScrollToTop';
-import { useZusLang } from '@/zustand/use-zus-lang';
 
 const Events = () => {
-  const activeLang = useZusLang().activeLang;
-
   useScrollToTop();
-  const { data } = useGetEvents(activeLang.value);
+  const currentDate = useGetCurrentDate();
+  const { data } = useGetEventsByDate({ date: currentDate });
 
   return (
     <main className="flex flex-col gap-[72px] md:gap-[200px]">
       <EventsHero />
 
       <section className="flex flex-col gap-[72px] md:gap-[120px]">
-        {/* {data?.map((item, i) => (
+        {data && data.data.ongoing_events.length !== 0 ? (
           <EventsMonth
-            key={item.id}
-            date={item.header}
-            eventsData={item.events}
-            isCurrent={i === 0 ? true : false}
+            isCurrent={true}
+            eventsData={data.data.ongoing_events}
+            title="Текущие турниры"
           />
-        ))} */}
-        {data && data.map}
+        ) : null}
+        {data && data.data.future_events.length !== 0 ? (
+          <EventsMonth
+            isCurrent={false}
+            eventsData={data.data.future_events}
+            title="Предстоящие турниры"
+          />
+        ) : null}
+        {data && data.data.past_events.length !== 0 ? (
+          <EventsMonth
+            isCurrent={true}
+            eventsData={data.data.past_events}
+            title="Прошедшие турниры"
+          />
+        ) : null}
       </section>
     </main>
   );

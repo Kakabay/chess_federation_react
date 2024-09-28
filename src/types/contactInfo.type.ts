@@ -6,17 +6,8 @@ export interface ContactInfoType {
 
 export interface Datum {
   id: number;
-  phone: string;
   address: string;
-  instagram: string;
-  twitter: string;
-  youtube: string;
-  facebook: string;
-  translations: Translation[];
-}
-
-export interface Translation {
-  model_id: string;
-  locale: string;
-  attribute_data: string;
+  contacts: string;
+  created_at: string;
+  updated_at: string;
 }

@@ -1,11 +1,17 @@
 import chessService from '@/chess.service';
-import { Datum, EventsTypes } from '@/types/events.type';
 import { useQuery } from '@tanstack/react-query';
 
-export const useGetEvents = (lang: string) => {
+interface IProps {
+  // lang: string;
+  date: string;
+}
+
+export const useGetEventsByDate = ({ date }: IProps) => {
+  // const formattedDate = date.toLocaleDateString('en-CA');
+
   const { data, isLoading, isError, isSuccess } = useQuery({
-    queryKey: ['eventsData', lang],
-    queryFn: () => chessService.getEvents(),
+    queryKey: ['eventsData', date],
+    queryFn: () => chessService.getEventsByDate(date),
     // select: ({ data }) => {
     //   // Function to handle translation logic
     //   const translatedData = data.data.map((item: Datum) => {

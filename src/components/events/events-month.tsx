@@ -4,12 +4,12 @@ import { Event } from '@/types/events.type';
 import { motion } from 'framer-motion';
 
 interface Props {
-  date: string;
+  title: string;
   eventsData: Event[];
   isCurrent: boolean;
 }
 
-const EventsMonth = ({ date, eventsData, isCurrent }: Props) => {
+const EventsMonth = ({ title, eventsData, isCurrent }: Props) => {
   return (
     <Container>
       <div className="flex flex-col items-center gap-4 md:gap-[60px] w-full">
@@ -21,15 +21,22 @@ const EventsMonth = ({ date, eventsData, isCurrent }: Props) => {
               ? months.ru[+eventsData.events[0].start.slice(5, 7)]
               : months.tm[+eventsData.events[0].start.slice(5, 7)]}{' '}
             {eventsData.events[0].start.split(' ')[0].slice(0, 4)} */}
-            {date}
+            {title}
           </h2>
           <hr className="bg-BROWN h-[2px] w-full" />
         </div>
 
         {!isCurrent ? (
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 w-full">
             {eventsData.map((item: Event, i: number) => (
-              <EventCard key={i} {...item} line={i !== 0 ? 'top' : 'none'} />
+              <EventCard
+                key={item.id}
+                end={item.end_event_date}
+                start={item.start_event_date}
+                name={item.name_of_event}
+                place={item.place}
+                line={i !== 0 ? 'top' : 'none'}
+              />
             ))}
           </div>
         ) : (
@@ -41,9 +48,17 @@ const EventsMonth = ({ date, eventsData, isCurrent }: Props) => {
             whileInView={{ translateY: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}
-            className="flex flex-col gap-10 bg-BROWN p-6 md:p-10 rounded-[24px]">
+            className="flex flex-col gap-10 bg-BROWN p-6 md:p-10 rounded-[24px] w-full lg:w-[952px]">
             {eventsData.map((item: Event, i: number) => (
-              <EventCard key={item.name} {...item} line={i !== 0 ? 'top' : 'none'} isCurrent />
+              <EventCard
+                key={item.id}
+                line={i !== 0 ? 'top' : 'none'}
+                end={item.end_event_date}
+                start={item.start_event_date}
+                name={item.name_of_event}
+                place={item.place}
+                isCurrent
+              />
             ))}
           </motion.div>
         )}

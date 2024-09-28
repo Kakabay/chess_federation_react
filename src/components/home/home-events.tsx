@@ -1,22 +1,21 @@
 import { useState } from 'react';
 import Container from '../layout/container';
 import EventCard from '../shared/event-card';
-import { Calendar } from '../ui/calendar';
 import { Separator } from '../ui/separator';
 import SectionHeader from './section-header';
-import { useGetEvents } from '@/lib/hooks/useGetEvents';
 import { useZusLang } from '@/zustand/use-zus-lang';
-import { Event } from '@/types/events.type';
 import { Carousel, CarouselContent, CarouselItem } from '../ui/carousel';
 import { Button } from '../ui/button';
 import CalendarMobile from '../shared/calendar-mobile';
-import CalendarDesktop from '../shared/calendarDesktop';
+import CalendarDesktop from '../shared/calendar-desktop';
+import { useGetEventsByDate } from '@/lib/hooks/useGetEventsByDate';
+import { useGetCurrentDate } from '@/lib/hooks/useGetCurrentDate';
 
 const HomeEvents = () => {
-  const activeLang = useZusLang().activeLang;
+  // const activeLang = useZusLang().activeLang;
   const [calendar, setCalendar] = useState(false);
-
-  const { data } = useGetEvents(activeLang.value);
+  const currentDate = useGetCurrentDate();
+  const { data } = useGetEventsByDate({ date: currentDate });
 
   return (
     <>
@@ -33,11 +32,18 @@ const HomeEvents = () => {
           <div className="lg:flex items-start justify-between hidden">
             <div className="flex flex-col gap-10 max-w-[700px] xl:max-w-[952px]">
               {data &&
-                data[1].events.map(
-                  (item: Event, i: number) =>
+                data.data.past_events.map(
+                  (item, i) =>
                     i < 2 && (
                       <div key={i} className="flex flex-col gap-10">
-                        <EventCard {...item} isCurrent={false} />
+                        <EventCard
+                          end={item.end_event_date}
+                          name={item.name_of_event}
+                          key={item.id}
+                          place={item.place}
+                          start={item.start_event_date}
+                          isCurrent={false}
+                        />
                         {i < 3 - 1 && <Separator />}
                       </div>
                     ),
@@ -54,10 +60,14 @@ const HomeEvents = () => {
           <Carousel className="lg:hidden">
             <CarouselContent>
               {data &&
-                data[1].events.map((item: Event, i: number) => (
+                data.data.past_events.map((item, i) => (
                   <CarouselItem key={i} className="flex flex-col p-0 basis-[100%]">
-                    <EventCard {...item} isCurrent={false} />
-                    {i < 3 - 1 && <Separator className="lg:block hidden" />}
+                    end={item.end_event_date}
+                    name={item.name_of_event}
+                    key={item.id}
+                    place={item.place}
+                    start={item.start_event_date}
+                    isCurrent={false} {i < 3 - 1 && <Separator className="lg:block hidden" />}
                   </CarouselItem>
                 ))}
             </CarouselContent>

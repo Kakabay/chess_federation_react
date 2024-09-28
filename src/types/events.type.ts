@@ -1,26 +1,21 @@
 export interface EventsTypes {
   status_code: number;
   message: string;
-  data: Datum[];
+  data: Data;
 }
 
-export interface Datum {
-  id: number;
-  current: number;
-  header: string;
-  events: Event[];
-  translations: Translation[];
+export interface Data {
+  past_events: Event[];
+  ongoing_events: Event[];
+  future_events: Event[];
 }
 
 export interface Event {
-  start: string;
-  end: string;
-  name: string;
+  id: number;
+  start_event_date: string;
+  end_event_date: string;
+  name_of_event: string;
   place: string;
-}
-
-export interface Translation {
-  model_id: string;
-  locale: string;
-  attribute_data: string;
+  created_at: string;
+  updated_at: string;
 }
