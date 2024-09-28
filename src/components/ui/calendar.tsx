@@ -16,7 +16,6 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
   const zusSetDate = useZusDate().setDate;
 
   const { data } = useGetEventsByDate({ date: useFormatDate(zusDate) });
-  console.log(props);
 
   return (
     <motion.div

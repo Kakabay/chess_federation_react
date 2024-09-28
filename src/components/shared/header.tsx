@@ -1,14 +1,14 @@
-import { navData } from "@/data/nav";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { Separator } from "../ui/separator";
-import clsx from "clsx";
-import { useLocation } from "react-router-dom";
-import LangMenu from "./lang-menu";
-import Search from "./search";
-import { useState } from "react";
-import { SearchIcon } from "lucide-react";
-import Burger from "./burger";
+import { navData } from '@/data/nav';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Separator } from '../ui/separator';
+import clsx from 'clsx';
+import { useLocation } from 'react-router-dom';
+import LangMenu from './lang-menu';
+import Search from './search';
+import { useState } from 'react';
+import { SearchIcon } from 'lucide-react';
+import Burger from './burger';
 
 const Header = () => {
   const { pathname } = useLocation();
@@ -23,26 +23,24 @@ const Header = () => {
 
       <motion.header
         initial={{
-          translateY: "-100%",
+          translateY: '-100%',
           opacity: 0,
         }}
         whileInView={{ translateY: 0, opacity: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}
         className={clsx(
-          "w-full bg-HEADER_BG py-4 relative z-50 md:py-2.5 font-semibold text-BLACK",
+          'w-full bg-HEADER_BG py-4 relative z-50 md:z-0 md:py-2.5 font-semibold text-BLACK',
           {
-            "border-b border-[BROWN]": pathname !== "/",
-          }
-        )}
-      >
+            'border-b border-[BROWN]': pathname !== '/',
+          },
+        )}>
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}
-          className="max-w-[1623px] mx-auto px-4 flex items-center justify-between"
-        >
+          className="max-w-[1623px] mx-auto px-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2.5 w-[312px]">
             <img src="/logo.png" alt="LOGO" />
             <div className="text-[14px] md:text-[18px] leading-[125%]">
@@ -57,9 +55,8 @@ const Header = () => {
                   key={i}
                   to={item.link}
                   className={clsx({
-                    "text-LBROWN": pathname === item.link,
-                  })}
-                >
+                    'text-LBROWN': pathname === item.link,
+                  })}>
                   {item.view}
                 </Link>
               ))}
@@ -73,16 +70,11 @@ const Header = () => {
 
             <LangMenu className="xl:block hidden" />
 
-            <SearchIcon
-              onClick={() => setSearch(true)}
-              size={24}
-              className="cursor-pointer"
-            />
+            <SearchIcon onClick={() => setSearch(true)} size={24} className="cursor-pointer" />
 
             <div
               onClick={() => setBurger(!burger)}
-              className="size-6 xl:hidden cursor-pointer flex flex-col items-center justify-center gap-[3px]"
-            >
+              className="size-6 xl:hidden cursor-pointer flex flex-col items-center justify-center gap-[3px]">
               <span className="burger-span"></span>
               <span className="burger-span"></span>
               <span className="burger-span"></span>

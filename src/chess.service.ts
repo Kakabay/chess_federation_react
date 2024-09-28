@@ -9,6 +9,7 @@ import { StructureType } from './types/structure.type';
 import { AboutType } from './types/about.type';
 import { PlayersType } from './types/players.type';
 import { ContactInfoType } from './types/contactInfo.type';
+import { SearchTypes } from './types/search.type';
 
 export const URL = 'http://216.250.12.9:8088/api/v1';
 class ChessService {
@@ -34,6 +35,10 @@ class ChessService {
 
   getSingleNews = async ({ pageId, locale }: { pageId: string; locale: string }) => {
     return await axios.get<SingleNewsType>(`${this.URL}/posts/${pageId}?locale=${locale}`);
+  };
+
+  getSearchResults = async ({ searchQuery }: { searchQuery: string }) => {
+    return await axios.get<SearchTypes>(`${this.URL}/new_events?search=${searchQuery}`);
   };
 
   getVideos = async () => {
