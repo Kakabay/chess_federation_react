@@ -12,7 +12,7 @@ interface Props {
 }
 
 const Search = ({ search, setSearch }: Props) => {
-  const [searchValue, setSearchValue] = useState<string>('');
+  const [searchValue, setSearchValue] = useState<string>(' ');
   const debouncedValue = useDebounce(searchValue);
   const { data } = useGetSearchResults({ searchQuery: debouncedValue });
 

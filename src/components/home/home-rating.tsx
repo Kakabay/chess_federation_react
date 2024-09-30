@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import Container from '../layout/container';
 import SectionHeader from './section-header';
 import Slider from '../shared/slider';
+import useExtractSectionTitle from '@/lib/hooks/useExtractSectionTitle';
 
 const rating = [
   {
@@ -19,11 +20,12 @@ const rating = [
 ];
 
 const HomeRating = () => {
+  const sectionTitle = useExtractSectionTitle('players_rating_section_title');
   return (
     <section>
       <Container className="overflow-auto">
         <SectionHeader
-          title="Рейтинг игроков"
+          title={sectionTitle}
           icon="/images/home/chess-crown.svg"
           className="font-[bitter]"
         />

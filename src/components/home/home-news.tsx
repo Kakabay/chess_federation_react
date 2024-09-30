@@ -1,10 +1,11 @@
-import { useGetNews } from "@/lib/hooks/useGetNews";
-import Container from "../layout/container";
-import NewsCard from "../shared/news-card";
-import SectionHeader from "./section-header";
-import { useZusLang } from "@/zustand/use-zus-lang";
-import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
-import clsx from "clsx";
+import { useGetNews } from '@/lib/hooks/useGetNews';
+import Container from '../layout/container';
+import NewsCard from '../shared/news-card';
+import SectionHeader from './section-header';
+import { useZusLang } from '@/zustand/use-zus-lang';
+import { Carousel, CarouselContent, CarouselItem } from '../ui/carousel';
+import clsx from 'clsx';
+import useExtractSectionTitle from '@/lib/hooks/useExtractSectionTitle';
 
 const HomeNews = () => {
   const activeLang = useZusLang().activeLang;
@@ -12,16 +13,17 @@ const HomeNews = () => {
     lang: activeLang.value,
     per_page: 3,
     page: 1,
-    sort: "asc",
+    sort: 'asc',
   });
+  const sectionTitle = useExtractSectionTitle('news_section_title');
 
   return (
     <section>
       <Container>
         <SectionHeader
-          title="Новости"
+          title={sectionTitle}
           icon="/images/home/chess-tower.svg"
-          link={{ path: "/news", text: "все новости" }}
+          link={{ path: '/news', text: 'все новости' }}
         />
 
         <div className="md:grid hidden grid-cols-3 gap-10">
@@ -44,10 +46,9 @@ const HomeNews = () => {
             {newsData?.data.map((news, i) => (
               <CarouselItem
                 key={news.id}
-                className={clsx("", {
-                  "mr-4": i + 1 !== newsData.data.length,
-                })}
-              >
+                className={clsx('', {
+                  'mr-4': i + 1 !== newsData.data.length,
+                })}>
                 <NewsCard
                   id={news.id}
                   animationDelay={i}

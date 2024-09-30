@@ -10,24 +10,29 @@ import CalendarMobile from '../shared/calendar-mobile';
 import CalendarDesktop from '../shared/calendar-desktop';
 import { useGetEventsByDate } from '@/lib/hooks/useGetEventsByDate';
 import { useGetCurrentDate } from '@/lib/hooks/useGetCurrentDate';
+import { useGetTranslations } from '@/lib/hooks/useGetTranslations';
+import useExtractSectionTitle from '@/lib/hooks/useExtractSectionTitle';
 
 const HomeEvents = () => {
   // const activeLang = useZusLang().activeLang;
   const [calendar, setCalendar] = useState(false);
   const currentDate = useGetCurrentDate();
   const { data } = useGetEventsByDate({ date: currentDate });
+  const sectionTitle = useExtractSectionTitle('ongoing_events_section_title');
 
   return (
     <>
       <CalendarMobile calendar={calendar} setCalendar={setCalendar} />
       <section>
         <Container>
-          <SectionHeader
-            title="Предстоящие события"
-            icon="/images/home/chess-horse.svg"
-            link={{ text: 'все события', path: '/events' }}
-            titleClassName="font-[bitter] leading-none"
-          />
+          {sectionTitle && (
+            <SectionHeader
+              title={sectionTitle}
+              icon="/images/home/chess-horse.svg"
+              link={{ text: 'все события', path: '/events' }}
+              titleClassName="font-[bitter] leading-none"
+            />
+          )}
 
           <div className="lg:flex items-start justify-between hidden">
             <div className="flex flex-col gap-10 max-w-[700px] xl:max-w-[952px]">

@@ -14,6 +14,8 @@ const CalendarMobile = ({ calendar, setCalendar }: Props) => {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const activeLang = useZusLang().activeLang;
 
+  console.log(calendar);
+
   return (
     <motion.div
       initial={{ translateY: '-100%', opacity: 0 }}

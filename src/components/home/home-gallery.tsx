@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { useGetVideos } from '@/lib/hooks/useGetVideos';
 import { HOSTING } from '@/lib/constants';
+import { useGetTranslations } from '@/lib/hooks/useGetTranslations';
+import useExtractSectionTitle from '@/lib/hooks/useExtractSectionTitle';
 
 const HomeGallery = () => {
   const [api, setApi] = useState<CarouselApi>();
@@ -13,6 +15,8 @@ const HomeGallery = () => {
   const [count, setCount] = useState(0);
   const [selectedVideo, setSelectedVideo] = useState(0);
   const [videoSiPlaying, setVideoIsPlaying] = useState(false);
+
+  const sectionTitle = useExtractSectionTitle('video_gallery_section_title');
 
   const { data } = useGetVideos();
 
@@ -41,7 +45,7 @@ const HomeGallery = () => {
           whileInView={{ translateY: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}>
-          Видеогалерея
+          {sectionTitle}
         </motion.h2>
 
         {data && (

@@ -4,15 +4,17 @@ import { Carousel, CarouselContent, CarouselItem } from '../ui/carousel';
 import SectionHeader from './section-header';
 import { useGetPartners } from '@/lib/hooks/useGetPartners';
 import { HOSTING } from '@/lib/constants';
+import useExtractSectionTitle from '@/lib/hooks/useExtractSectionTitle';
 
 const HomePartners = () => {
   const { data } = useGetPartners();
+  const sectionTitle = useExtractSectionTitle('partners_section_title');
 
   return (
     <section>
       <Container>
         <SectionHeader
-          title="Партнёры"
+          title={sectionTitle}
           icon="/images/home/chess-elephant.svg"
           className="font-[bitter]"
         />

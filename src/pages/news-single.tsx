@@ -6,8 +6,10 @@ import { useParams } from 'react-router-dom';
 import { useGetSingleNews } from '@/lib/hooks/useGetSingleNews';
 import { useZusLang } from '@/zustand/use-zus-lang';
 import { useGetNews } from '@/lib/hooks/useGetNews';
-import Slider from '@/components/shared/slider';
-import { ReactNode } from 'react';
+
+import { array } from 'zod';
+import { cn } from '@/lib/utils';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 
 const NewsSingle = () => {
   let { pageId } = useParams();
@@ -49,31 +51,51 @@ const NewsSingle = () => {
             dangerouslySetInnerHTML={singleNewsData && { __html: singleNewsData.data.content_html }}
           />
         </section>
-        <section>
-          <SectionHeader title={'Последние новости'} className="md:mb-10 mb-6" />
+        {newsData && (
+          <section>
+            <SectionHeader title={'Последние новости'} className="md:mb-10 mb-6" />
 
-          <div className="hidden md:flex gap-10">
-            {newsData?.data.map((news) => (
-              <NewsCard
-                key={news.id}
-                id={news.id}
-                published_at={news.published_at}
-                title={news.title}
-                img={news.featured_images[0].path}
-                titleClassName="h4"
-                className=""
-                type="small"
-              />
-            ))}
-          </div>
+            <div className="hidden md:flex gap-10">
+              {newsData.data.map((news) => (
+                <NewsCard
+                  key={news.id}
+                  id={news.id}
+                  published_at={news.published_at}
+                  title={news.title}
+                  img={news.featured_images[0].path}
+                  titleClassName="h4"
+                  className=""
+                  type="small"
+                />
+              ))}
+            </div>
 
-          <Slider
-            array={newsData?.data ? newsData.data.filter((_, i) => i < 3) : []}
-            renderElement={(item, i) => (
-              <NewsCard key={item.id} img={item.featured_images[0].path} type={'big'} {...item} />
-            )}
-          />
-        </section>
+            <div className="block md:hidden">
+              <Carousel>
+                <CarouselContent>
+                  {newsData.data.map((news, i) => (
+                    <CarouselItem
+                      key={i}
+                      className={cn({
+                        'mr-4 md:mr-6': i + 1 !== array.length,
+                      })}>
+                      <NewsCard
+                        key={news.id}
+                        id={news.id}
+                        published_at={news.published_at}
+                        title={news.title}
+                        img={news.featured_images[0].path}
+                        titleClassName="h4"
+                        className=""
+                        type="big"
+                      />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </div>
+          </section>
+        )}
       </Container>
     </main>
   );

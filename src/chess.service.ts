@@ -10,6 +10,7 @@ import { AboutType } from './types/about.type';
 import { PlayersType } from './types/players.type';
 import { ContactInfoType } from './types/contactInfo.type';
 import { SearchTypes } from './types/search.type';
+import { TranslationsTypes } from './types/translations.type';
 
 export const URL = 'http://216.250.12.9:8088/api/v1';
 class ChessService {
@@ -38,7 +39,9 @@ class ChessService {
   };
 
   getSearchResults = async ({ searchQuery }: { searchQuery: string }) => {
-    return await axios.get<SearchTypes>(`${this.URL}/new_events?search=${searchQuery}`);
+    return await axios.get<SearchTypes>(
+      `${this.URL}/new_events?search=${searchQuery ? searchQuery : ' '}`,
+    );
   };
 
   getVideos = async () => {
@@ -63,6 +66,10 @@ class ChessService {
 
   getContactInfo = async () => {
     return await axios.get<ContactInfoType>(`${this.URL}/our_contacts`);
+  };
+
+  getTranslations = async () => {
+    return await axios.get<TranslationsTypes>(`${this.URL}/translations`);
   };
 
   postContactForm = async (body: { name: string; email: string; message: string }) => {
