@@ -29,12 +29,12 @@ const CalendarDesktop = () => {
       whileInView={{ translateY: 0, opacity: 1 }}
       viewport={{ once: true }}
       transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}
-      className="relative">
+      className="relative lg:block hidden">
       <Calendar
         mode="single"
         selected={date}
         onSelect={setDate}
-        className="lg:block hidden"
+        className=""
         locale={activeLang.value === 'tm' ? enUS : ru}
       />
       <div className="relative">

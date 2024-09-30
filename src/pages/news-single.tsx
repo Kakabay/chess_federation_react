@@ -10,12 +10,14 @@ import { useGetNews } from '@/lib/hooks/useGetNews';
 import { array } from 'zod';
 import { cn } from '@/lib/utils';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
+import useExtractSectionTitle from '@/lib/hooks/useExtractSectionTitle';
 
 const NewsSingle = () => {
   let { pageId } = useParams();
   const activeLang = useZusLang().activeLang;
 
   useScrollToTop(pageId);
+  const newsSectionTitle = useExtractSectionTitle('news_single_page_other_news_section_title');
 
   const { data: singleNewsData } = useGetSingleNews({
     pageId,
@@ -53,7 +55,7 @@ const NewsSingle = () => {
         </section>
         {newsData && (
           <section>
-            <SectionHeader title={'Последние новости'} className="md:mb-10 mb-6" />
+            <SectionHeader title={newsSectionTitle} className="md:mb-10 mb-6" />
 
             <div className="hidden md:flex gap-10">
               {newsData.data.map((news) => (
