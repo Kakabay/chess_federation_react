@@ -1,6 +1,7 @@
 import Container from '@/components/layout/container';
 import Form from '@/components/shared/form';
 import PageTitle from '@/components/shared/page-title';
+import useExtractSectionTitle from '@/lib/hooks/useExtractSectionTitle';
 import { useGetContactInfo } from '@/lib/hooks/useGetContactInfo';
 import useScrollToTop from '@/lib/hooks/useScrollToTop';
 import { useZusLang } from '@/zustand/use-zus-lang';
@@ -10,14 +11,14 @@ const Contacts = () => {
   const activeLang = useZusLang().activeLang;
   const { data } = useGetContactInfo(activeLang.value);
 
+  const formTitle = useExtractSectionTitle('contact_form_title');
+  const mapSectionTitle = useExtractSectionTitle('contact_us_page_map_section_title');
+
   return (
     <main className="bg-PAGE_BG">
       <Container className="flex flex-col md:gap-[200px] gap-[72px]">
         <section className="flex flex-col md:flex-row w-full items-start md:justify-between">
-          <PageTitle
-            title="Свяжитесь с нами"
-            className="md:flex-[0_1_50%] flex-auto md:mb-0 mb-12"
-          />
+          <PageTitle title={formTitle} className="md:flex-[0_1_50%] flex-auto md:mb-0 mb-12" />
 
           <div className="md:flex-[0_1_50%] w-full">
             <Form />
@@ -27,7 +28,7 @@ const Contacts = () => {
         {data && (
           <section>
             <div className="flex flex-col md:flex-row mb-5">
-              <h2 className="h2 md:flex-[0_1_50%] w-full">Контакты и адрес</h2>
+              <h2 className="h2 md:flex-[0_1_50%] w-full">{mapSectionTitle}</h2>
 
               <div className="flex flex-col md:flex-row md:justify-between md:flex-[0_1_50%] gap-4 md:gap-0 mt-6 md:mt-20">
                 <div className="md:flex-[0_1_50%]">
