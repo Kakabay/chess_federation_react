@@ -2,6 +2,7 @@ import { useGePlayers } from '@/lib/hooks/useGetPlayers';
 import Container from '../layout/container';
 import { Carousel, CarouselContent, CarouselItem } from '../ui/carousel';
 import { HOSTING } from '@/lib/constants';
+import useExtractSectionTitle from '@/lib/hooks/useExtractSectionTitle';
 
 export const personal = [
   {
@@ -32,11 +33,12 @@ export const personal = [
 
 const AboutPersonal = () => {
   const { data } = useGePlayers();
+  const sectionTitle = useExtractSectionTitle('players_section_title');
 
   return (
     <section>
       <Container className="!overflow-visible">
-        <h2 className="h2 md:mb-10 mb-6">Сборная Туркменистана</h2>
+        <h2 className="h2 md:mb-10 mb-6">{sectionTitle}</h2>
         {data && (
           <Carousel className="overflow-visible">
             <CarouselContent className="!overflow-visible" isVisble={true}>

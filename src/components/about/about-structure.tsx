@@ -4,12 +4,13 @@ import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { useGetStructure } from '@/lib/hooks/useGetStructure';
 import { useZusLang } from '@/zustand/use-zus-lang';
+import useExtractSectionTitle from '@/lib/hooks/useExtractSectionTitle';
 
 const AboutStructure = () => {
   const activeLang = useZusLang().activeLang;
   const { data } = useGetStructure(activeLang.value);
+  const sectionTitle = useExtractSectionTitle('federation_structure_section_title');
 
-  console.log(data);
   return (
     <section>
       <Container>
@@ -22,7 +23,7 @@ const AboutStructure = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.55, 0, 0.1, 1] }}
           className="flex md:flex-row flex-col justify-between items-start md:pt-10 pt-2 border-t border-LBROWN">
-          <h2 className="h2 font-[bitter] mb-6 md:mb-0 text-BROWN">Структура федерации</h2>
+          <h2 className="h2 font-[bitter] mb-6 md:mb-0 text-BROWN">{sectionTitle}</h2>
 
           {data && (
             <div className="flex flex-col gap-4 md:gap-[50px]">
