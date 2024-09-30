@@ -1,7 +1,11 @@
 import { motion } from 'framer-motion';
 import Container from '../layout/container';
+import useExtractSectionTitle from '@/lib/hooks/useExtractSectionTitle';
 
 const EventsHero = () => {
+  const eventsPageTitle = useExtractSectionTitle('events_page_title');
+  const eventsPageSubtitle = useExtractSectionTitle('events_page_subtitle');
+
   return (
     <section>
       <Container>
@@ -58,11 +62,9 @@ const EventsHero = () => {
             transition={{ delay: 0.6, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}
             className="flex flex-col gap-4 md:gap-5 -mt-4 md:-mt-10 z-50">
             <h1 className="md:text-[109px] text-[32px] font-[bitter] text-BROWN uppercase font-bold leading-[110%] z-20 text-center">
-              Турниры и события
+              {eventsPageTitle}
             </h1>
-            <div className="text-center text-BROWN">
-              Список предстоящих шахматных событий в Туркменистане
-            </div>
+            <div className="text-center text-BROWN">{eventsPageSubtitle}</div>
           </motion.div>
         </div>
       </Container>

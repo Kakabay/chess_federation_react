@@ -27,7 +27,7 @@ const EventsMonth = ({ title, eventsData, isCurrent }: Props) => {
         </div>
 
         {!isCurrent ? (
-          <div className="flex flex-col gap-5 w-full">
+          <div className="flex flex-col items-center gap-5 w-full">
             {eventsData.map((item: Event, i: number) => (
               <EventCard
                 key={item.id}

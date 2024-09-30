@@ -18,7 +18,7 @@ const HomeEvents = () => {
   const [calendar, setCalendar] = useState(false);
   const currentDate = useGetCurrentDate();
   const { data } = useGetEventsByDate({ date: currentDate });
-  const sectionTitle = useExtractSectionTitle('ongoing_events_section_title');
+  const sectionTitle = useExtractSectionTitle('future_events_section_title');
 
   return (
     <>
