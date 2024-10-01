@@ -18,4 +18,11 @@ export interface Event {
   place: string;
   created_at: string;
   updated_at: string;
+  translations: Translation[];
+}
+
+export interface Translation {
+  model_id: string;
+  locale: string;
+  attribute_data: string;
 }

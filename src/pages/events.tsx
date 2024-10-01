@@ -4,11 +4,13 @@ import useExtractSectionTitle from '@/lib/hooks/useExtractSectionTitle';
 import { useGetCurrentDate } from '@/lib/hooks/useGetCurrentDate';
 import { useGetEventsByDate } from '@/lib/hooks/useGetEventsByDate';
 import useScrollToTop from '@/lib/hooks/useScrollToTop';
+import { useZusLang } from '@/zustand/use-zus-lang';
 
 const Events = () => {
   useScrollToTop();
   const currentDate = useGetCurrentDate();
-  const { data } = useGetEventsByDate({ date: currentDate });
+  const activeLang = useZusLang().activeLang;
+  const { data } = useGetEventsByDate({ date: currentDate, lang: activeLang.value });
   const ongoingSectionTitle = useExtractSectionTitle('ongoing_events_section_title');
   const futureSectionTitle = useExtractSectionTitle('future_events_section_title');
   const pastSectionTitle = useExtractSectionTitle('past_events_section_title');
@@ -18,26 +20,22 @@ const Events = () => {
       <EventsHero />
 
       <section className="flex flex-col gap-[72px] md:gap-[120px]">
-        {data && data.data.ongoing_events.length !== 0 ? (
+        {data && data.ongoing_events.length !== 0 ? (
           <EventsMonth
             isCurrent={true}
-            eventsData={data.data.ongoing_events}
+            eventsData={data.ongoing_events}
             title={ongoingSectionTitle}
           />
         ) : null}
-        {data && data.data.future_events.length !== 0 ? (
+        {data && data.future_events.length !== 0 ? (
           <EventsMonth
             isCurrent={false}
-            eventsData={data.data.future_events}
+            eventsData={data.future_events}
             title={futureSectionTitle}
           />
         ) : null}
-        {data && data.data.past_events.length !== 0 ? (
-          <EventsMonth
-            isCurrent={false}
-            eventsData={data.data.past_events}
-            title={pastSectionTitle}
-          />
+        {data && data.past_events.length !== 0 ? (
+          <EventsMonth isCurrent={false} eventsData={data.past_events} title={pastSectionTitle} />
         ) : null}
       </section>
     </main>
