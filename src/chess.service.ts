@@ -39,9 +39,7 @@ class ChessService {
   };
 
   getSearchResults = async ({ searchQuery }: { searchQuery: string }) => {
-    return await axios.get<SearchTypes>(
-      `${this.URL}/new_events?search=${searchQuery ? searchQuery : ' '}`,
-    );
+    return await axios.get<SearchTypes>(`${this.URL}/new_events?search=${searchQuery}`);
   };
 
   getVideos = async () => {
