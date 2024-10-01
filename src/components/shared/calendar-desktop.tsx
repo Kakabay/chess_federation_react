@@ -18,7 +18,10 @@ const CalendarDesktop = () => {
     setZusDate(date ? date : new Date());
   }, [date]);
 
-  const { data } = useGetEventsByDate({ date: useFormatDate(date ?? new Date()) });
+  const { data } = useGetEventsByDate({
+    date: useFormatDate(date ?? new Date()),
+    lang: activeLang.value,
+  });
 
   return (
     <motion.div
@@ -38,8 +41,8 @@ const CalendarDesktop = () => {
         locale={activeLang.value === 'tm' ? enUS : ru}
       />
       <div className="relative">
-        {data && data.data.ongoing_events.length !== 0
-          ? data.data.ongoing_events.map((item) => (
+        {data && data.ongoing_events.length !== 0
+          ? data.ongoing_events.map((item) => (
               <motion.div
                 initial={{
                   translateY: '50%',
