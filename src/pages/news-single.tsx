@@ -39,11 +39,11 @@ const NewsSingle = () => {
           {singleNewsData &&
             singleNewsData.data.featured_images &&
             singleNewsData.data.featured_images[0].path && (
-              <div className="max-w-[1000px] w-full max-h-[500px]">
+              <div className="max-w-[1000px] w-full max-h-[500px] h-full overflow-hidden">
                 <img
                   src={singleNewsData.data.featured_images[0].path}
                   alt=""
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
             )}
