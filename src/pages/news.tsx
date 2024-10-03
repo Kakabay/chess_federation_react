@@ -20,7 +20,7 @@ const News = () => {
   const activeLang = useZusLang().activeLang;
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const { data: newsData } = useGetNews({
+  const { data: newsData, isLoading } = useGetNews({
     lang: activeLang.value,
     per_page: 9,
     page: currentPage,
@@ -38,9 +38,19 @@ const News = () => {
     }
   };
 
-  const pages = new Array(newsData?.meta.last_page).fill(' ');
+  if (!newsData) {
+    return (
+      <div className="h-[50vh] w-full flex justify-center items-center">
+        <h1 className="text-2xl text-BROWN font-semibold ">Loading...</h1>
+      </div>
+    );
+  }
 
-  console.log(pages);
+  const pages = new Array(newsData.meta.last_page).fill(' ');
+
+  const showLeftEllipsis = currentPage > 5 && newsData.meta.last_page > 12;
+  const showRightEllipsis =
+    newsData.meta.last_page > 12 && currentPage < newsData.meta.last_page - 5;
 
   return (
     <main className="bg-PAGE_BG">
@@ -63,40 +73,43 @@ const News = () => {
           {newsData && (
             <Pagination>
               <PaginationContent className="flex gap-[12px] items-center justify-center ">
-                <PaginationItem className="block ">
-                  <PaginationPrevious
-                    className={`hover:bg-transparent ${
-                      currentPage > 1
-                        ? 'cursor-pointer'
-                        : 'cursor-default pointer-events-none opacity-50'
-                    }`}
-                    onClick={paginationPrevClickHandler}
-                  />
-                </PaginationItem>
+                {currentPage > 1 && (
+                  <PaginationItem className="block ">
+                    <PaginationPrevious
+                      className={`hover:bg-transparent cursor-pointer`}
+                      onClick={paginationPrevClickHandler}
+                    />
+                  </PaginationItem>
+                )}
+                {showLeftEllipsis && (
+                  <PaginationItem>
+                    <PaginationEllipsis />
+                  </PaginationItem>
+                )}
                 {pages.map((_, i) => (
                   <PaginationItem key={i} className="border-none outline-none">
                     <PaginationLink
                       isActive={currentPage === i + 1 ? true : false}
                       onClick={() => setCurrentPage(i + 1)}
-                      className="text-[16px] text-BLACK w-[24px] h-[24px] p-[10px] cursor-pointer">
+                      className="text-[16px] w-[24px] h-[24px] p-[10px] cursor-pointer">
                       {i + 1}
                     </PaginationLink>
                   </PaginationItem>
                 ))}
 
-                {/* <PaginationItem>
-                  <PaginationEllipsis />
-                </PaginationItem> */}
-                <PaginationItem>
-                  <PaginationNext
-                    className={`hover:bg-transparent ${
-                      currentPage < newsData.meta.last_page
-                        ? 'cursor-pointer'
-                        : 'cursor-default pointer-events-none opacity-50'
-                    }`}
-                    onClick={() => paginationNextClickHandler(newsData.meta.last_page)}
-                  />
-                </PaginationItem>
+                {showRightEllipsis && (
+                  <PaginationItem>
+                    <PaginationEllipsis />
+                  </PaginationItem>
+                )}
+                {currentPage < newsData.meta.last_page && (
+                  <PaginationItem>
+                    <PaginationNext
+                      className={`hover:bg-transparent cursor-pointer`}
+                      onClick={() => paginationNextClickHandler(newsData.meta.last_page)}
+                    />
+                  </PaginationItem>
+                )}
               </PaginationContent>
             </Pagination>
           )}

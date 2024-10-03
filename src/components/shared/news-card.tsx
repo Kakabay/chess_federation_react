@@ -45,7 +45,7 @@ const NewsCard = ({
           <h3 className="text-GRAY1 leading-none md:text-[16px] text-[10px]">{published_at}</h3>
           <h2
             className={cn(
-              'h3 font-[bitter] group-hover:text-LBROWN transition-all ease-TRANSITIOM_ONE duration-300 line-clamp-3',
+              'h3 font-[bitter] group-h over:text-LBROWN transition-all ease-TRANSITIOM_ONE duration-300 line-clamp-3',
               titleClassName,
             )}>
             {title}
