@@ -38,8 +38,10 @@ class ChessService {
     return await axios.get<SingleNewsType>(`${this.URL}/posts/${pageId}?locale=${locale}`);
   };
 
-  getSearchResults = async ({ searchQuery }: { searchQuery: string }) => {
-    return await axios.get<SearchTypes>(`${this.URL}/new_events?search=${searchQuery}`);
+  getSearchResults = async ({ searchQuery, lang }: { searchQuery: string; lang: string }) => {
+    return await axios.get<SearchTypes>(
+      `${this.URL}/posts?locale=${lang}&per_page=10&search=${searchQuery}`,
+    );
   };
 
   getVideos = async () => {

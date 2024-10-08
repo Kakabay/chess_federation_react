@@ -1,22 +1,39 @@
 export interface SearchTypes {
-  status_code: number;
-  message: string;
   data: Datum[];
+  links: Links;
+  meta: Meta;
 }
 
 export interface Datum {
   id: number;
-  start_event_date: string;
-  end_event_date: string;
-  name_of_event: string;
-  place: string;
-  created_at: string;
-  updated_at: string;
-  translations: Translation[];
+  title: string;
+  excerpt: string;
+  published_at: string;
+  featured_images: FeaturedImage[];
+  content_html: string;
 }
 
-export interface Translation {
-  model_id: string;
-  locale: string;
-  attribute_data: string;
+export interface FeaturedImage {
+  id: number;
+  disk_name: string;
+  file_name: string;
+  path: string;
+  extension: string;
+}
+
+export interface Links {
+  first: string;
+  last: string;
+  prev: null | string;
+  next: null | string;
+}
+
+export interface Meta {
+  current_page: number;
+  from: number;
+  last_page: number;
+  path: string;
+  per_page: number;
+  to: number;
+  total: number;
 }
