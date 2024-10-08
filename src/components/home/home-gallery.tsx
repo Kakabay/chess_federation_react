@@ -1,20 +1,18 @@
 import { motion } from 'framer-motion';
 import Container from '../layout/container';
 import { Carousel, CarouselApi, CarouselContent, CarouselItem } from '../ui/carousel';
-import { useZusLang } from '@/zustand/use-zus-lang';
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { useGetVideos } from '@/lib/hooks/useGetVideos';
 import { HOSTING } from '@/lib/constants';
-import { useGetTranslations } from '@/lib/hooks/useGetTranslations';
 import useExtractSectionTitle from '@/lib/hooks/useExtractSectionTitle';
 
 const HomeGallery = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
   const [selectedVideo, setSelectedVideo] = useState(0);
-  const [videoSiPlaying, setVideoIsPlaying] = useState(false);
+  // const [videoSiPlaying, setVideoIsPlaying] = useState(false);
 
   const sectionTitle = useExtractSectionTitle('video_gallery_section_title');
 
@@ -25,7 +23,7 @@ const HomeGallery = () => {
       return;
     }
 
-    setCount(api.scrollSnapList().length);
+    // setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap() + 1);
 
     api.on('select', () => {

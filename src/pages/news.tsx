@@ -20,7 +20,7 @@ const News = () => {
   const activeLang = useZusLang().activeLang;
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const { data: newsData, isLoading } = useGetNews({
+  const { data: newsData } = useGetNews({
     lang: activeLang.value,
     per_page: 9,
     page: currentPage,

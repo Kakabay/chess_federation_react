@@ -10,7 +10,6 @@ import CalendarMobile from '../shared/calendar-mobile';
 import CalendarDesktop from '../shared/calendar-desktop';
 import { useGetEventsByDate } from '@/lib/hooks/useGetEventsByDate';
 import { useGetCurrentDate } from '@/lib/hooks/useGetCurrentDate';
-import { useGetTranslations } from '@/lib/hooks/useGetTranslations';
 import useExtractSectionTitle from '@/lib/hooks/useExtractSectionTitle';
 
 const HomeEvents = () => {

@@ -5,17 +5,17 @@ import { DayPicker } from 'react-day-picker';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { motion } from 'framer-motion';
-import { useFormatDate } from '@/lib/hooks/useFormatDate';
-import { useGetEventsByDate } from '@/lib/hooks/useGetEventsByDate';
-import { useZusDate } from '@/zustand/use-zus-date';
+// import { useFormatDate } from '@/lib/hooks/useFormatDate';
+// import { useGetEventsByDate } from '@/lib/hooks/useGetEventsByDate';
+// import { useZusDate } from '@/zustand/use-zus-date';
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
 function Calendar({ className, classNames, showOutsideDays = true, ...props }: CalendarProps) {
-  const zusDate = useZusDate().date;
-  const zusSetDate = useZusDate().setDate;
+  // const zusDate = useZusDate().date;
+  // const zusSetDate = useZusDate().setDate;
 
-  const { data } = useGetEventsByDate({ date: useFormatDate(zusDate) });
+  // const { data } = useGetEventsByDate({ date: useFormatDate(zusDate) });
 
   return (
     <motion.div
@@ -58,8 +58,8 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
           ...classNames,
         }}
         components={{
-          IconLeft: ({ ...props }) => <ChevronLeft className="h-6 w-6 stroke-BLACK " />,
-          IconRight: ({ ...props }) => <ChevronRight className="h-6 w-6 stroke-BLACK" />,
+          IconLeft: () => <ChevronLeft className="h-6 w-6 stroke-BLACK " />,
+          IconRight: () => <ChevronRight className="h-6 w-6 stroke-BLACK" />,
           // day: (props) => (
           //   <div className="relative overflow-visible">
           //     {/* {String(props.date.getDate()).padStart(2, '0')} */}

@@ -5,7 +5,7 @@ import { type CarouselApi } from '@/components/ui/carousel';
 import clsx from 'clsx';
 import { useGetSlider } from '@/lib/hooks/useGetSlider';
 import { useZusLang } from '@/zustand/use-zus-lang';
-import { URL } from '@/chess.service';
+// import { URL } from '@/chess.service';
 import { HOSTING } from '@/lib/constants';
 import Container from '../layout/container';
 
@@ -14,14 +14,14 @@ const HomeSlider = () => {
 
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
 
   useEffect(() => {
     if (!api) {
       return;
     }
 
-    setCount(api.scrollSnapList().length);
+    // setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap() + 1);
 
     api.on('select', () => {
@@ -44,7 +44,7 @@ const HomeSlider = () => {
       <Carousel setApi={setApi} className="relative">
         <CarouselContent>
           {data &&
-            data.map((slide, i) => (
+            data.map((slide) => (
               <CarouselItem key={slide.id} className="max-h-[850px] relative">
                 <div className="w-full h-full relative">
                   {slide.header || slide.txt ? (
