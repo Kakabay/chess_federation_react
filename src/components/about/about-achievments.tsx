@@ -40,8 +40,6 @@ const AboutAchievments = () => {
   // Later in your component, you can map through this array:
   const achievements = achievementsHandler(data);
 
-  console.log(achievements);
-
   return (
     <>
       {data && (

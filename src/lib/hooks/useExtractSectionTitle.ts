@@ -13,8 +13,6 @@ const useExtractSectionTitle = (slug: string) => {
   // Filter the data once it's available
   const sectionTitle = translationsData.find((item) => item.key === slug)?.text;
 
-  console.log(sectionTitle);
-
   return sectionTitle;
 };
 
