@@ -35,10 +35,10 @@ const EventCard = ({ start, end, className, place, name, line, isCurrent = false
           <span className="h3 text-BLACK">{end && end.slice(8, 10)} </span>{' '}
           {end
             ? activeLang.value === 'tm'
-              ? months.tm[+end.slice(5, 7)]
+              ? months.tm[+end.slice(5, 7) - 1]
               : activeLang.value === 'ru'
-              ? months.ru[+end.slice(5, 7)]
-              : months.tm[+end.slice(5, 7)]
+              ? months.ru[+end.slice(5, 7) - 1]
+              : months.tm[+end.slice(5, 7) - 1]
             : null}
         </h3>
         <Separator className="h-[2px] bg-BLACK" />
@@ -47,10 +47,10 @@ const EventCard = ({ start, end, className, place, name, line, isCurrent = false
           <span className="h3 text-BLACK">{start && start.slice(8, 10)} </span>
           {start
             ? activeLang.value === 'tm'
-              ? months.tm[+start.slice(5, 7)]
+              ? months.tm[+start.slice(5, 7) - 1]
               : activeLang.value === 'ru'
-              ? months.ru[+start.slice(5, 7)]
-              : months.tm[+start.slice(5, 7)]
+              ? months.ru[+start.slice(5, 7) - 1]
+              : months.tm[+start.slice(5, 7) - 1]
             : null}
         </h3>
       </div>
@@ -77,20 +77,20 @@ const EventCard = ({ start, end, className, place, name, line, isCurrent = false
         <h3 className="text-LBROWN2">
           <span className="h3 text-white">{end.slice(8, 10)} </span>{' '}
           {activeLang.value === 'tm'
-            ? months.tm[+end.slice(5, 7)]
+            ? months.tm[+end.slice(5, 7) - 1]
             : activeLang.value === 'ru'
-            ? months.ru[+end.slice(5, 7)]
-            : months.tm[+end.slice(5, 7)]}
+            ? months.ru[+end.slice(5, 7) - 1]
+            : months.tm[+end.slice(5, 7) - 1]}
         </h3>
         <Separator className="h-[2px] bg-LBROWN" />
 
         <h3 className="text-LBROWN2">
           <span className="h3 text-white">{start.slice(8, 10)} </span>
           {activeLang.value === 'tm'
-            ? months.tm[+start.slice(5, 7)]
+            ? months.tm[+start.slice(5, 7) - 1]
             : activeLang.value === 'ru'
-            ? months.ru[+start.slice(5, 7)]
-            : months.tm[+start.slice(5, 7)]}
+            ? months.ru[+start.slice(5, 7) - 1]
+            : months.tm[+start.slice(5, 7) - 1]}
         </h3>
       </div>
 
