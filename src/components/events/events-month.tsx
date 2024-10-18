@@ -14,19 +14,48 @@ const EventsMonth = ({ title, eventsData, isCurrent }: Props) => {
     <Container>
       <div className="flex flex-col items-center gap-4 md:gap-[60px] w-full">
         <div className="flex flex-col gap-2 md:gap-10 w-full">
-          <h2 className="h2 text-center text-BROWN leading-none">
-            {/* {activeLang.value === 'tm'
+          {isCurrent ? (
+            <div className="flex gap-[24px] items-center justify-center ">
+              <div className="w-3 h-3 bg-BROWN rounded-full flash ease-TRANSITIOM_ONE transition-all"></div>
+              <h2 className="h2 text-center text-BROWN leading-none">
+                {/* {activeLang.value === 'tm'
               ? months.tm[+eventsData.events[0].start.slice(5, 7)]
               : activeLang.value === 'ru'
               ? months.ru[+eventsData.events[0].start.slice(5, 7)]
               : months.tm[+eventsData.events[0].start.slice(5, 7)]}{' '}
             {eventsData.events[0].start.split(' ')[0].slice(0, 4)} */}
-            {title}
-          </h2>
+                {title}
+              </h2>
+              <div className="w-3 h-3 bg-BROWN rounded-full flash ease-TRANSITIOM_ONE transition-all"></div>
+            </div>
+          ) : (
+            <h2 className="h2 text-center text-BROWN leading-none">
+              {/* {activeLang.value === 'tm'
+              ? months.tm[+eventsData.events[0].start.slice(5, 7)]
+              : activeLang.value === 'ru'
+              ? months.ru[+eventsData.events[0].start.slice(5, 7)]
+              : months.tm[+eventsData.events[0].start.slice(5, 7)]}{' '}
+            {eventsData.events[0].start.split(' ')[0].slice(0, 4)} */}
+              {title}
+            </h2>
+          )}
           <hr className="bg-BROWN h-[2px] w-full" />
         </div>
 
-        {!isCurrent ? (
+        <div className="flex flex-col items-center gap-5 w-full">
+          {eventsData.map((item: Event, i: number) => (
+            <EventCard
+              key={item.id}
+              end={item.end_event_date}
+              start={item.start_event_date}
+              name={item.name_of_event}
+              place={item.place}
+              line={i !== 0 ? 'top' : 'none'}
+            />
+          ))}
+        </div>
+
+        {/* {!isCurrent ? (
           <div className="flex flex-col items-center gap-5 w-full">
             {eventsData.map((item: Event, i: number) => (
               <EventCard
@@ -61,7 +90,7 @@ const EventsMonth = ({ title, eventsData, isCurrent }: Props) => {
               />
             ))}
           </motion.div>
-        )}
+        )} */}
       </div>
     </Container>
   );

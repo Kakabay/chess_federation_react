@@ -7,7 +7,9 @@ export interface AboutType {
 export interface Datum {
   id: number;
   header: string;
-  txt: string;
+  txt1: string;
+  txt2: string;
+  txt3: string;
   img: string;
   tournment_title: string;
   tournment_number: number;
