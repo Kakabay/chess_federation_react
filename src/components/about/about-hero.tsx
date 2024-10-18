@@ -3,7 +3,6 @@ import Container from '../layout/container';
 import PageTitle from '../shared/page-title';
 import { motion } from 'framer-motion';
 import { useGetAbout } from '@/lib/hooks/useGetAbout';
-import { HOSTING } from '@/lib/constants';
 
 const AboutHero = () => {
   const activeLang = useZusLang().activeLang;
