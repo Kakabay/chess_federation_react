@@ -1,7 +1,6 @@
 import Container from '../layout/container';
 import EventCard from '../shared/event-card';
 import { Event } from '@/types/events.type';
-import { motion } from 'framer-motion';
 
 interface Props {
   title: string;
