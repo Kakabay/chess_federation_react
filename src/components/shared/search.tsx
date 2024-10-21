@@ -50,22 +50,33 @@ const Search = ({ search, setSearch }: Props) => {
           </div>
 
           <div className="flex flex-col gap-4 md:gap-10 item-center">
-            <div className="h3 text-center text-white">Поиск</div>
+            <h3 className="h3 text-center text-white">
+              {activeLang.value === 'ru' ? 'Поиск' : 'Gözle'}
+            </h3>
 
             <Input
               className="bg-transparent px-2 py-4 md:p-5 focus:outline-none leading-none text-white"
-              placeholder="Искать на сайте"
+              placeholder={activeLang.value === 'ru' ? 'Искать на сайте' : 'Saýt boýunça gözle'}
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
             />
 
-            <Button className="md:mx-[50px] mx-0 py-2.5">Найти</Button>
+            <Button className="md:mx-[50px] mx-0 py-2.5">
+              {' '}
+              {activeLang.value === 'ru' ? 'Найти' : 'Gözle'}
+            </Button>
 
             {data && debouncedValue.length > 0 ? (
-              <p className="text-[#9F8E84] text-center md-mt-[0px] mt-[24px]">
-                По запросу «<span className="font-extrabold">{searchValue}</span>» нашлось{' '}
-                {data.data.length} результата(тов)
-              </p>
+              activeLang.value === 'ru' ? (
+                <p className="text-[#9F8E84] text-center md-mt-[0px] mt-[24px]">
+                  По запросу «<span className="font-extrabold">{searchValue}</span>» нашлось{' '}
+                  {data.data.length} результата(тов)
+                </p>
+              ) : (
+                <p className="text-[#9F8E84] text-center md-mt-[0px] mt-[24px]">
+                  Gözlegiň netijesi «<span className="font-extrabold">{searchValue}</span>»
+                </p>
+              )
             ) : null}
 
             {data && debouncedValue.length

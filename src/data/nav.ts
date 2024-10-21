@@ -1,18 +1,22 @@
 export const navData = [
   {
-    view: "О нас",
-    link: "/about",
+    view: 'О нас',
+    link: '/about',
+    tm: 'Biz barada',
   },
   {
-    view: "Новости",
-    link: "/news",
+    view: 'Новости',
+    link: '/news',
+    tm: 'Habarlar',
   },
   {
-    view: "Предстоящие события",
-    link: "/events",
+    view: 'Расписание событий',
+    link: '/events',
+    tm: 'Çäreleriň rejesi',
   },
   {
-    view: "Контакты",
-    link: "/contacts",
+    view: 'Контакты',
+    link: '/contacts',
+    tm: 'Habarlaşmak üçin',
   },
 ];

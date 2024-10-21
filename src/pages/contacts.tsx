@@ -32,12 +32,16 @@ const Contacts = () => {
 
               <div className="flex flex-col md:flex-row md:justify-between md:flex-[0_1_50%] gap-4 md:gap-0 mt-6 md:mt-20">
                 <div className="md:flex-[0_1_50%]">
-                  <h4 className="h4 font-[bitter] mb-2.5 text-BROWN">Адрес</h4>
+                  <h4 className="h4 font-[bitter] mb-2.5 text-BROWN">
+                    {activeLang.value === 'ru' ? 'Адрес:' : 'Salgysy:'}
+                  </h4>
                   <address className="not-italic leading-[150%]">{data.data[0].address}</address>
                 </div>
                 <div className="flex-[0_1_50%] md:pl-10">
-                  <h4 className="h4 font-[bitter]  mb-2.5 text-BROWN">Контакты</h4>
-                  <div className="not-italic leading-[150%]">{data.data[0].contacts} </div>
+                  <h4 className="h4 font-[bitter]  mb-2.5 text-BROWN">
+                    {activeLang.value === 'ru' ? 'Телефон:' : 'Telefon:'}
+                  </h4>
+                  <div className="not-italic leading-[150%]">{data.data[0].contacts}</div>
                 </div>
               </div>
             </div>

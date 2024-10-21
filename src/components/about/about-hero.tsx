@@ -13,7 +13,7 @@ const AboutHero = () => {
       <Container>
         {data && (
           <div>
-            <PageTitle title={data[0].header} className="mb-4" />
+            <PageTitle title={data[0].header} className="mb-10" />
 
             <motion.div
               initial={{

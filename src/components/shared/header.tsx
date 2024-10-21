@@ -9,11 +9,14 @@ import Search from './search';
 import { useState } from 'react';
 import { SearchIcon } from 'lucide-react';
 import Burger from './burger';
+import { useZusLang } from '@/zustand/use-zus-lang';
 
 const Header = () => {
   const { pathname } = useLocation();
   const [search, setSearch] = useState(false);
   const [burger, setBurger] = useState(false);
+
+  const activeLang = useZusLang().activeLang;
 
   return (
     <>
@@ -57,7 +60,7 @@ const Header = () => {
                   className={clsx({
                     'text-LBROWN': pathname === item.link,
                   })}>
-                  {item.view}
+                  {activeLang.value === 'ru' ? item.view : item.tm}
                 </Link>
               ))}
             </nav>

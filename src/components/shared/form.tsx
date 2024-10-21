@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios'; // Import axios
 import { useState } from 'react';
+import { useZusLang } from '@/zustand/use-zus-lang';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Имя должно быть не менее 2 символов' }),
@@ -16,6 +17,7 @@ const formSchema = z.object({
 type FormTypes = z.infer<typeof formSchema>;
 
 const FormFields = () => {
+  const activeLang = useZusLang().activeLang;
   const [loading, setLoading] = useState(false); // Loading state for submission
   const [isSubmitted, setIsSubmitted] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -66,14 +68,18 @@ const FormFields = () => {
           <CustomField
             control={form.control}
             name={'name'}
-            placeholder={'Пожалуйста, представьтесь…'}
-            label={'Имя'}
+            placeholder={activeLang.value === 'ru' ? 'Напишите свое имя' : 'Adyňyzy ýazyň'}
+            label={activeLang.value === 'ru' ? 'Имя' : 'Ady'}
             error={form.formState.errors.name}
           />
           <CustomField
             control={form.control}
             name={'email'}
-            placeholder={'Напишите свою электронную почту, куда прислать ответ…'}
+            placeholder={
+              activeLang.value === 'ru'
+                ? 'Напишите свою электронную почту'
+                : 'Öz elektron poçtaňyzy ýazyň'
+            }
             label={'E-mail'}
             error={form.formState.errors.email}
           />
@@ -81,20 +87,39 @@ const FormFields = () => {
             textArea
             control={form.control}
             name={'text'}
-            placeholder={'Пожалуйста, задайте нам вопрос или напишите сообщение…'}
-            label={'Как мы можем вам помочь?'}
+            placeholder={
+              activeLang.value === 'ru'
+                ? 'напишите свой вопрос или сообщение'
+                : 'öz soragyňyzy ýazyň'
+            }
+            label={activeLang.value === 'ru' ? 'Ваше сообщение' : 'Hatyňyzyň mazmuny'}
             error={form.formState.errors.text}
           />
         </div>
-        <p className="md:mt-5 mt-4 md:mb-10 mb-6 leading-none text-DGRAY2">
-          Поля отмеченные <span className="text-RED_PASTEL">*</span> обязательны для заполнения
-        </p>
-        <Button type="submit" className="w-full md:mr-[100px]" disabled={loading}>
-          {loading ? 'Отправка...' : 'Отправить сообщение'}
-        </Button>
+        {activeLang.value === 'ru' ? (
+          <p className="md:mt-5 mt-4 md:mb-10 mb-6 leading-none text-DGRAY2">
+            Поля отмеченные <span className="text-RED_PASTEL">*</span> обязательны для заполнения
+          </p>
+        ) : (
+          <p className="md:mt-5 mt-4 md:mb-10 mb-6 leading-none text-DGRAY2">
+            <span className="text-RED_PASTEL">*</span> bilen bellenilen meýdançalar hökmany
+            doldurylmaly
+          </p>
+        )}
+        {activeLang.value === 'ru' ? (
+          <Button type="submit" className="w-full md:mr-[100px]" disabled={loading}>
+            {loading ? 'Отправка...' : 'Отправить сообщение'}
+          </Button>
+        ) : (
+          <Button type="submit" className="w-full md:mr-[100px]" disabled={loading}>
+            {loading ? 'Ugradylýar...' : 'Haty ugrat'}
+          </Button>
+        )}
         {isSubmitted && (
           <p className="text-lg text-center mt-4 font-semibold text-green-600">
-            Сообщение отправленно успешно!
+            {activeLang.value === 'ru'
+              ? 'Сообщение отправленно успешно!'
+              : 'Siziň hatyňyz üstünlikli ugradyldy!'}
           </p>
         )}
       </form>

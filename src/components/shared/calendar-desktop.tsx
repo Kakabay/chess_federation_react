@@ -32,7 +32,7 @@ const CalendarDesktop = () => {
       whileInView={{ translateY: 0, opacity: 1 }}
       viewport={{ once: true }}
       transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}
-      className="relative lg:block hidden">
+      className="relative lg:block hidden max-w-[396px]">
       <Calendar
         mode="single"
         selected={date}
@@ -41,7 +41,7 @@ const CalendarDesktop = () => {
         locale={activeLang.value === 'tm' ? enUS : ru}
       />
       <div className="relative">
-        {data && data.ongoing_events.length !== 0
+        {data && date && data.ongoing_events.length !== 0
           ? data.ongoing_events.map((item) => (
               <motion.div
                 initial={{
@@ -54,7 +54,7 @@ const CalendarDesktop = () => {
                   opacity: 0,
                 }}
                 transition={{ delay: 0.2, duration: 0.4, ease: [0.55, 0, 0.1, 1] }}
-                className=" w-full bg-BROWN  text-white absolute top-[100%] z-50">
+                className=" w-full bg-BROWN  text-white z-50">
                 <div className="flex flex-col gap-[20px] relative h-full w-full p-[20px]">
                   <p className="text-[#EBEBEB] text[14px] leading-[100%] ">
                     {item.start_event_date.split(' ')[0]} — {item.end_event_date.split(' ')[0]}

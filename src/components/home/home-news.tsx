@@ -23,7 +23,10 @@ const HomeNews = () => {
         <SectionHeader
           title={sectionTitle}
           icon="/images/home/chess-tower.svg"
-          link={{ path: '/news', text: 'все новости' }}
+          link={{
+            path: '/news',
+            text: activeLang.value === 'ru' ? 'все новости' : 'hemme habarlar',
+          }}
         />
 
         <div className="md:grid hidden grid-cols-3 gap-10">

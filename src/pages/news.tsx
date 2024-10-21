@@ -56,7 +56,7 @@ const News = () => {
     <main className="bg-PAGE_BG">
       <Container>
         <div className="flex flex-col gap-4">
-          <PageTitle title="Новости" />
+          <PageTitle title={activeLang.value === 'ru' ? 'Новости' : 'Habarlar'} />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-10">
             {newsData?.data.map((news) => (
               <NewsCard

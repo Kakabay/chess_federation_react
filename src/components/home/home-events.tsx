@@ -30,7 +30,10 @@ const HomeEvents = () => {
             <SectionHeader
               title={sectionTitle}
               icon="/images/home/chess-horse.svg"
-              link={{ text: 'все события', path: '/events' }}
+              link={{
+                text: activeLang.value === 'ru' ? 'все события' : 'hemme çäreler',
+                path: '/events',
+              }}
               titleClassName="font-[bitter] leading-none"
             />
           )}
