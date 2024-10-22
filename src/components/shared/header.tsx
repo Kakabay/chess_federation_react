@@ -47,7 +47,9 @@ const Header = () => {
           <Link to="/" className="flex items-center gap-2.5 w-[312px]">
             <img src="/logo.png" alt="LOGO" />
             <div className="text-[14px] md:text-[18px] leading-[125%]">
-              Шахматная федерация Туркменистана
+              {activeLang.value === 'tm'
+                ? 'Türkmenistanyň küşt federasiýasy'
+                : 'Шахматная федерация Туркменистана'}
             </div>
           </Link>
 
