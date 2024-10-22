@@ -24,7 +24,7 @@ const News = () => {
     lang: activeLang.value,
     per_page: 9,
     page: currentPage,
-    sort: 'asc',
+    sort: 'desc',
   });
 
   const paginationNextClickHandler = (lastPage: number) => {

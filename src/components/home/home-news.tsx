@@ -13,7 +13,7 @@ const HomeNews = () => {
     lang: activeLang.value,
     per_page: 3,
     page: 1,
-    sort: 'asc',
+    sort: 'desc',
   });
   const sectionTitle = useExtractSectionTitle('news_section_title');
 
