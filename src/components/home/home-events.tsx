@@ -41,7 +41,7 @@ const HomeEvents = () => {
           <div className="lg:flex items-start justify-between hidden">
             <div className="flex flex-col gap-10 max-w-[700px] xl:max-w-[952px]">
               {data &&
-                data.past_events.map(
+                data.future_events.map(
                   (item, i) =>
                     i < 2 && (
                       <div key={i} className="flex flex-col gap-10">
@@ -69,7 +69,7 @@ const HomeEvents = () => {
           <Carousel className="lg:hidden">
             <CarouselContent>
               {data &&
-                data.past_events.map((item, i) => (
+                data.future_events.map((item, i) => (
                   <CarouselItem key={i} className="flex flex-col p-0 basis-[100%]">
                     end={item.end_event_date}
                     name={item.name_of_event}
