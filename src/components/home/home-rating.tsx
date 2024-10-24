@@ -16,13 +16,13 @@ const rating = [
   {
     nameRu: 'Рейтинг Туркменистана среди женщин',
     nameTm: 'Aýallaryň arasynda Türkmenistanyň reýtingi',
-    img: '/images/home/rating-1.png',
+    img: '/images/home/rating-2.png',
     url: 'https://ratings.fide.com/rankings.phtml?continent=0&country=TKM&rating=standard&gender=F&age1=0&age2=0&period=2024-10-01&period2=1',
   },
   {
     nameRu: 'Рейтинг Туркменистана среди юниоров',
     nameTm: 'Ýetginjekleriň arasynda Türkmenistanyň reýtingi',
-    img: '/images/home/rating-1.png',
+    img: '/images/home/rating-3.png',
     url: 'https://ratings.fide.com/rankings.phtml?continent=0&country=TKM&rating=standard&gender=&age1=0&age2=20&period=2024-10-01&period2=1',
   },
 ];
