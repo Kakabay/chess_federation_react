@@ -23,9 +23,9 @@ export const useGetAbout = (lang: string) => {
           return {
             ...item,
             header: translatedAttributes.header || item.header,
-            txt1: translatedAttributes.txt || item.txt1,
-            txt2: translatedAttributes.txt || item.txt2,
-            txt3: translatedAttributes.txt || item.txt3,
+            txt1: translatedAttributes.txt1 || item.txt1,
+            txt2: translatedAttributes.txt2 || item.txt2,
+            txt3: translatedAttributes.txt3 || item.txt3,
             tournment_title: translatedAttributes.tournment_title || item.tournment_title,
             organisation_title: translatedAttributes.organisation_title || item.organisation_title,
             graduate_title: translatedAttributes.graduate_title || item.graduate_title,
