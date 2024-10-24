@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import Container from '../layout/container';
 import { Carousel, CarouselContent, CarouselItem } from '../ui/carousel';
 import SectionHeader from './section-header';
