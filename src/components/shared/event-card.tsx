@@ -32,18 +32,6 @@ const EventCard = ({ start, end, className, place, name, line, isCurrent = false
       transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}>
       <div className="flex flex-col gap-[9px] text-DGRAY2 leading-[120%]">
         <h3 className="">
-          <span className="h3 text-BLACK">{end && end.slice(8, 10)} </span>{' '}
-          {end
-            ? activeLang.value === 'tm'
-              ? months.tm[+end.slice(5, 7) - 1]
-              : activeLang.value === 'ru'
-              ? months.ru[+end.slice(5, 7) - 1]
-              : months.tm[+end.slice(5, 7) - 1]
-            : null}
-        </h3>
-        <Separator className="h-[2px] bg-BLACK" />
-
-        <h3 className="">
           <span className="h3 text-BLACK">{start && start.slice(8, 10)} </span>
           {start
             ? activeLang.value === 'tm'
@@ -51,6 +39,18 @@ const EventCard = ({ start, end, className, place, name, line, isCurrent = false
               : activeLang.value === 'ru'
               ? months.ru[+start.slice(5, 7) - 1]
               : months.tm[+start.slice(5, 7) - 1]
+            : null}
+        </h3>
+        <Separator className="h-[2px] bg-BLACK" />
+
+        <h3 className="">
+          <span className="h3 text-BLACK">{end && end.slice(8, 10)} </span>
+          {end
+            ? activeLang.value === 'tm'
+              ? months.tm[+end.slice(5, 7) - 1]
+              : activeLang.value === 'ru'
+              ? months.ru[+end.slice(5, 7) - 1]
+              : months.tm[+end.slice(5, 7) - 1]
             : null}
         </h3>
       </div>
