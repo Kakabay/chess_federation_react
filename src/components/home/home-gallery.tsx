@@ -1,11 +1,19 @@
 import { motion } from 'framer-motion';
 import Container from '../layout/container';
-import { Carousel, CarouselApi, CarouselContent, CarouselItem } from '../ui/carousel';
+import {
+  Carousel,
+  CarouselApi,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '../ui/carousel';
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { useGetVideos } from '@/lib/hooks/useGetVideos';
 import { HOSTING } from '@/lib/constants';
 import useExtractSectionTitle from '@/lib/hooks/useExtractSectionTitle';
+import { cn } from '@/lib/utils';
 
 const HomeGallery = () => {
   const [api, setApi] = useState<CarouselApi>();
@@ -32,7 +40,7 @@ const HomeGallery = () => {
   }, [api]);
 
   return (
-    <section className="bg-[#A6785E] text-white py-4 md:py-10">
+    <section className="bg-[#A6785E] text-white py-4 md:py-10 md:h-[750px] h-[290px] overflow-hidden pb-10">
       <Container className="flex flex-col gap-2 md:gap-10">
         <motion.h2
           className="h2 !text-white font-[open_sans]"
@@ -46,62 +54,71 @@ const HomeGallery = () => {
           {sectionTitle}
         </motion.h2>
 
-        {data && (
-          <motion.div
-            className="max-h-[512px] relative md:block hidden overflow-hidden cursor-pointer"
-            initial={{
-              translateY: '25%',
-              opacity: 0,
-            }}
-            whileInView={{ translateY: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}>
-            <video
-              poster={HOSTING + data[selectedVideo].poster}
-              src={HOSTING + data[selectedVideo].video}
-              controls={true}
-              className="h-full w-full object-cover max-h-[512px]"
-            />
-          </motion.div>
-        )}
+        <div className="md:flex hidden gap-5">
+          {data && (
+            <motion.div
+              className="flex-1 relative md:block hidden overflow-hidden cursor-pointer"
+              initial={{
+                translateY: '25%',
+                opacity: 0,
+              }}
+              whileInView={{ translateY: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}>
+              <video
+                poster={HOSTING + data[selectedVideo].poster}
+                src={HOSTING + data[selectedVideo].video}
+                controls={true}
+                className="h-full w-full object-cover"
+              />
+            </motion.div>
+          )}
 
-        {data && (
-          <Carousel className="md:block hidden">
-            <CarouselContent>
-              {data.map(
-                (video, i) =>
-                  i !== selectedVideo && (
-                    <CarouselItem
-                      key={video.id}
-                      className="h-[150px] basis-[315px] pl-0 mr-5 cursor-pointer">
-                      <motion.div
-                        className="h-full relative"
-                        initial={{
-                          translateY: '25%',
-                          opacity: 0,
-                        }}
-                        whileInView={{ translateY: 0, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: i * 0.1, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}>
-                        <video
-                          poster={HOSTING + video.poster}
-                          src={HOSTING + video.video}
-                          className="w-full h-full object-cover"
-                          onClick={() => setSelectedVideo(i)}
-                        />
-                        {/* <div className="absolute top-5 left-5 leading-none text-[18px] font-semibold">
+          {data && (
+            <Carousel orientation="vertical" className="flex-[0_1_331px]">
+              <CarouselContent className="h-[590px]">
+                {data.map(
+                  (video, i) =>
+                    i !== selectedVideo && (
+                      <CarouselItem
+                        key={video.id}
+                        className={cn(
+                          'cursor-pointer basis-[150px]',
+                          data.length !== i + 1 && 'mb-4',
+                        )}>
+                        <motion.div
+                          className=""
+                          // initial={{
+                          //   translateY: '25%',
+                          //   opacity: 0,
+                          // }}
+                          // whileInView={{ translateY: 0, opacity: 1 }}
+                          // viewport={{ once: true }}
+                          // transition={{ delay: i * 0.1, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}>
+                        >
+                          <video
+                            poster={HOSTING + video.poster}
+                            src={HOSTING + video.video}
+                            className="w-full h-full object-cover"
+                            onClick={() => setSelectedVideo(i)}
+                          />
+                          {/* <div className="absolute top-5 left-5 leading-none text-[18px] font-semibold">
                  Название видео
-               </div> */}
-                      </motion.div>
-                    </CarouselItem>
-                  ),
-              )}
-            </CarouselContent>
-          </Carousel>
-        )}
+                </div> */}
+                        </motion.div>
+                      </CarouselItem>
+                    ),
+                )}
+              </CarouselContent>
+
+              <CarouselPrevious className="nav-btn absolute top-5 -mt-10" />
+              <CarouselNext className="nav-btn absolute -bottom-2" />
+            </Carousel>
+          )}
+        </div>
 
         {data && (
-          <Carousel className="md:hidden " setApi={setApi}>
+          <Carousel className="md:hidden" setApi={setApi}>
             <CarouselContent>
               {data.map((video, i) => (
                 <CarouselItem key={video.id} className="mr-5 cursor-pointer">

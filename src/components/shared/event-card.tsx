@@ -66,6 +66,18 @@ const EventCard = ({
               : months.tm[+start.slice(5, 7) - 1]
             : null}
         </h3>
+        <Separator className="h-[2px] bg-BLACK" />
+
+        <h3 className="">
+          <span className="h3 text-BLACK">{end && end.slice(8, 10)} </span>
+          {end
+            ? activeLang.value === "tm"
+              ? months.tm[+end.slice(5, 7) - 1]
+              : activeLang.value === "ru"
+              ? months.ru[+end.slice(5, 7) - 1]
+              : months.tm[+end.slice(5, 7) - 1]
+            : null}
+        </h3>
       </div>
 
       <div className="flex flex-col gap-5">

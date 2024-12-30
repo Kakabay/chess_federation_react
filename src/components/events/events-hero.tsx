@@ -10,7 +10,7 @@ const EventsHero = () => {
     <section>
       <Container>
         <div>
-          <div className="max-h-[600px] max-w-[600px] mx-8 md:mx-auto relative overflow-hidden">
+          <div className="h-[600px] w-full mx-8 md:mx-auto relative overflow-hidden">
             <motion.div
               initial={{
                 height: '100%',
@@ -37,9 +37,9 @@ const EventsHero = () => {
               className="w-full h-full absolute right-0 top-0 bg-gradient-to-b from-[#a6785e00] to-[#A6785E] opacity-20 z-10"
             />
             <motion.img
-              src="http://216.250.12.9:8088/storage/app/media/image.jpg"
+              src="/images/events/1.png"
               alt=""
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain object-center"
               initial={{
                 scale: 1.5,
               }}
@@ -60,8 +60,8 @@ const EventsHero = () => {
             whileInView={{ translateY: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}
-            className="flex flex-col gap-4 md:gap-5 -mt-4 md:-mt-10 z-50">
-            <h1 className="md:text-[109px] text-[32px] font-[bitter] text-BROWN uppercase font-bold leading-[110%] z-20 text-center">
+            className="flex flex-col gap-4 md:gap-5 z-50">
+            <h1 className="md:text-[109px] text-[32px] mt-10 font-[bitter] text-BROWN uppercase font-bold leading-[110%] z-20 text-center">
               {eventsPageTitle}
             </h1>
             <div className="text-center text-BROWN">{eventsPageSubtitle}</div>

@@ -11,6 +11,7 @@ import { PlayersType } from './types/players.type';
 import { ContactInfoType } from './types/contactInfo.type';
 import { SearchTypes } from './types/search.type';
 import { TranslationsTypes } from './types/translations.type';
+import { RatingType } from './types/rating.type';
 
 export const URL = 'http://216.250.12.9:8088/api/v1';
 class ChessService {
@@ -70,6 +71,10 @@ class ChessService {
 
   getTranslations = async () => {
     return await axios.get<TranslationsTypes>(`${this.URL}/translations`);
+  };
+
+  getRating = async () => {
+    return await axios.get<RatingType>(`${this.URL}/rating_of_players`);
   };
 
   postContactForm = async (body: { name: string; email: string; message: string }) => {

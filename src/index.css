@@ -146,6 +146,10 @@ button:focus-visible {
   .burger-span {
     @apply bg-BLACK h-0.5 w-[18px];
   }
+
+  .nav-btn {
+    @apply size-12 bg-[#DBC8BD] flex justify-center items-center;
+  }
 }
 
 @keyframes flash {
