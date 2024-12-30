@@ -5,6 +5,7 @@ import Slider from '../shared/slider';
 import useExtractSectionTitle from '@/lib/hooks/useExtractSectionTitle';
 import { useZusLang } from '@/zustand/use-zus-lang';
 import { Link } from 'react-router-dom';
+import { useGetRating } from '@/lib/hooks/useGetRating';
 
 const rating = [
   {
@@ -36,6 +37,11 @@ const rating = [
 const HomeRating = () => {
   const sectionTitle = useExtractSectionTitle('players_rating_section_title');
   const activeLang = useZusLang().activeLang;
+
+  const { data } = useGetRating();
+
+  console.log(data);
+
   return (
     <section>
       <Container className="overflow-auto">
