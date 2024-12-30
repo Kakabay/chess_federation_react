@@ -56,6 +56,7 @@ const HomeEvents = () => {
                           place={item.place}
                           start={item.start_event_date}
                           isCurrent={false}
+                          link={item.url}
                         />
                         {i < 3 - 1 && <Separator />}
                       </div>
@@ -88,6 +89,7 @@ const HomeEvents = () => {
                       place={item.place}
                       start={item.start_event_date}
                       isCurrent={false}
+                      link={item.url}
                     />
                     {i < 3 - 1 && <Separator className="md:block hidden" />}
                   </CarouselItem>

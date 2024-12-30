@@ -19,6 +19,7 @@ export interface Event {
   created_at: string;
   updated_at: string;
   translations: Translation[];
+  url: string;
 }
 
 export interface Translation {
