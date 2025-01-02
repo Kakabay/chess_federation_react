@@ -28,7 +28,7 @@ const EventCard = ({
   return !isCurrent ? (
     <motion.div
       className={cn(
-        "flex items-start md:gap-10 gap-2 w-full md:max-w-[952px] w-full",
+        "flex items-start md:gap-10 gap-2 w-full md:max-w-[952px]",
         className,
         {
           "border-t-2 pt-[20px] border-LBROWN": line === "top",
@@ -45,18 +45,6 @@ const EventCard = ({
     >
       <div className="flex flex-col gap-[9px] text-DGRAY2 leading-[120%]">
         <h3 className="">
-          <span className="h3 text-BLACK">{end && end.slice(8, 10)} </span>{" "}
-          {end
-            ? activeLang.value === "tm"
-              ? months.tm[+end.slice(5, 7) - 1]
-              : activeLang.value === "ru"
-              ? months.ru[+end.slice(5, 7) - 1]
-              : months.tm[+end.slice(5, 7) - 1]
-            : null}
-        </h3>
-        <Separator className="h-[2px] bg-BLACK" />
-
-        <h3 className="">
           <span className="h3 text-BLACK">{start && start.slice(8, 10)} </span>
           {start
             ? activeLang.value === "tm"
@@ -67,9 +55,8 @@ const EventCard = ({
             : null}
         </h3>
         <Separator className="h-[2px] bg-BLACK" />
-
         <h3 className="">
-          <span className="h3 text-BLACK">{end && end.slice(8, 10)} </span>
+          <span className="h3 text-BLACK">{end && end.slice(8, 10)} </span>{" "}
           {end
             ? activeLang.value === "tm"
               ? months.tm[+end.slice(5, 7) - 1]

@@ -1,21 +1,37 @@
 export interface RatingType {
-  data: Data;
+  status_code: number;
+  message: string;
+  data: Datum[];
 }
 
-export interface Data {
+export interface Datum {
   id: number;
-  title: string;
-  description: string;
-  image: string;
-  start_time: Date;
-  end_time: Date;
-  sms_code: string;
-  winners: Winner[];
+  type: string;
+  url: string;
+  created_at: Date;
+  updated_at: Date;
+  image: Image;
+  translations: Translation[];
 }
 
-export interface Winner {
-  no: number;
-  client: string;
-  dt: string;
-  winner_no: number;
+export interface Image {
+  id: number;
+  disk_name: string;
+  file_name: string;
+  file_size: number;
+  content_type: string;
+  title: null;
+  description: null;
+  field: string;
+  sort_order: number;
+  created_at: Date;
+  updated_at: Date;
+  path: string;
+  extension: string;
+}
+
+export interface Translation {
+  model_id: string;
+  locale: string;
+  attribute_data: string;
 }

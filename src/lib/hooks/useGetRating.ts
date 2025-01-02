@@ -1,9 +1,9 @@
-import chessService from '@/chess.service';
-import { useQuery } from '@tanstack/react-query';
+import chessService from "@/chess.service";
+import { useQuery } from "@tanstack/react-query";
 
 export const useGetRating = () => {
   const { data, isPending, isError, isSuccess } = useQuery({
-    queryKey: ['newsData'],
+    queryKey: ["ratingData"],
     queryFn: () => chessService.getRating(),
     select: ({ data }) => data,
   });
