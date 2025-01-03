@@ -38,10 +38,10 @@ const EventsMonth = ({ title, eventsData, isCurrent }: Props) => {
               {title}
             </h2>
           )}
-          <hr className="bg-BROWN h-[2px] w-full" />
+          <hr className="bg-BROWN h-[3px] w-full" />
         </div>
 
-        <div className="flex flex-col items-center gap-5 w-full">
+        <div className="flex flex-col items-center gap-[64px] w-full">
           {eventsData.map((item: Event, i: number) => (
             <EventCard
               key={item.id}

@@ -33,8 +33,8 @@ const EventCard = ({
         href={link}
         target="_blank"
         className={cn('flex items-start md:gap-10 gap-2 md:max-w-[952px] w-full', className, {
-          'border-t-2 pt-[20px] border-LBROWN': line === 'top',
-          'border-b-2 pb-[20px] border-LBROWN': line === 'bottom',
+          'border-t-[1px] pt-[20px] border-LBROWN': line === 'top',
+          'border-b-[1px] pb-[20px] border-LBROWN': line === 'bottom',
         })}
         initial={{
           translateY: '50%',
@@ -44,19 +44,7 @@ const EventCard = ({
         viewport={{ once: true }}
         transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}>
         <div className="flex flex-col gap-[9px] text-DGRAY2 leading-[120%]">
-          <h3 className="">
-            <span className="h3 text-BLACK">{end && end.slice(8, 10)} </span>{' '}
-            {end
-              ? activeLang.value === 'tm'
-                ? months.tm[+end.slice(5, 7) - 1]
-                : activeLang.value === 'ru'
-                ? months.ru[+end.slice(5, 7) - 1]
-                : months.tm[+end.slice(5, 7) - 1]
-              : null}
-          </h3>
-          <Separator className="h-[2px] bg-BLACK" />
-
-          <h3 className="">
+          <h3 className="flex gap-[5px] items-end">
             <span className="h3 text-BLACK">{start && start.slice(8, 10)} </span>
             {start
               ? activeLang.value === 'tm'
@@ -68,8 +56,8 @@ const EventCard = ({
           </h3>
           <Separator className="h-[2px] bg-BLACK" />
 
-          <h3 className="">
-            <span className="h3 text-BLACK">{end && end.slice(8, 10)} </span>
+          <h3 className="flex gap-[5px] items-end">
+            <span className="h3 text-BLACK">{end && end.slice(8, 10)} </span>{' '}
             {end
               ? activeLang.value === 'tm'
                 ? months.tm[+end.slice(5, 7) - 1]
@@ -88,8 +76,8 @@ const EventCard = ({
     ) : (
       <motion.div
         className={cn('flex items-start md:gap-10 gap-2 md:max-w-[952px] w-full', className, {
-          'border-t-2 pt-[20px] border-LBROWN': line === 'top',
-          'border-b-2 pb-[20px] border-LBROWN': line === 'bottom',
+          'border-t-[1px] pt-[20px] border-LBROWN': line === 'top',
+          'border-b-[1px] pb-[20px] border-LBROWN': line === 'bottom',
         })}
         initial={{
           translateY: '50%',
@@ -99,7 +87,7 @@ const EventCard = ({
         viewport={{ once: true }}
         transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}>
         <div className="flex flex-col gap-[9px] text-DGRAY2 leading-[120%]">
-          <h3 className="">
+          <h3 className="flex gap-[5px] items-end">
             <span className="h3 text-BLACK">{start && start.slice(8, 10)} </span>
             {start
               ? activeLang.value === 'tm'
@@ -111,7 +99,7 @@ const EventCard = ({
           </h3>
           <Separator className="h-[2px] bg-BLACK" />
 
-          <h3 className="">
+          <h3 className="flex gap-[5px] items-end">
             <span className="h3 text-BLACK">{end && end.slice(8, 10)} </span>{' '}
             {end
               ? activeLang.value === 'tm'
@@ -145,7 +133,7 @@ const EventCard = ({
       viewport={{ once: true }}
       transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}>
       <div className="flex flex-col gap-[9px] text-DGRAY2 leading-[120%]">
-        <h3 className="">
+        <h3 className="flex gap-[5px] items-end">
           <span className="h3 text-BLACK">{start && start.slice(8, 10)} </span>
           {start
             ? activeLang.value === 'tm'
@@ -156,7 +144,7 @@ const EventCard = ({
             : null}
         </h3>
         <Separator className="h-[2px] bg-BLACK" />
-        <h3 className="">
+        <h3 className="flex gap-[5px] items-end">
           <span className="h3 text-BLACK">{end && end.slice(8, 10)} </span>{' '}
           {end
             ? activeLang.value === 'tm'
@@ -177,7 +165,7 @@ const EventCard = ({
     <motion.div
       className={cn('flex items-start gap-10 max-w-[952px] rounded-[24px] text-white', className, {
         'border-t-2 pt-5 border-white': line === 'top',
-        'border-b-2 pb-5 border-white': line === 'bottom',
+        'border-b-[1px] pb-5 border-white': line === 'bottom',
       })}
       initial={{
         translateY: '50%',
@@ -187,7 +175,7 @@ const EventCard = ({
       viewport={{ once: true }}
       transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}>
       <div className="flex flex-col gap-[9px] text-white leading-[120%]">
-        <h3 className="text-LBROWN2">
+        <h3 className="text-LBROWN2 flex gap-[5px] items-end">
           <span className="h3 text-white">{end.slice(8, 10)} </span>{' '}
           {activeLang.value === 'tm'
             ? months.tm[+end.slice(5, 7) - 1]
@@ -197,7 +185,7 @@ const EventCard = ({
         </h3>
         <Separator className="h-[2px] bg-LBROWN" />
 
-        <h3 className="text-LBROWN2">
+        <h3 className="text-LBROWN2 flex gap-[5px] items-end">
           <span className="h3 text-white">{start.slice(8, 10)} </span>
           {activeLang.value === 'tm'
             ? months.tm[+start.slice(5, 7) - 1]
