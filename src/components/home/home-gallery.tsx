@@ -77,7 +77,10 @@ const HomeGallery = () => {
                 poster={HOSTING + data[selectedVideo].poster}
                 src={HOSTING + data[selectedVideo].video}
                 controls
-                className="size-full"
+                className={cn(
+                  "size-full",
+                  selectedVideo === 1 || 3 ? "object-cover" : "object-contain"
+                )}
               />
             </motion.div>
           )}
