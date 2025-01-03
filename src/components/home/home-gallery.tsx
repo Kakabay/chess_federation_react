@@ -79,7 +79,9 @@ const HomeGallery = () => {
                 controls
                 className={cn(
                   "size-full",
-                  selectedVideo === 1 || 3 ? "object-cover" : "object-contain"
+                  selectedVideo === 1 || selectedVideo === 3
+                    ? "object-cover"
+                    : "object-contain"
                 )}
               />
             </motion.div>
