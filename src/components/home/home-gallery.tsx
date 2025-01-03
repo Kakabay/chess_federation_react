@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import Container from '../layout/container';
+import { motion } from "framer-motion";
+import Container from "../layout/container";
 import {
   Carousel,
   CarouselApi,
@@ -7,13 +7,13 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '../ui/carousel';
-import { useEffect, useState } from 'react';
-import clsx from 'clsx';
-import { useGetVideos } from '@/lib/hooks/useGetVideos';
-import { HOSTING } from '@/lib/constants';
-import useExtractSectionTitle from '@/lib/hooks/useExtractSectionTitle';
-import { cn } from '@/lib/utils';
+} from "../ui/carousel";
+import { useEffect, useState } from "react";
+import clsx from "clsx";
+import { useGetVideos } from "@/lib/hooks/useGetVideos";
+import { HOSTING } from "@/lib/constants";
+import useExtractSectionTitle from "@/lib/hooks/useExtractSectionTitle";
+import { cn } from "@/lib/utils";
 
 const HomeGallery = () => {
   const [api, setApi] = useState<CarouselApi>();
@@ -22,9 +22,11 @@ const HomeGallery = () => {
   const [selectedVideo, setSelectedVideo] = useState(0);
   // const [videoSiPlaying, setVideoIsPlaying] = useState(false);
 
-  const sectionTitle = useExtractSectionTitle('video_gallery_section_title');
+  const sectionTitle = useExtractSectionTitle("video_gallery_section_title");
 
   const { data } = useGetVideos();
+
+  console.log(data);
 
   useEffect(() => {
     if (!api) {
@@ -34,7 +36,7 @@ const HomeGallery = () => {
     // setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap() + 1);
 
-    api.on('select', () => {
+    api.on("select", () => {
       setCurrent(api.selectedScrollSnap() + 1);
     });
   }, [api]);
@@ -45,37 +47,43 @@ const HomeGallery = () => {
         <motion.h2
           className="h2 !text-white font-[open_sans]"
           initial={{
-            translateY: '25%',
+            translateY: "25%",
             opacity: 0,
           }}
           whileInView={{ translateY: 0, opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}>
+          transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}
+        >
           {sectionTitle}
         </motion.h2>
 
         <div className="md:flex hidden gap-5">
           {data && (
             <motion.div
-              className="flex-1 relative md:block hidden overflow-hidden cursor-pointer"
+              className="flex-auto relative h-[590px] w-full bg-black md:block hidden overflow-hidden cursor-pointer"
               initial={{
-                translateY: '25%',
+                translateY: "25%",
                 opacity: 0,
               }}
               whileInView={{ translateY: 0, opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}>
+              transition={{
+                delay: 0.2,
+                duration: 0.6,
+                ease: [0.55, 0, 0.1, 1],
+              }}
+            >
               <video
                 poster={HOSTING + data[selectedVideo].poster}
                 src={HOSTING + data[selectedVideo].video}
-                controls={true}
-                className="h-full w-full object-cover"
+                controls
+                className="size-full"
               />
             </motion.div>
           )}
 
           {data && (
-            <Carousel orientation="vertical" className="flex-[0_1_331px]">
+            <Carousel orientation="vertical" className="flex-[0_1_350px]">
               <CarouselContent className="h-[590px]">
                 {data.map(
                   (video, i) =>
@@ -83,31 +91,18 @@ const HomeGallery = () => {
                       <CarouselItem
                         key={video.id}
                         className={cn(
-                          'cursor-pointer basis-[150px]',
-                          data.length !== i + 1 && 'mb-4',
-                        )}>
-                        <motion.div
-                          className=""
-                          // initial={{
-                          //   translateY: '25%',
-                          //   opacity: 0,
-                          // }}
-                          // whileInView={{ translateY: 0, opacity: 1 }}
-                          // viewport={{ once: true }}
-                          // transition={{ delay: i * 0.1, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}>
-                        >
-                          <video
-                            poster={HOSTING + video.poster}
-                            src={HOSTING + video.video}
-                            className="w-full h-full object-cover"
-                            onClick={() => setSelectedVideo(i)}
-                          />
-                          {/* <div className="absolute top-5 left-5 leading-none text-[18px] font-semibold">
-                 Название видео
-                </div> */}
-                        </motion.div>
+                          "cursor-pointer basis-[160px] h-[160px] bg-black",
+                          data.length !== i + 1 && "mb-4"
+                        )}
+                      >
+                        <video
+                          poster={HOSTING + video.poster}
+                          src={HOSTING + video.video}
+                          className="w-full h-full object-cover"
+                          onClick={() => setSelectedVideo(i)}
+                        />
                       </CarouselItem>
-                    ),
+                    )
                 )}
               </CarouselContent>
 
@@ -125,12 +120,17 @@ const HomeGallery = () => {
                   <motion.div
                     className="h-full relative"
                     initial={{
-                      translateY: '25%',
+                      translateY: "25%",
                       opacity: 0,
                     }}
                     whileInView={{ translateY: 0, opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: i * 0.1, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}>
+                    transition={{
+                      delay: i * 0.1,
+                      duration: 0.6,
+                      ease: [0.55, 0, 0.1, 1],
+                    }}
+                  >
                     <div className="h-[185px]">
                       <video
                         poster={HOSTING + video.poster}
@@ -152,10 +152,10 @@ const HomeGallery = () => {
                   onClick={() => api?.scrollTo(i)}
                   key={video.id}
                   className={clsx(
-                    'w-[12px] h-[12px] border border-white rounded-full cursor-pointer',
+                    "w-[12px] h-[12px] border border-white rounded-full cursor-pointer",
                     {
-                      'bg-white': i + 1 === current,
-                    },
+                      "bg-white": i + 1 === current,
+                    }
                   )}
                 />
               ))}
