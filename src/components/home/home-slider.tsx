@@ -1,15 +1,15 @@
-import { motion } from "framer-motion";
-import { useRef, useState } from "react";
-import clsx from "clsx";
-import { useGetSlider } from "@/lib/hooks/useGetSlider";
-import { useZusLang } from "@/zustand/use-zus-lang";
-import { HOSTING } from "@/lib/constants";
-import Container from "../layout/container";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
-import { Swiper as SwiperCore } from "swiper";
+import { motion } from 'framer-motion';
+import { useRef, useState } from 'react';
+import clsx from 'clsx';
+import { useGetSlider } from '@/lib/hooks/useGetSlider';
+import { useZusLang } from '@/zustand/use-zus-lang';
+import { HOSTING } from '@/lib/constants';
+import Container from '../layout/container';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import { Swiper as SwiperCore } from 'swiper';
 
-import "swiper/css";
+import 'swiper/css';
 
 const HomeSlider = () => {
   const activeLang = useZusLang((state) => state.activeLang);
@@ -18,30 +18,31 @@ const HomeSlider = () => {
 
   const { data } = useGetSlider(activeLang.value);
 
+  console.log(data);
+
   const swiperRef = useRef<SwiperCore | null>(null);
   return (
     <Container className="mt-10">
       <motion.section
         className="sm:h-[620px] h-[228px]"
         initial={{
-          translateY: "-10%",
+          translateY: '-10%',
           opacity: 0,
         }}
         whileInView={{ translateY: 0, opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}
-      >
+        transition={{ delay: 0.2, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}>
         <Swiper
           modules={[Autoplay, Pagination]}
           autoplay={{ delay: 5000 }}
           loop
           pagination={{
             clickable: true,
-            type: "bullets",
-            el: ".pagination",
-            bulletElement: "div",
-            bulletActiveClass: "bullet-active",
-            bulletClass: "bullet",
+            type: 'bullets',
+            el: '.pagination',
+            bulletElement: 'div',
+            bulletActiveClass: 'bullet-active',
+            bulletClass: 'bullet',
           }}
           speed={1000}
           slidesPerView={1}
@@ -49,14 +50,10 @@ const HomeSlider = () => {
           onSlideChange={(swiper) => setCurrent(swiper.activeIndex)}
           onSwiper={(swiper) => {
             swiperRef.current = swiper; // Сохраняем экземпляр Swiper
-          }}
-        >
+          }}>
           {data &&
             data.map((slide) => (
-              <SwiperSlide
-                key={slide.id}
-                className="sm:h-[620px] h-[228px] relative"
-              >
+              <SwiperSlide key={slide.id} className="sm:h-[620px] h-[228px] relative">
                 <div className="w-full h-full relative">
                   {slide.header || slide.txt ? (
                     <div className="absolute bottom-0 left-0 right-0 h-full w-full bg-SLIDER_IMAGE_GRADIENT"></div>
@@ -90,8 +87,8 @@ const HomeSlider = () => {
               data.map((slide, i) => (
                 <div
                   key={slide.id}
-                  className={clsx("", {
-                    "bg-white bullet-active": i === current,
+                  className={clsx('', {
+                    'bg-white bullet-active': i === current,
                     bullet: i !== current,
                   })}
                   onClick={() => {
@@ -99,7 +96,7 @@ const HomeSlider = () => {
                   }}
                 />
               ))}
-          </div>{" "}
+          </div>{' '}
         </Swiper>
       </motion.section>
     </Container>
