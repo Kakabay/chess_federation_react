@@ -150,6 +150,14 @@ button:focus-visible {
   .nav-btn {
     @apply size-12 bg-[#DBC8BD] flex justify-center items-center;
   }
+
+  .bullet {
+    @apply bg-transparent rounded-full border size-3 border-white cursor-pointer;
+  }
+
+  .bullet-active {
+    @apply rounded-full border size-3 bg-white;
+  }
 }
 
 @keyframes flash {
