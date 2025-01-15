@@ -47,19 +47,16 @@ const HomeEvents = () => {
                 data.future_events.map(
                   (item, i) =>
                     i < 2 && (
-                      <div key={i} className="flex flex-col gap-[64px] w-full">
-                        {/* {i !== 0 && <Separator />} */}
-                        <EventCard
-                          end={item.end_event_date}
-                          name={item.name_of_event}
-                          key={item.id}
-                          place={item.place}
-                          start={item.start_event_date}
-                          line={i !== 0 ? 'bottom' : 'none'}
-                          isCurrent={false}
-                          link={item.url}
-                        />
-                      </div>
+                      <EventCard
+                        end={item.end_event_date}
+                        name={item.name_of_event}
+                        key={item.id}
+                        place={item.place}
+                        start={item.start_event_date}
+                        line={i !== 0 ? 'bottom' : 'none'}
+                        isCurrent={false}
+                        link={item.link}
+                      />
                     ),
                 )}
             </div>
@@ -83,7 +80,7 @@ const HomeEvents = () => {
                       place={item.place}
                       start={item.start_event_date}
                       isCurrent={false}
-                      link={item.url}
+                      link={item.link}
                     />
                     {i < 3 - 1 && <Separator className="md:block hidden" />}
                   </CarouselItem>

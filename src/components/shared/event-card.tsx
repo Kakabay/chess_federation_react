@@ -32,10 +32,14 @@ const EventCard = ({
       <motion.a
         href={link}
         target="_blank"
-        className={cn('flex items-start md:gap-10 gap-2 md:max-w-[952px] w-full', className, {
-          'border-t-[1px] pt-[20px] border-LBROWN': line === 'top',
-          'border-b-[1px] pb-[20px] border-LBROWN': line === 'bottom',
-        })}
+        className={cn(
+          'flex items-start cursor-pointer group md:gap-10 gap-2 md:max-w-[952px] w-full',
+          className,
+          {
+            'border-t-[1px] pt-[20px] border-LBROWN': line === 'top',
+            'border-b-[1px] pb-[20px] border-LBROWN': line === 'bottom',
+          },
+        )}
         initial={{
           translateY: '50%',
           opacity: 0,
@@ -69,16 +73,20 @@ const EventCard = ({
         </div>
 
         <div className="flex flex-col gap-5">
-          <h3 className="h3 font-[bitter]">{name}</h3>
+          <h3 className="h3 font-[bitter] group-hover:text-LBROWN transition-all">{name}</h3>
           <div className="text-DGRAY2 leading-[140%]">{place}</div>
         </div>
       </motion.a>
     ) : (
       <motion.div
-        className={cn('flex items-start md:gap-10 gap-2 md:max-w-[952px] w-full', className, {
-          'border-t-[1px] pt-[20px] border-LBROWN': line === 'top',
-          'border-b-[1px] pb-[20px] border-LBROWN': line === 'bottom',
-        })}
+        className={cn(
+          'flex items-start cursor-pointer group md:gap-10 gap-2 md:max-w-[952px] w-full',
+          className,
+          {
+            'border-t-[1px] pt-[20px] border-LBROWN': line === 'top',
+            'border-b-[1px] pb-[20px] border-LBROWN': line === 'bottom',
+          },
+        )}
         initial={{
           translateY: '50%',
           opacity: 0,
@@ -112,7 +120,7 @@ const EventCard = ({
         </div>
 
         <div className="flex flex-col gap-5">
-          <h3 className="h3 font-[bitter]">{name}</h3>
+          <h3 className="h3 font-[bitter] group-hover:text-LBROWN transition-all">{name}</h3>
           <div className="text-DGRAY2 leading-[140%]">{place}</div>
         </div>
       </motion.div>
@@ -121,10 +129,14 @@ const EventCard = ({
     <motion.a
       href={link}
       target="_blank"
-      className={cn('flex items-start md:gap-10 gap-2 w-full md:max-w-[952px]', className, {
-        'border-t-2 pt-5 border-white': line === 'top',
-        'border-b-2 pb-5 border-white': line === 'bottom',
-      })}
+      className={cn(
+        'flex group items-start cursor-pointer md:gap-10 gap-2 w-full md:max-w-[952px]',
+        className,
+        {
+          'border-t-2 pt-5 border-white': line === 'top',
+          'border-b-2 pb-5 border-white': line === 'bottom',
+        },
+      )}
       initial={{
         translateY: '50%',
         opacity: 0,
@@ -157,16 +169,20 @@ const EventCard = ({
       </div>
 
       <div className="flex flex-col gap-5">
-        <h3 className="h3 font-[bitter]">{name}</h3>
+        <h3 className="h3 font-[bitter] group-hover:text-LBROWN transition-all">{name}</h3>
         <div className="text-LBROWN2 leading-[120%]">{place}</div>
       </div>
     </motion.a>
   ) : (
     <motion.div
-      className={cn('flex items-start gap-10 max-w-[952px] rounded-[24px] text-white', className, {
-        'border-t-2 pt-5 border-white': line === 'top',
-        'border-b-[1px] pb-5 border-white': line === 'bottom',
-      })}
+      className={cn(
+        'flex group items-start cursor-pointer gap-10 max-w-[952px] rounded-[24px] text-white',
+        className,
+        {
+          'border-t-2 pt-5 border-white': line === 'top',
+          'border-b-[1px] pb-5 border-white': line === 'bottom',
+        },
+      )}
       initial={{
         translateY: '50%',
         opacity: 0,
@@ -196,7 +212,7 @@ const EventCard = ({
       </div>
 
       <div className="flex flex-col gap-5">
-        <h3 className="h3 font-[bitter]">{name}</h3>
+        <h3 className="h3 font-[bitter] group-hover:text-LBROWN transition-all">{name}</h3>
         <div className="text-LBROWN2 leading-[120%]">{place}</div>
       </div>
     </motion.div>

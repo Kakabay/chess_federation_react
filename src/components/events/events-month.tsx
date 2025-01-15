@@ -50,7 +50,7 @@ const EventsMonth = ({ title, eventsData, isCurrent }: Props) => {
               name={item.name_of_event}
               place={item.place}
               line={i !== 0 ? 'top' : 'none'}
-              link={item.url}
+              link={item.link}
             />
           ))}
         </div>
