@@ -18,7 +18,6 @@ const HomeSlider = () => {
 
   const { data } = useGetSlider(activeLang.value);
 
-  console.log(data);
 
   const swiperRef = useRef<SwiperCore | null>(null);
   return (
