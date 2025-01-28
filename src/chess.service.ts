@@ -1,21 +1,21 @@
-import axios from 'axios';
-import { HomeSliderTypes } from './types/homeSlider.type';
-import { EventsTypes } from './types/events.type';
-import { NewsType } from './types/news.type';
-import { SingleNewsType } from './types/singleNews.type';
-import { VideosTypes } from './types/videos.type';
-import { PartnersType } from './types/partners.type';
-import { StructureType } from './types/structure.type';
-import { AboutType } from './types/about.type';
-import { PlayersType } from './types/players.type';
-import { ContactInfoType } from './types/contactInfo.type';
-import { SearchTypes } from './types/search.type';
-import { TranslationsTypes } from './types/translations.type';
-import { RatingType } from './types/rating.type';
+import axios from "axios";
+import { HomeSliderTypes } from "./types/homeSlider.type";
+import { EventsTypes } from "./types/events.type";
+import { NewsType } from "./types/news.type";
+import { SingleNewsType } from "./types/singleNews.type";
+import { VideosTypes } from "./types/videos.type";
+import { PartnersType } from "./types/partners.type";
+import { StructureType } from "./types/structure.type";
+import { AboutType } from "./types/about.type";
+import { PlayersType } from "./types/players.type";
+import { ContactInfoType } from "./types/contactInfo.type";
+import { SearchTypes } from "./types/search.type";
+import { TranslationsTypes } from "./types/translations.type";
+import { RatingType } from "./types/rating.type";
 
-export const URL = 'http://216.250.12.9:8088/api/v1';
+export const URL = "https://tkmchess.com.tm/app/api/v1";
 class ChessService {
-  private URL = 'http://216.250.12.9:8088/api/v1';
+  private URL = "https://tkmchess.com.tm/app/api/v1";
 
   getSlider = async () => {
     return await axios.get<HomeSliderTypes>(`${this.URL}/sliders`);
@@ -29,19 +29,38 @@ class ChessService {
     return await axios.get<EventsTypes>(`${this.URL}/new_events?date=${date}`);
   };
 
-  getNews = async (per_page: number, locale: string, page: number = 2, sort: string = 'asc') => {
+  getNews = async (
+    per_page: number,
+    locale: string,
+    page: number = 2,
+    sort: string = "asc"
+  ) => {
     return await axios.get<NewsType>(
-      `${this.URL}/posts?locale=${locale}&per_page=${per_page}&sort_order=${sort}&page=${page}`,
+      `${this.URL}/posts?locale=${locale}&per_page=${per_page}&sort_order=${sort}&page=${page}`
     );
   };
 
-  getSingleNews = async ({ pageId, locale }: { pageId: string; locale: string }) => {
-    return await axios.get<SingleNewsType>(`${this.URL}/posts/${pageId}?locale=${locale}`);
+  getSingleNews = async ({
+    pageId,
+    locale,
+  }: {
+    pageId: string;
+    locale: string;
+  }) => {
+    return await axios.get<SingleNewsType>(
+      `${this.URL}/posts/${pageId}?locale=${locale}`
+    );
   };
 
-  getSearchResults = async ({ searchQuery, lang }: { searchQuery: string; lang: string }) => {
+  getSearchResults = async ({
+    searchQuery,
+    lang,
+  }: {
+    searchQuery: string;
+    lang: string;
+  }) => {
     return await axios.get<SearchTypes>(
-      `${this.URL}/posts?locale=${lang}&per_page=10&search=${searchQuery}`,
+      `${this.URL}/posts?locale=${lang}&per_page=10&search=${searchQuery}`
     );
   };
 
@@ -77,10 +96,14 @@ class ChessService {
     return await axios.get<RatingType>(`${this.URL}/rating_of_players`);
   };
 
-  postContactForm = async (body: { name: string; email: string; message: string }) => {
+  postContactForm = async (body: {
+    name: string;
+    email: string;
+    message: string;
+  }) => {
     return await axios.post(`${this.URL}/send-contact-form`, body, {
       headers: {
-        'Content-Type': 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
       },
     });
   };
