@@ -26,8 +26,6 @@ const HomeGallery = () => {
 
   const { data } = useGetVideos();
 
-  console.log(data);
-
   useEffect(() => {
     if (!api) {
       return;
