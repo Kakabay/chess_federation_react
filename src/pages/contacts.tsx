@@ -1,24 +1,29 @@
-import Container from '@/components/layout/container';
-import Form from '@/components/shared/form';
-import PageTitle from '@/components/shared/page-title';
-import useExtractSectionTitle from '@/lib/hooks/useExtractSectionTitle';
-import { useGetContactInfo } from '@/lib/hooks/useGetContactInfo';
-import useScrollToTop from '@/lib/hooks/useScrollToTop';
-import { useZusLang } from '@/zustand/use-zus-lang';
+import Container from "@/components/layout/container";
+import Form from "@/components/shared/form";
+import PageTitle from "@/components/shared/page-title";
+import useExtractSectionTitle from "@/lib/hooks/useExtractSectionTitle";
+import { useGetContactInfo } from "@/lib/hooks/useGetContactInfo";
+import useScrollToTop from "@/lib/hooks/useScrollToTop";
+import { useZusLang } from "@/zustand/use-zus-lang";
 
 const Contacts = () => {
   useScrollToTop();
   const activeLang = useZusLang().activeLang;
   const { data } = useGetContactInfo(activeLang.value);
 
-  const formTitle = useExtractSectionTitle('contact_form_title');
-  const mapSectionTitle = useExtractSectionTitle('contact_us_page_map_section_title');
+  const formTitle = useExtractSectionTitle("contact_form_title");
+  const mapSectionTitle = useExtractSectionTitle(
+    "contact_us_page_map_section_title"
+  );
 
   return (
     <main className="bg-PAGE_BG">
       <Container className="flex flex-col md:gap-[200px] gap-[72px]">
         <section className="flex flex-col md:flex-row w-full items-start md:justify-between">
-          <PageTitle title={formTitle} className="md:flex-[0_1_50%] flex-auto md:mb-0 mb-12" />
+          <PageTitle
+            title={formTitle}
+            className="md:flex-[0_1_50%] flex-auto md:mb-0 mb-12"
+          />
 
           <div className="md:flex-[0_1_50%] w-full">
             <Form />
@@ -33,15 +38,19 @@ const Contacts = () => {
               <div className="flex flex-col md:flex-row md:justify-between md:flex-[0_1_50%] gap-4 md:gap-0 mt-6 md:mt-20">
                 <div className="md:flex-[0_1_50%]">
                   <h4 className="h4 font-[bitter] mb-2.5 text-BROWN">
-                    {activeLang.value === 'ru' ? 'Адрес:' : 'Salgysy:'}
+                    {activeLang.value === "ru" ? "Адрес:" : "Salgysy:"}
                   </h4>
-                  <address className="not-italic leading-[150%]">{data.data[0].address}</address>
+                  <address className="not-italic leading-[150%]">
+                    {data.data[0].address}
+                  </address>
                 </div>
                 <div className="flex-[0_1_50%] md:pl-10">
                   <h4 className="h4 font-[bitter]  mb-2.5 text-BROWN">
-                    {activeLang.value === 'ru' ? 'Телефон:' : 'Telefon:'}
+                    {activeLang.value === "ru" ? "Телефон:" : "Telefon:"}
                   </h4>
-                  <div className="not-italic leading-[150%]">{data.data[0].contacts}</div>
+                  <div className="not-italic leading-[150%]">
+                    {data.data[0].contacts}
+                  </div>
                 </div>
               </div>
             </div>
@@ -55,7 +64,8 @@ const Contacts = () => {
                 style={{ border: 0 }}
                 allowFullScreen={false}
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"></iframe>
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
             </div>
           </section>
         )}

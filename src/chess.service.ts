@@ -96,6 +96,25 @@ class ChessService {
     return await axios.get<RatingType>(`${this.URL}/rating_of_players`);
   };
 
+  getToken = async () => {
+    try {
+      const response = await axios.get(
+        "https://tkmchess.com.tm/app/api/csrf-token"
+      );
+
+      // Убедись, что csrf_token есть в ответе
+      const { csrf_token }: { csrf_token: string } = response.data;
+
+      if (!csrf_token) {
+        throw new Error("CSRF token not found in the response");
+      }
+
+      return csrf_token;
+    } catch (error) {
+      console.error("Error fetching CSRF token:", error);
+      return null; // Возвращаем null, если токен не был получен
+    }
+  };
   postContactForm = async (body: {
     name: string;
     email: string;

@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios"; // Import axios
 import { useState } from "react";
 import { useZusLang } from "@/zustand/use-zus-lang";
+import chessService from "@/chess.service";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Имя должно быть не менее 2 символов" }),
@@ -35,8 +36,14 @@ const FormFields = () => {
   const onSubmit = async (data: FormTypes) => {
     try {
       setLoading(true); // Set loading to true during submission
+      const token = await chessService.getToken();
+
+      if (!token) {
+        console.error("Token is undefined or null");
+        return; // Можно завершить функцию, если токен не получен
+      }
       const response = await axios.post(
-        "http://216.250.12.9:8088/api/v1/contact-info",
+        "https://tkmchess.com.tm/app/api/v1/contact-info",
         {
           name: data.name,
           email: data.email,
@@ -44,6 +51,7 @@ const FormFields = () => {
         },
         {
           headers: {
+            "X-CSRF-TOKEN": token ? token : "toke",
             "Content-Type": "application/json",
           },
         }
