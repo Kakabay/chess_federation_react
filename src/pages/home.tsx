@@ -1,10 +1,10 @@
-import HomeEvents from '@/components/home/home-events';
-import HomeGallery from '@/components/home/home-gallery';
-import HomeNews from '@/components/home/home-news';
-import HomePartners from '@/components/home/home-partners';
-import HomeRating from '@/components/home/home-rating';
-import HomeSlider from '@/components/home/home-slider';
-import useScrollToTop from '@/lib/hooks/useScrollToTop';
+import HomeEvents from "@/components/home/home-events";
+import HomeGallery from "@/components/home/home-gallery";
+import HomeNews from "@/components/home/home-news";
+import HomePartners from "@/components/home/home-partners";
+import HomeRating from "@/components/home/home-rating";
+import HomeSlider from "@/components/home/home-slider";
+import useScrollToTop from "@/lib/hooks/useScrollToTop";
 
 const Home = () => {
   useScrollToTop();

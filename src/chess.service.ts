@@ -12,21 +12,22 @@ import { ContactInfoType } from "./types/contactInfo.type";
 import { SearchTypes } from "./types/search.type";
 import { TranslationsTypes } from "./types/translations.type";
 import { RatingType } from "./types/rating.type";
+import instance from "./lib/api";
 
 export const URL = "https://tkmchess.com.tm/app/api/v1";
 class ChessService {
-  private URL = "https://tkmchess.com.tm/app/api/v1";
+  // private URL = "https://tkmchess.com.tm/app/api/v1";
 
   getSlider = async () => {
-    return await axios.get<HomeSliderTypes>(`${this.URL}/sliders`);
+    return await instance.get<HomeSliderTypes>(`/sliders`);
   };
 
   // getEvents = async () => {
-  //   return await axios.get<EventsTypes>(`${this.URL}/new_events`);
+  //   return await instance.get<EventsTypes>(`/new_events`);
   // };
 
   getEventsByDate = async (date: string) => {
-    return await axios.get<EventsTypes>(`${this.URL}/new_events?date=${date}`);
+    return await instance.get<EventsTypes>(`/new_events?date=${date}`);
   };
 
   getNews = async (
@@ -35,8 +36,8 @@ class ChessService {
     page: number = 2,
     sort: string = "asc"
   ) => {
-    return await axios.get<NewsType>(
-      `${this.URL}/posts?locale=${locale}&per_page=${per_page}&sort_order=${sort}&page=${page}`
+    return await instance.get<NewsType>(
+      `/posts?locale=${locale}&per_page=${per_page}&sort_order=${sort}&page=${page}`
     );
   };
 
@@ -47,8 +48,8 @@ class ChessService {
     pageId: string;
     locale: string;
   }) => {
-    return await axios.get<SingleNewsType>(
-      `${this.URL}/posts/${pageId}?locale=${locale}`
+    return await instance.get<SingleNewsType>(
+      `/posts/${pageId}?locale=${locale}`
     );
   };
 
@@ -59,47 +60,52 @@ class ChessService {
     searchQuery: string;
     lang: string;
   }) => {
-    return await axios.get<SearchTypes>(
-      `${this.URL}/posts?locale=${lang}&per_page=10&search=${searchQuery}`
+    return await instance.get<SearchTypes>(
+      `/posts?locale=${lang}&per_page=10&search=${searchQuery}`
     );
   };
 
   getVideos = async () => {
-    return await axios.get<VideosTypes>(`${this.URL}/videos`);
+    return await instance.get<VideosTypes>("/videos");
   };
 
   getPartners = async () => {
-    return await axios.get<PartnersType>(`${this.URL}/partners`);
+    return await instance.get<PartnersType>("/partners");
   };
 
   getStructure = async () => {
-    return await axios.get<StructureType>(`${this.URL}/structure`);
+    return await instance.get<StructureType>("/structure");
   };
 
   getAbout = async () => {
-    return await axios.get<AboutType>(`${this.URL}/about`);
+    return await instance.get<AboutType>("/about");
   };
 
   getPlayers = async () => {
-    return await axios.get<PlayersType>(`${this.URL}/players`);
+    return await instance.get<PlayersType>("/players");
   };
 
   getContactInfo = async () => {
-    return await axios.get<ContactInfoType>(`${this.URL}/our_contacts`);
+    return await instance.get<ContactInfoType>("/our_contacts");
   };
 
   getTranslations = async () => {
-    return await axios.get<TranslationsTypes>(`${this.URL}/translations`);
+    return await instance.get<TranslationsTypes>("/translations");
   };
 
   getRating = async () => {
-    return await axios.get<RatingType>(`${this.URL}/rating_of_players`);
+    return await instance.get<RatingType>("/rating_of_players");
   };
 
   getToken = async () => {
     try {
       const response = await axios.get(
-        "https://tkmchess.com.tm/app/api/csrf-token"
+        "https://tkmchess.com.tm/app/api/csrf-token",
+        {
+          headers: {
+            "api-key": "XauMv8GUdnMJObAT73hz17TQa80fu4ZyG0QZwjqt",
+          },
+        }
       );
 
       // Убедись, что csrf_token есть в ответе
@@ -115,12 +121,13 @@ class ChessService {
       return null; // Возвращаем null, если токен не был получен
     }
   };
+
   postContactForm = async (body: {
     name: string;
     email: string;
     message: string;
   }) => {
-    return await axios.post(`${this.URL}/send-contact-form`, body, {
+    return await instance.post(`/send-contact-form`, body, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

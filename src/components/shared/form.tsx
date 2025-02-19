@@ -8,6 +8,7 @@ import axios from "axios"; // Import axios
 import { useState } from "react";
 import { useZusLang } from "@/zustand/use-zus-lang";
 import chessService from "@/chess.service";
+import ReCAPTCHA from "react-google-recaptcha"; // Импорт компонента reCAPTCHA
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Имя должно быть не менее 2 символов" }),
@@ -21,8 +22,10 @@ type FormTypes = z.infer<typeof formSchema>;
 
 const FormFields = () => {
   const activeLang = useZusLang().activeLang;
-  const [loading, setLoading] = useState(false); // Loading state for submission
+  const [loading, setLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -32,8 +35,17 @@ const FormFields = () => {
     },
   });
 
+  const handleCaptchaChange = (value: string | null) => {
+    setCaptchaValue(value);
+  };
+
   // Function to handle the form submission
   const onSubmit = async (data: FormTypes) => {
+    if (!captchaValue) {
+      alert("Пожалуйста, пройдите проверку reCAPTCHA");
+      return;
+    }
+
     try {
       setLoading(true); // Set loading to true during submission
       const token = await chessService.getToken();
@@ -42,7 +54,7 @@ const FormFields = () => {
         console.error("Token is undefined or null");
         return; // Можно завершить функцию, если токен не получен
       }
-      const response = await axios.post(
+      await axios.post(
         "https://tkmchess.com.tm/app/api/v1/contact-info",
         {
           name: data.name,
@@ -51,17 +63,15 @@ const FormFields = () => {
         },
         {
           headers: {
-            "X-CSRF-TOKEN": token ? token : "toke",
+            "X-CSRF-TOKEN": token,
             "Content-Type": "application/json",
           },
         }
       );
-      console.log("Form submitted successfully", response.data);
       setIsSubmitted(true);
 
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 5000);
+      form.reset();
+
       // Optionally, you can show a success message or handle it further
     } catch (error) {
       console.error("Error submitting form", error);
@@ -110,6 +120,14 @@ const FormFields = () => {
             error={form.formState.errors.text}
           />
         </div>
+
+        <div className="my-4">
+          <ReCAPTCHA
+            sitekey="6LfR8NsqAAAAAKHjM5Titovtp9_RelCm71Un1Fkr" // Замените на ваш site key
+            onChange={handleCaptchaChange}
+          />
+        </div>
+
         {activeLang.value === "ru" ? (
           <p className="md:mt-5 mt-4 md:mb-10 mb-6 leading-none text-DGRAY2">
             Поля отмеченные <span className="text-RED_PASTEL">*</span>{" "}
@@ -121,23 +139,20 @@ const FormFields = () => {
             meýdançalar hökmany doldurylmaly
           </p>
         )}
-        {activeLang.value === "ru" ? (
-          <Button
-            type="submit"
-            className="w-full md:mr-[100px]"
-            disabled={loading}
-          >
-            {loading ? "Отправка..." : "Отправить сообщение"}
-          </Button>
-        ) : (
-          <Button
-            type="submit"
-            className="w-full md:mr-[100px]"
-            disabled={loading}
-          >
-            {loading ? "Ugradylýar..." : "Haty ugrat"}
-          </Button>
-        )}
+
+        <Button
+          type="submit"
+          className="w-full md:mr-[100px]"
+          disabled={loading || isSubmitted}
+        >
+          {activeLang.value === "ru"
+            ? loading
+              ? "Отправка..."
+              : "Отправить сообщение"
+            : loading
+            ? "Ugradylýar..."
+            : "Haty ugrat"}
+        </Button>
         {isSubmitted && (
           <p className="text-lg text-center mt-4 font-semibold text-green-600">
             {activeLang.value === "ru"
