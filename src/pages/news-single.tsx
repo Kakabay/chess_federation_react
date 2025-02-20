@@ -33,7 +33,6 @@ const NewsSingle = () => {
     lang: activeLang.value,
     per_page: 4,
     page: 1,
-    sort: "asc",
   });
 
   return (
@@ -68,9 +67,9 @@ const NewsSingle = () => {
             <SectionHeader title={newsSectionTitle} className="md:mb-10 mb-6" />
 
             <div className="hidden md:flex gap-10">
-              {newsData.data.map((news) => (
+              {newsData.data.map((news, i) => (
                 <NewsCard
-                  key={news.id}
+                  key={i}
                   id={news.id}
                   published_at={news.published_at}
                   title={news.title}
@@ -92,7 +91,6 @@ const NewsSingle = () => {
                       })}
                     >
                       <NewsCard
-                        key={news.id}
                         id={news.id}
                         published_at={news.published_at}
                         title={news.title}

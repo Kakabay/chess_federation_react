@@ -30,14 +30,9 @@ class ChessService {
     return await instance.get<EventsTypes>(`/new_events?date=${date}`);
   };
 
-  getNews = async (
-    per_page: number,
-    locale: string,
-    page: number = 2,
-    sort: string = "asc"
-  ) => {
+  getNews = async (per_page: number, locale: string, page: number = 2) => {
     return await instance.get<NewsType>(
-      `/posts?locale=${locale}&per_page=${per_page}&sort_order=${sort}&page=${page}`
+      `/posts?locale=${locale}&per_page=${per_page}&page=${page}`
     );
   };
 
@@ -61,7 +56,7 @@ class ChessService {
     lang: string;
   }) => {
     return await instance.get<SearchTypes>(
-      `/posts?locale=${lang}&per_page=10&search=${searchQuery}`
+      `/posts?locale=${lang}&search=${searchQuery}`
     );
   };
 

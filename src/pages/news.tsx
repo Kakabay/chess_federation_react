@@ -1,10 +1,10 @@
-import NewsCard from '@/components/shared/news-card';
-import Container from '@/components/layout/container';
-import PageTitle from '@/components/shared/page-title';
-import useScrollToTop from '@/lib/hooks/useScrollToTop';
-import { useGetNews } from '@/lib/hooks/useGetNews';
-import { useZusLang } from '@/zustand/use-zus-lang';
-import { useState } from 'react';
+import NewsCard from "@/components/shared/news-card";
+import Container from "@/components/layout/container";
+import PageTitle from "@/components/shared/page-title";
+import useScrollToTop from "@/lib/hooks/useScrollToTop";
+import { useGetNews } from "@/lib/hooks/useGetNews";
+import { useZusLang } from "@/zustand/use-zus-lang";
+import { useState } from "react";
 import {
   Pagination,
   PaginationContent,
@@ -13,7 +13,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '@/components/ui/pagination';
+} from "@/components/ui/pagination";
 
 const News = () => {
   useScrollToTop();
@@ -24,7 +24,6 @@ const News = () => {
     lang: activeLang.value,
     per_page: 9,
     page: currentPage,
-    sort: 'desc',
   });
 
   const paginationNextClickHandler = (lastPage: number) => {
@@ -41,12 +40,12 @@ const News = () => {
   if (!newsData) {
     return (
       <div className="h-[50vh] w-full flex justify-center items-center">
-        <h1 className="text-2xl text-BROWN font-semibold ">Loading...</h1>
+        <h1 className="text-2xl text-BROWN font-semibold">Loading...</h1>
       </div>
     );
   }
 
-  const pages = new Array(newsData.meta.last_page).fill(' ');
+  const pages = new Array(newsData.meta.last_page).fill(" ");
 
   const showLeftEllipsis = currentPage > 5 && newsData.meta.last_page > 12;
   const showRightEllipsis =
@@ -56,11 +55,13 @@ const News = () => {
     <main className="bg-PAGE_BG">
       <Container>
         <div className="flex flex-col gap-4">
-          <PageTitle title={activeLang.value === 'ru' ? 'Новости' : 'Habarlar'} />
+          <PageTitle
+            title={activeLang.value === "ru" ? "Новости" : "Habarlar"}
+          />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-10">
-            {newsData?.data.map((news) => (
+            {newsData?.data.map((news, i) => (
               <NewsCard
-                key={news.id}
+                key={i}
                 id={news.id}
                 // animationDelay={i}
                 published_at={news.published_at}
@@ -91,7 +92,8 @@ const News = () => {
                     <PaginationLink
                       isActive={currentPage === i + 1 ? true : false}
                       onClick={() => setCurrentPage(i + 1)}
-                      className="text-[16px] w-[24px] h-[24px] p-[10px] cursor-pointer">
+                      className="text-[16px] w-[24px] h-[24px] p-[10px] cursor-pointer"
+                    >
                       {i + 1}
                     </PaginationLink>
                   </PaginationItem>
@@ -106,7 +108,9 @@ const News = () => {
                   <PaginationItem>
                     <PaginationNext
                       className={`hover:bg-transparent cursor-pointer`}
-                      onClick={() => paginationNextClickHandler(newsData.meta.last_page)}
+                      onClick={() =>
+                        paginationNextClickHandler(newsData.meta.last_page)
+                      }
                     />
                   </PaginationItem>
                 )}

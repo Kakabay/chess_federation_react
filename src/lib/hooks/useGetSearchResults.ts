@@ -1,5 +1,5 @@
-import chessService from '@/chess.service';
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import chessService from "@/chess.service";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 interface IProps {
   lang: string;
@@ -8,7 +8,7 @@ interface IProps {
 
 export const useGetSearchResults = ({ searchQuery, lang }: IProps) => {
   const { data, isLoading, isError, isSuccess } = useQuery({
-    queryKey: ['search', searchQuery, lang],
+    queryKey: ["search", searchQuery, lang],
     queryFn: () => chessService.getSearchResults({ searchQuery, lang }),
     placeholderData: keepPreviousData,
     select: ({ data }) => data,
