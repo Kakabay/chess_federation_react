@@ -47,7 +47,7 @@ const News = () => {
 
   const pages = new Array(newsData.meta.last_page).fill(" ");
 
-  const showLeftEllipsis = currentPage > 5 && newsData.meta.last_page > 12;
+  const showLeftEllipsis = currentPage > 6 && newsData.meta.last_page > 12;
   const showRightEllipsis =
     newsData.meta.last_page > 12 && currentPage < newsData.meta.last_page - 5;
 

@@ -17,7 +17,7 @@ import {
 import useExtractSectionTitle from "@/lib/hooks/useExtractSectionTitle";
 
 const NewsSingle = () => {
-  let { pageId } = useParams();
+  const { pageId } = useParams();
   const activeLang = useZusLang().activeLang;
 
   useScrollToTop(pageId);
@@ -44,8 +44,8 @@ const NewsSingle = () => {
             {singleNewsData?.data.published_at}
           </div>
           {singleNewsData &&
-            singleNewsData.data.featured_images &&
-            singleNewsData.data.featured_images[0].path && (
+            singleNewsData?.data?.featured_images &&
+            singleNewsData?.data?.featured_images[0].path && (
               <div className="max-w-[1000px] w-full max-h-[500px] h-full overflow-hidden">
                 <img
                   src={singleNewsData.data.featured_images[0].path}
@@ -56,9 +56,11 @@ const NewsSingle = () => {
             )}
 
           <div
-            className="w-full max-w-[800px] mx-auto flex font-medium md:font-normal flex-col gap-6 md:gap-10 font-[bitter] text-[14px] md:text-[20px] leading-[150%]"
+            className="news-inner w-full max-w-[800px] mx-auto flex font-medium md:font-normal flex-col gap-6 md:gap-10 font-[bitter] text-[14px] md:text-[20px] leading-[150%]"
             dangerouslySetInnerHTML={
-              singleNewsData && { __html: singleNewsData.data.content_html }
+              singleNewsData && {
+                __html: singleNewsData?.data?.content_html ?? "",
+              }
             }
           />
         </section>

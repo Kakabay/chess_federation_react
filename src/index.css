@@ -158,6 +158,10 @@ button:focus-visible {
   .bullet-active {
     @apply rounded-full border size-3 bg-white;
   }
+
+  .news-inner a {
+    @apply underline;
+  }
 }
 
 @keyframes flash {
