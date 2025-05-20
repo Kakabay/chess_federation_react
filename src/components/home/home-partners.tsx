@@ -1,13 +1,13 @@
-import Container from '../layout/container';
-import { Carousel, CarouselContent, CarouselItem } from '../ui/carousel';
-import SectionHeader from './section-header';
-import { useGetPartners } from '@/lib/hooks/useGetPartners';
-import { HOSTING } from '@/lib/constants';
-import useExtractSectionTitle from '@/lib/hooks/useExtractSectionTitle';
+import Container from "../layout/container";
+import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
+import SectionHeader from "./section-header";
+import { useGetPartners } from "@/lib/hooks/useGetPartners";
+import { HOSTING } from "@/lib/constants";
+import useExtractSectionTitle from "@/lib/hooks/useExtractSectionTitle";
 
 const HomePartners = () => {
   const { data } = useGetPartners();
-  const sectionTitle = useExtractSectionTitle('partners_section_title');
+  const sectionTitle = useExtractSectionTitle("partners_section_title");
 
   return (
     <section>
@@ -18,13 +18,17 @@ const HomePartners = () => {
           className="font-[bitter]"
         />
 
-        <Carousel className="flex items-center" opts={{ skipSnaps: true, dragFree: false }}>
+        <Carousel
+          className="flex items-center"
+          opts={{ skipSnaps: true, dragFree: false }}
+        >
           <CarouselContent>
             {data &&
               data.map((partner, i) => (
                 <CarouselItem
                   key={i}
-                  className="mr-10 pl-0 basis-[150px] md:basis-[200px]  h-[100px]">
+                  className="mr-10 pl-0 basis-[150px] md:basis-[200px]  h-[100px]"
+                >
                   <img
                     src={HOSTING + partner.partner}
                     alt={partner.note}

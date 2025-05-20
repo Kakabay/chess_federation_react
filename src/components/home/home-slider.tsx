@@ -47,7 +47,7 @@ const HomeSlider = () => {
           pagination={{
             clickable: true,
             type: "bullets",
-            el: ".pagination",
+            // el: ".pagination",
             bulletElement: "div",
             bulletActiveClass: "bullet-active",
             bulletClass: "bullet",
@@ -108,7 +108,7 @@ const HomeSlider = () => {
                 </SwiperSlide>
               );
             })}
-          <div className="absolute z-50 pagination bottom-10 right-[7.5%] flex gap-3">
+          <div className="absolute z-50  bottom-10 right-[7.5%] flex gap-3">
             {data &&
               data.map((slide, i) => (
                 <div
