@@ -1,0 +1,22 @@
+{
+  "logoText": "Türkmenistanyň küşt federasiýasy",
+
+  "nav": [
+    {
+      "text": "Biz barada",
+      "link": "/about"
+    },
+    {
+      "text": "Habarlar",
+      "link": "/news"
+    },
+    {
+      "text": "Çäreleriň rejesi",
+      "link": "/events"
+    },
+    {
+      "text": "Habarlaşmak üçin",
+      "link": "/contacts"
+    }
+  ]
+}

@@ -1,19 +1,18 @@
-import { useState } from 'react';
-import Container from '../layout/container';
-import EventCard from '../shared/event-card';
-import { Separator } from '../ui/separator';
-import SectionHeader from './section-header';
-import { useZusLang } from '@/zustand/use-zus-lang';
-import { Carousel, CarouselContent, CarouselItem } from '../ui/carousel';
-import { Button } from '../ui/button';
-import CalendarMobile from '../shared/calendar-mobile';
-import CalendarDesktop from '../shared/calendar-desktop';
-import { useGetEventsByDate } from '@/lib/hooks/useGetEventsByDate';
-import { useGetCurrentDate } from '@/lib/hooks/useGetCurrentDate';
-import useExtractSectionTitle from '@/lib/hooks/useExtractSectionTitle';
+import { useState } from "react";
+import Container from "../layout/container";
+import EventCard from "../shared/event-card";
+import { Separator } from "../ui/separator";
+import SectionHeader from "./section-header";
+import { useZusLang } from "@/zustand/use-zus-lang";
+import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
+import { Button } from "../ui/button";
+import CalendarMobile from "../shared/calendar-mobile";
+import CalendarDesktop from "../shared/calendar-desktop";
+import { useGetEventsByDate } from "@/lib/hooks/useGetEventsByDate";
+import { useGetCurrentDate } from "@/lib/hooks/useGetCurrentDate";
+import useExtractSectionTitle from "@/lib/hooks/useExtractSectionTitle";
 
 const HomeEvents = () => {
-  // const activeLang = useZusLang().activeLang;
   const [calendar, setCalendar] = useState(false);
   const activeLang = useZusLang().activeLang;
 
@@ -22,7 +21,7 @@ const HomeEvents = () => {
     date: currentDate,
     lang: activeLang.value,
   });
-  const sectionTitle = useExtractSectionTitle('future_events_section_title');
+  const sectionTitle = useExtractSectionTitle("future_events_section_title");
 
   return (
     <>
@@ -34,8 +33,13 @@ const HomeEvents = () => {
               title={sectionTitle}
               icon="/images/home/chess-horse.svg"
               link={{
-                text: activeLang.value === 'ru' ? 'все события' : 'hemme çäreler',
-                path: '/events',
+                text:
+                  activeLang.value === "ru"
+                    ? "все события"
+                    : activeLang.value === "tm"
+                    ? "hemme çäreler"
+                    : "all events",
+                path: "/events",
               }}
               titleClassName="font-[bitter] leading-none"
             />
@@ -53,18 +57,21 @@ const HomeEvents = () => {
                         key={item.id}
                         place={item.place}
                         start={item.start_event_date}
-                        line={i !== 0 ? 'bottom' : 'none'}
+                        line={i !== 0 ? "bottom" : "none"}
                         isCurrent={false}
                         link={item.link}
                       />
-                    ),
+                    )
                 )}
             </div>
 
             <CalendarDesktop />
           </div>
 
-          <Button onClick={() => setCalendar(true)} className="md:hidden uppercase w-full mb-6">
+          <Button
+            onClick={() => setCalendar(true)}
+            className="md:hidden uppercase w-full mb-6"
+          >
             ОТКРЫТЬ КАЛЕНДАРЬ
           </Button>
 
@@ -72,7 +79,10 @@ const HomeEvents = () => {
             <CarouselContent>
               {data &&
                 data.future_events.map((item, i) => (
-                  <CarouselItem key={i} className="flex flex-col p-0 basis-[100%]">
+                  <CarouselItem
+                    key={i}
+                    className="flex flex-col p-0 basis-[100%]"
+                  >
                     <EventCard
                       end={item.end_event_date}
                       name={item.name_of_event}

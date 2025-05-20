@@ -1,10 +1,14 @@
-import { navData } from "@/data/nav";
 import Container from "../layout/container";
 import { Link } from "react-router-dom";
-import { useZusLang } from "@/zustand/use-zus-lang";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
-  const activeLang = useZusLang().activeLang;
+  const { t } = useTranslation("footer");
+
+  const navData = t("nav", { returnObjects: true }) as {
+    text: string;
+    link: string;
+  }[];
 
   return (
     <footer className="bg-HEADER_BG border-t border-BROWN">
@@ -13,15 +17,11 @@ const Footer = () => {
           <nav className="flex md:flex-row py-5 flex-col text-center md:text-left md:items-center gap-5 md:gap-10">
             {navData.map((item, i) => (
               <Link key={i} to={item.link}>
-                {activeLang.value === "ru" ? item.view : item.tm}
+                {item.text}
               </Link>
             ))}
           </nav>
-          <div className="text-sm md:text-left text-center">
-            {activeLang.value === "ru"
-              ? "Copyright 2012-2024. Шахматная федерация Туркменистана"
-              : "Copyright 2012-2024. Türkmenistanyň küşt federasiýasy"}
-          </div>
+          <div className="text-sm md:text-left text-center">{t("name")}</div>
         </div>
 
         <a
@@ -29,7 +29,7 @@ const Footer = () => {
           target="_blank"
           className="flex items-center gap-4 py-5"
         >
-          {activeLang.value === "ru" ? "Подпишитесь на нас:" : "Bizi yzarlaň:"}
+          {t("social")}
           <img src="/images/footer/inst.svg" alt="instagram" />
         </a>
       </Container>

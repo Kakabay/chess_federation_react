@@ -1,0 +1,18 @@
+{
+  "name": "Name",
+  "namePlace": "Write your name",
+
+  "emailPlace": "Write your email",
+
+  "message": "Your message",
+  "messagePlace": "Write your question or message",
+
+  "button": "Send message",
+  "loadingText": "Loading...",
+  "success": "Sended!",
+
+  "addressTitle": "Contacts and address",
+  "address": "Address:",
+  "addressText": "Gurbannazar Ezizov str. (1971), Ashgabat 744000, Turkmenistan",
+  "phone": "Phone:"
+}

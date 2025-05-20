@@ -24,7 +24,12 @@ const HomeNews = () => {
           icon="/images/home/chess-tower.svg"
           link={{
             path: "/news",
-            text: activeLang.value === "ru" ? "все новости" : "hemme habarlar",
+            text:
+              activeLang.value === "ru"
+                ? "все новости"
+                : activeLang.value === "tm"
+                ? "hemme habarlar"
+                : "all news",
           }}
         />
 

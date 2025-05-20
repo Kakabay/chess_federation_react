@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useZusLang } from "@/zustand/use-zus-lang";
 import chessService from "@/chess.service";
 import ReCAPTCHA from "react-google-recaptcha"; // Импорт компонента reCAPTCHA
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Имя должно быть не менее 2 символов" }),
@@ -21,6 +22,7 @@ const formSchema = z.object({
 type FormTypes = z.infer<typeof formSchema>;
 
 const FormFields = () => {
+  const { t } = useTranslation("contacts");
   const activeLang = useZusLang().activeLang;
   const [loading, setLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -88,20 +90,14 @@ const FormFields = () => {
           <CustomField
             control={form.control}
             name={"name"}
-            placeholder={
-              activeLang.value === "ru" ? "Напишите свое имя" : "Adyňyzy ýazyň"
-            }
-            label={activeLang.value === "ru" ? "Имя" : "Ady"}
+            placeholder={t("namePlace")}
+            label={t("name")}
             error={form.formState.errors.name}
           />
           <CustomField
             control={form.control}
             name={"email"}
-            placeholder={
-              activeLang.value === "ru"
-                ? "Напишите свою электронную почту"
-                : "Öz elektron poçtaňyzy ýazyň"
-            }
+            placeholder={t("emailPlace")}
             label={"E-mail"}
             error={form.formState.errors.email}
           />
@@ -109,21 +105,15 @@ const FormFields = () => {
             textArea
             control={form.control}
             name={"text"}
-            placeholder={
-              activeLang.value === "ru"
-                ? "напишите свой вопрос или сообщение"
-                : "öz soragyňyzy ýazyň"
-            }
-            label={
-              activeLang.value === "ru" ? "Ваше сообщение" : "Hatyňyzyň mazmuny"
-            }
+            placeholder={t("messagePlace")}
+            label={t("message")}
             error={form.formState.errors.text}
           />
         </div>
 
         <div className="my-4">
           <ReCAPTCHA
-            sitekey="6LfR8NsqAAAAAKHjM5Titovtp9_RelCm71Un1Fkr" // Замените на ваш site key
+            sitekey="6LfR8NsqAAAAAKHjM5Titovtp9_RelCm71Un1Fkr"
             onChange={handleCaptchaChange}
           />
         </div>
@@ -133,10 +123,15 @@ const FormFields = () => {
             Поля отмеченные <span className="text-RED_PASTEL">*</span>{" "}
             обязательны для заполнения
           </p>
-        ) : (
+        ) : activeLang.value === "tm" ? (
           <p className="md:mt-5 mt-4 md:mb-10 mb-6 leading-none text-DGRAY2">
             <span className="text-RED_PASTEL">*</span> bilen bellenilen
             meýdançalar hökmany doldurylmaly
+          </p>
+        ) : (
+          <p className="md:mt-5 mt-4 md:mb-10 mb-6 leading-none text-DGRAY2">
+            Fields marked with <span className="text-RED_PASTEL">*</span> are
+            required
           </p>
         )}
 
@@ -145,19 +140,11 @@ const FormFields = () => {
           className="w-full md:mr-[100px]"
           disabled={loading || isSubmitted}
         >
-          {activeLang.value === "ru"
-            ? loading
-              ? "Отправка..."
-              : "Отправить сообщение"
-            : loading
-            ? "Ugradylýar..."
-            : "Haty ugrat"}
+          {loading ? t("loading") : t("button")}
         </Button>
         {isSubmitted && (
           <p className="text-lg text-center mt-4 font-semibold text-green-600">
-            {activeLang.value === "ru"
-              ? "Сообщение отправленно успешно!"
-              : "Siziň hatyňyz üstünlikli ugradyldy!"}
+            {t("success")}
           </p>
         )}
       </form>

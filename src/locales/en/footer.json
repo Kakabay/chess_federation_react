@@ -1,0 +1,24 @@
+{
+  "nav": [
+    {
+      "text": "About us",
+      "link": "/about"
+    },
+    {
+      "text": "News",
+      "link": "/news"
+    },
+    {
+      "text": "Event schedule",
+      "link": "/events"
+    },
+    {
+      "text": "Contacts",
+      "link": "/contacts"
+    }
+  ],
+
+  "name": "Copyright 2012-2024. Chess Federation of Turkmenistan",
+
+  "social": "Follow us:"
+}

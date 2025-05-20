@@ -20,8 +20,8 @@ const AboutPersonal = () => {
                   key={item.id}
                   className="md:p-5 p-4 mr-4 basis-[93%]  md:basis-[440px] border border-LBROWN rounded-sm md:mr-10 flex flex-col gap-5"
                 >
-                  <img src={HOSTING + item.img} alt={item.name} />
-                  <h3 className="h3 font-[bitter]">{item.name}</h3>
+                  <img src={HOSTING + item.img} alt={item?.name} />
+                  <h3 className="h3 font-[bitter]">{item?.name}</h3>
                 </CarouselItem>
               ))}
             </CarouselContent>

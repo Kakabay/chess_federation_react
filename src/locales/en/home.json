@@ -1,0 +1,25 @@
+{
+  "eventsTitle": "Upcoming events",
+  "allEvents": "all events",
+
+  "newsTitle": "News",
+  "allNews": "all news",
+
+  "videoTitle": "Video",
+
+  "ratingTitle": "Rating of Turkmen chess players",
+
+  "ratingPlayers": [
+    {
+      "text": "Male"
+    },
+    {
+      "text": "Female"
+    },
+    {
+      "text": "Juniors"
+    }
+  ],
+
+  "partnersTitle": "Partners"
+}

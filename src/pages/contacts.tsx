@@ -5,6 +5,7 @@ import useExtractSectionTitle from "@/lib/hooks/useExtractSectionTitle";
 import { useGetContactInfo } from "@/lib/hooks/useGetContactInfo";
 import useScrollToTop from "@/lib/hooks/useScrollToTop";
 import { useZusLang } from "@/zustand/use-zus-lang";
+import { useTranslation } from "react-i18next";
 
 const Contacts = () => {
   useScrollToTop();
@@ -15,6 +16,8 @@ const Contacts = () => {
   const mapSectionTitle = useExtractSectionTitle(
     "contact_us_page_map_section_title"
   );
+
+  const { t } = useTranslation("contacts");
 
   return (
     <main className="bg-PAGE_BG">
@@ -38,18 +41,18 @@ const Contacts = () => {
               <div className="flex flex-col md:flex-row md:justify-between md:flex-[0_1_50%] gap-4 md:gap-0 mt-6 md:mt-20">
                 <div className="md:flex-[0_1_50%]">
                   <h4 className="h4 font-[bitter] mb-2.5 text-BROWN">
-                    {activeLang.value === "ru" ? "Адрес:" : "Salgysy:"}
+                    {t("address")}
                   </h4>
                   <address className="not-italic leading-[150%]">
-                    {data.data[0].address}
+                    {data?.data?.[0]?.address}
                   </address>
                 </div>
                 <div className="flex-[0_1_50%] md:pl-10">
                   <h4 className="h4 font-[bitter]  mb-2.5 text-BROWN">
-                    {activeLang.value === "ru" ? "Телефон:" : "Telefon:"}
+                    {t("phone")}
                   </h4>
                   <div className="not-italic leading-[150%]">
-                    {data.data[0].contacts}
+                    {data?.data?.[0]?.contacts}
                   </div>
                 </div>
               </div>

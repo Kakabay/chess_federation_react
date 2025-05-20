@@ -1,10 +1,10 @@
-import { motion } from 'framer-motion';
-import Container from '../layout/container';
-import useExtractSectionTitle from '@/lib/hooks/useExtractSectionTitle';
+import { motion } from "framer-motion";
+import Container from "../layout/container";
+import useExtractSectionTitle from "@/lib/hooks/useExtractSectionTitle";
 
 const EventsHero = () => {
-  const eventsPageTitle = useExtractSectionTitle('events_page_title');
-  const eventsPageSubtitle = useExtractSectionTitle('events_page_subtitle');
+  const eventsPageTitle = useExtractSectionTitle("events_page_title");
+  const eventsPageSubtitle = useExtractSectionTitle("events_page_subtitle");
 
   return (
     <section>
@@ -13,7 +13,7 @@ const EventsHero = () => {
           <div className="h-[600px] w-full mx-8 md:mx-auto relative overflow-hidden">
             <motion.div
               initial={{
-                height: '100%',
+                height: "100%",
               }}
               whileInView={{ height: 0 }}
               viewport={{ once: true }}
@@ -22,12 +22,13 @@ const EventsHero = () => {
                 duration: 0.6,
                 ease: [0.55, 0, 0.1, 1],
               }}
-              className="w-full h-full absolute px-8 right-0 bottom-0 bg-PAGE_BG z-20"></motion.div>
+              className="w-full h-full absolute px-8 right-0 bottom-0 bg-PAGE_BG z-20"
+            ></motion.div>
             <motion.div
               initial={{
                 height: 0,
               }}
-              whileInView={{ height: '100%' }}
+              whileInView={{ height: "100%" }}
               viewport={{ once: true }}
               transition={{
                 delay: 0.2,
@@ -54,13 +55,14 @@ const EventsHero = () => {
           </div>
           <motion.div
             initial={{
-              translateY: '25%',
+              translateY: "25%",
               opacity: 0,
             }}
             whileInView={{ translateY: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6, duration: 0.6, ease: [0.55, 0, 0.1, 1] }}
-            className="flex flex-col gap-4 md:gap-5 z-50">
+            className="flex flex-col gap-4 md:gap-5 z-50"
+          >
             <h1 className="md:text-[109px] text-[32px] mt-10 font-[bitter] text-BROWN uppercase font-bold leading-[110%] z-20 text-center">
               {eventsPageTitle}
             </h1>

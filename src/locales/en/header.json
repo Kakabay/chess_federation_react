@@ -1,0 +1,22 @@
+{
+  "logoText": "Chess Federation of Turkmenistan",
+
+  "nav": [
+    {
+      "text": "About us",
+      "link": "/about"
+    },
+    {
+      "text": "News",
+      "link": "/news"
+    },
+    {
+      "text": "Event schedule",
+      "link": "/events"
+    },
+    {
+      "text": "Contacts",
+      "link": "/contacts"
+    }
+  ]
+}

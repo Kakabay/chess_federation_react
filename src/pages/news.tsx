@@ -17,7 +17,7 @@ import {
 
 const News = () => {
   useScrollToTop();
-  const activeLang = useZusLang().activeLang;
+  const activeLang = useZusLang((state) => state.activeLang);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const { data: newsData } = useGetNews({
@@ -51,13 +51,18 @@ const News = () => {
   const showRightEllipsis =
     newsData.meta.last_page > 12 && currentPage < newsData.meta.last_page - 5;
 
+  const title =
+    activeLang.value === "ru"
+      ? "Новости"
+      : activeLang.value === "tm"
+      ? "Habarlar"
+      : "News";
+
   return (
     <main className="bg-PAGE_BG">
       <Container>
         <div className="flex flex-col gap-4">
-          <PageTitle
-            title={activeLang.value === "ru" ? "Новости" : "Habarlar"}
-          />
+          <PageTitle title={title} />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-10">
             {newsData?.data.map((news, i) => (
               <NewsCard

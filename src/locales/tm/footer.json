@@ -1,0 +1,24 @@
+{
+  "nav": [
+    {
+      "text": "Biz barada",
+      "link": "/about"
+    },
+    {
+      "text": "Habarlar",
+      "link": "/news"
+    },
+    {
+      "text": "Çäreleriň rejesi",
+      "link": "/events"
+    },
+    {
+      "text": "Habarlaşmak üçin",
+      "link": "/contacts"
+    }
+  ],
+
+  "name": "Copyright 2012-2024. Türkmenistanyň küşt federasiýasy",
+
+  "social": "Bizi yzarlaň:"
+}

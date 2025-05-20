@@ -17,20 +17,20 @@ const AboutAchievments = () => {
 
     const achivmentsData = [
       {
-        title: data[0].tournment_title,
-        number: data[0].tournment_number,
+        title: data?.[0]?.tournment_title,
+        number: data?.[0]?.tournment_number,
       },
       {
-        title: data[0].organisation_title,
-        number: data[0].organisation_number,
+        title: data?.[0]?.organisation_title,
+        number: data?.[0]?.organisation_number,
       },
       {
-        title: data[0].graduate_title,
-        number: data[0].graduate_number,
+        title: data?.[0]?.graduate_title,
+        number: data?.[0]?.graduate_number,
       },
       {
-        title: data[0].places_title,
-        number: data[0].places_number,
+        title: data?.[0]?.places_title,
+        number: data?.[0]?.places_number,
       },
     ];
 
@@ -61,8 +61,8 @@ const AboutAchievments = () => {
                   }
                 )}
               >
-                <h4 className="text-[#C5BBB5]">{item.title}</h4>
-                <div className="h1 !text-white">{item.number}</div>
+                <h4 className="text-[#C5BBB5]">{item?.title}</h4>
+                <div className="h1 !text-white">{item?.number}</div>
               </div>
             ))}
           </Container>
@@ -75,8 +75,8 @@ const AboutAchievments = () => {
             <AchievmentCol
               key={i}
               odd={i % 2 === 0 ? false : true}
-              text={item.title}
-              num={item.number}
+              text={item?.title}
+              num={item?.number}
             />
           ))}
         </section>

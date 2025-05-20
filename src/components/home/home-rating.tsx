@@ -13,6 +13,7 @@ const rating = [
     // nameTm: 'Erkekleriň arasynda Türkmenistanyň reýtingi',
     nameRu: "Мужчины",
     nameTm: "Erkekler",
+    nameEn: "Male",
     img: "/images/home/rating-1.png",
     url: "https://ratings.fide.com/rankings.phtml?continent=0&country=TKM&rating=standard&gender=&age1=0&age2=0&period=2024-10-01&period2=1",
   },
@@ -21,6 +22,7 @@ const rating = [
     // nameTm: 'Aýallaryň arasynda Türkmenistanyň reýtingi',
     nameRu: "Женщины",
     nameTm: "Aýal-gyzlar",
+    nameEn: "Female",
     img: "/images/home/rating-2.png",
     url: "https://ratings.fide.com/rankings.phtml?continent=0&country=TKM&rating=standard&gender=F&age1=0&age2=0&period=2024-10-01&period2=1",
   },
@@ -29,6 +31,7 @@ const rating = [
     // nameTm: 'Ýetginjekleriň arasynda Türkmenistanyň reýtingi',
     nameRu: "Юниоры",
     nameTm: "Ýetginjekler",
+    nameEn: "Juniors",
     img: "/images/home/rating-3.png",
     url: "https://ratings.fide.com/rankings.phtml?continent=0&country=TKM&rating=standard&gender=&age1=0&age2=20&period=2024-10-01&period2=1",
   },
@@ -36,7 +39,7 @@ const rating = [
 
 const HomeRating = () => {
   const sectionTitle = useExtractSectionTitle("players_rating_section_title");
-  const activeLang = useZusLang().activeLang;
+  const activeLang = useZusLang((state) => state.activeLang);
 
   const { data } = useGetRating(activeLang.value);
 
@@ -68,7 +71,7 @@ const HomeRating = () => {
                     ease: [0.55, 0, 0.1, 1],
                   }}
                 >
-                  <img src={item.image.path} alt="chess-icon" />
+                  <img src={item?.image?.path} alt="chess-icon" />
                   <h4 className="leading-[150%] text-[30px] font-semibold">
                     {item.type}
                   </h4>
@@ -103,7 +106,11 @@ const HomeRating = () => {
                 className="w-[64px] h-[72px]"
               />
               <h4 className="leading-[150%] md:text-[20px] text-[14px] font-semibold">
-                {activeLang.value === "ru" ? item.nameRu : item.nameTm}
+                {activeLang.value === "ru"
+                  ? item.nameRu
+                  : activeLang.value === "tm"
+                  ? item.nameTm
+                  : item.nameEn}
               </h4>
             </motion.div>
           )}

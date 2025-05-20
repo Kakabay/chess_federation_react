@@ -1,21 +1,23 @@
-import chessService from '@/chess.service';
-import { Datum, Translation } from '@/types/rating.type'; // Update your type import path if necessary
-import { useQuery } from '@tanstack/react-query';
+import chessService from "@/chess.service";
+import { Datum, Translation } from "@/types/rating.type"; // Update your type import path if necessary
+import { useQuery } from "@tanstack/react-query";
 
 export const useGetRating = (lang: string) => {
   const { data, isLoading, isError, isSuccess } = useQuery({
-    queryKey: ['ratingData', lang],
+    queryKey: ["ratingData", lang],
     queryFn: () => chessService.getRating(),
     select: ({ data }) => {
       // Map through the data array and apply the translation logic
       const translatedData = data.data.map((item: Datum) => {
-        if (lang === 'tm') {
+        if (lang === "tm") {
           // If the language is English, return the item as is
           return item;
         }
 
         // Find the translation for the provided language
-        const translation = item.translations.find((t: Translation) => t.locale === lang);
+        const translation = item.translations.find(
+          (t: Translation) => t.locale === lang
+        );
 
         // If a translation exists, parse the attribute_data and replace the type
         if (translation) {

@@ -1,0 +1,25 @@
+{
+  "eventsTitle": "Предстоящие события",
+  "allEvents": "все события",
+
+  "newsTitle": "Новости",
+  "allNews": "все новости",
+
+  "videoTitle": "Видео",
+
+  "ratingTitle": "Рейтинг туркменских шахматистов",
+
+  "ratingPlayers": [
+    {
+      "text": "Мужчины"
+    },
+    {
+      "text": "Женщины"
+    },
+    {
+      "text": "Юниоры"
+    }
+  ],
+
+  "partnersTitle": "Партнеры"
+}

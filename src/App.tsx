@@ -2,12 +2,15 @@ import { Outlet, useLocation } from "react-router-dom";
 import Header from "./components/shared/header";
 import Footer from "./components/shared/footer";
 import clsx from "clsx";
+import LanguageSync from "./lang-sync";
 
 function App() {
   const { pathname } = useLocation();
 
   return (
     <main className="flex flex-col h-screen overflow-x-hidden">
+      <LanguageSync />
+
       <Header />
 
       <div

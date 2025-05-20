@@ -7,7 +7,7 @@ import { useZusLang } from "@/zustand/use-zus-lang";
 import useExtractSectionTitle from "@/lib/hooks/useExtractSectionTitle";
 
 const AboutStructure = () => {
-  const activeLang = useZusLang().activeLang;
+  const activeLang = useZusLang((state) => state.activeLang);
   const { data } = useGetStructure(activeLang.value);
   const sectionTitle = useExtractSectionTitle(
     "federation_structure_section_title"
@@ -43,30 +43,30 @@ const AboutStructure = () => {
                   )}
                 >
                   <div className="font-[bitter] text-DGRAY2 leading-[130%] font-semibold text-[13px] md:text-[20px]">
-                    {person.job}
+                    {person?.job}
                   </div>
-                  <h3 className="h3 font-[bitter]">{person.name}</h3>
+                  <h3 className="h3 font-[bitter]">{person?.name}</h3>
 
                   <div className="flex md:flex-row flex-col md:items-center gap-2.5 text-DGRAY2 leading-none">
-                    {person.email && (
+                    {person?.email && (
                       <div className="flex items-center gap-1 md:gap-3">
                         <Mail color="#999999" className="size-4 md:size-6" />
-                        {person.email}
+                        {person?.email}
                       </div>
                     )}
-                    {person.phone && (
+                    {person?.phone && (
                       <div className="flex items-center gap-1 md:gap-3">
                         <Phone color="#999999" className="size-4 md:size-6" />
-                        {person.phone}
+                        {person?.phone}
                       </div>
                     )}
-                    {person.facebook && (
+                    {person?.facebook && (
                       <div className="flex items-center gap-1 md:gap-3">
                         <Facebook
                           color="#999999"
                           className="size-4 md:size-6"
                         />
-                        {person.facebook}
+                        {person?.facebook}
                       </div>
                     )}
                   </div>

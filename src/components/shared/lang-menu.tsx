@@ -10,7 +10,7 @@ import { ChevronDown } from "lucide-react";
 export const langs = [
   { view: "Türkmen", value: "tm", img: "/images/header/flag-tm.svg" },
   { view: "Русский", value: "ru", img: "/images/header/flag-ru.svg" },
-  // { view: 'English', value: 'en', img: '/images/header/flag-en.svg' },
+  { view: "English", value: "en", img: "/images/header/flag-en.svg" },
 ];
 
 const LangMenu = ({ className }: { className?: string }) => {
