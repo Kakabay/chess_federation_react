@@ -5,15 +5,16 @@ import { motion } from "framer-motion";
 import { useGetAbout } from "@/lib/hooks/useGetAbout";
 
 const AboutHero = () => {
-  const activeLang = useZusLang((state) => state.activeLang);
+  const { value } = useZusLang((state) => state.activeLang);
 
-  const { data } = useGetAbout(activeLang.value);
+  const { data } = useGetAbout(value);
+
   return (
     <section>
       <Container>
         {data && (
           <div>
-            <PageTitle title={data[0].header} className="mb-10" />
+            <PageTitle title={data?.[0]?.header} className="mb-10" />
 
             <motion.div
               initial={{
@@ -48,7 +49,7 @@ const AboutHero = () => {
                   duration: 0.6,
                   ease: [0.55, 0, 0.1, 1],
                 }}
-                src={data[0].img}
+                src={data[0]?.img}
                 alt=""
                 className="object-cover w-full"
               />

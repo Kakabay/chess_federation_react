@@ -1,9 +1,11 @@
-import { useZusLang } from '@/zustand/use-zus-lang';
-import { useGetTranslations } from './useGetTranslations';
+import { useZusLang } from "@/zustand/use-zus-lang";
+import { useGetTranslations } from "./useGetTranslations";
 
 const useExtractSectionTitle = (slug: string) => {
-  const activeLang = useZusLang().activeLang;
-  const { data: translationsData, isLoading } = useGetTranslations(activeLang.value);
+  const activeLang = useZusLang((state) => state.activeLang);
+  const { data: translationsData, isLoading } = useGetTranslations(
+    activeLang.value
+  );
 
   // Handle loading and undefined data
   if (isLoading || !translationsData) {

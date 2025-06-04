@@ -7,7 +7,7 @@ import { useZusLang } from "@/zustand/use-zus-lang";
 import { Datum } from "@/types/about.type";
 
 const AboutAchievments = () => {
-  const activeLang = useZusLang().activeLang;
+  const activeLang = useZusLang((state) => state.activeLang);
 
   const { data } = useGetAbout(activeLang.value);
 

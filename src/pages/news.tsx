@@ -66,12 +66,12 @@ const News = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-10">
             {newsData?.data.map((news, i) => (
               <NewsCard
-                key={i}
-                id={news.id}
+                key={news.id}
+                id={news?.id}
                 // animationDelay={i}
-                published_at={news.published_at}
-                title={news.title}
-                img={news.featured_images[0].path}
+                published_at={news?.published_at}
+                title={news?.title}
+                img={news?.featured_images?.[0]?.path}
                 type="big"
               />
             ))}

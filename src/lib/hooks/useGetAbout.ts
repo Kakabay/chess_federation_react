@@ -1,22 +1,24 @@
-import chessService from '@/chess.service';
-import { Datum, Translation } from '@/types/about.type';
-import { useQuery } from '@tanstack/react-query';
+import chessService from "@/chess.service";
+import { Datum, Translation } from "@/types/about.type";
+import { useQuery } from "@tanstack/react-query";
 
 export const useGetAbout = (lang: string) => {
   const { data, isLoading, isError, isSuccess } = useQuery({
-    queryKey: ['aboutData', lang],
+    queryKey: ["aboutData", lang],
     queryFn: () => chessService.getAbout(),
     select: ({ data }) => {
-      // Handle the translation logic
-      const translatedData = data.data.map((item: Datum) => {
-        if (lang === 'en') {
-          return item; // Return the default (English) if language is 'en'
+      return data.data.map((item: Datum) => {
+        // Для туркменского языка возвращаем исходные данные
+        if (lang === "tm") {
+          return item;
         }
 
-        // Find the translation for the provided language
-        const translation = item.translations.find((t: Translation) => t.locale === lang);
+        // Ищем перевод для запрошенного языка
+        const translation = item.translations.find(
+          (t: Translation) => t.locale === lang
+        );
 
-        // If a translation is found, parse it and replace the relevant fields
+        // Если перевод найден, объединяем его с исходными данными
         if (translation) {
           const translatedAttributes = JSON.parse(translation.attribute_data);
 
@@ -26,18 +28,21 @@ export const useGetAbout = (lang: string) => {
             txt1: translatedAttributes.txt1 || item.txt1,
             txt2: translatedAttributes.txt2 || item.txt2,
             txt3: translatedAttributes.txt3 || item.txt3,
-            tournment_title: translatedAttributes.tournment_title || item.tournment_title,
-            organisation_title: translatedAttributes.organisation_title || item.organisation_title,
-            graduate_title: translatedAttributes.graduate_title || item.graduate_title,
-            places_title: translatedAttributes.places_title || item.places_title,
+            tournment_title:
+              translatedAttributes.tournment_title || item.tournment_title,
+            organisation_title:
+              translatedAttributes.organisation_title ||
+              item.organisation_title,
+            graduate_title:
+              translatedAttributes.graduate_title || item.graduate_title,
+            places_title:
+              translatedAttributes.places_title || item.places_title,
           };
         }
 
-        // If no translation is found for the given language, return the default item
+        // Если перевод не найден, возвращаем туркменскую версию (исходные данные)
         return item;
       });
-
-      return translatedData;
     },
   });
 
