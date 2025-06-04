@@ -64,7 +64,7 @@ const News = () => {
         <div className="flex flex-col gap-4">
           <PageTitle title={title} />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-10">
-            {newsData?.data.map((news, i) => (
+            {newsData?.data.map((news) => (
               <NewsCard
                 key={news.id}
                 id={news?.id}
