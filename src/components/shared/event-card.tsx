@@ -25,7 +25,7 @@ const EventCard = ({
   isCurrent = false,
   link,
 }: Props) => {
-  const activeLang = useZusLang().activeLang;
+  const activeLang = useZusLang((state) => state.activeLang);
 
   return !isCurrent ? (
     link || (link && link?.length > 0) ? (
@@ -58,7 +58,7 @@ const EventCard = ({
                 ? months.tm[+start.slice(5, 7) - 1]
                 : activeLang.value === "ru"
                 ? months.ru[+start.slice(5, 7) - 1]
-                : months.tm[+start.slice(5, 7) - 1]
+                : months.en[+start.slice(5, 7) - 1]
               : null}
           </h3>
           <Separator className="h-[2px] bg-BLACK" />
@@ -70,7 +70,7 @@ const EventCard = ({
                 ? months.tm[+end.slice(5, 7) - 1]
                 : activeLang.value === "ru"
                 ? months.ru[+end.slice(5, 7) - 1]
-                : months.tm[+end.slice(5, 7) - 1]
+                : months.en[+end.slice(5, 7) - 1]
               : null}
           </h3>
         </div>
@@ -110,7 +110,7 @@ const EventCard = ({
                 ? months.tm[+start.slice(5, 7) - 1]
                 : activeLang.value === "ru"
                 ? months.ru[+start.slice(5, 7) - 1]
-                : months.tm[+start.slice(5, 7) - 1]
+                : months.en[+start.slice(5, 7) - 1]
               : null}
           </h3>
           <Separator className="h-[2px] bg-BLACK" />
@@ -122,7 +122,7 @@ const EventCard = ({
                 ? months.tm[+end.slice(5, 7) - 1]
                 : activeLang.value === "ru"
                 ? months.ru[+end.slice(5, 7) - 1]
-                : months.tm[+end.slice(5, 7) - 1]
+                : months.en[+end.slice(5, 7) - 1]
               : null}
           </h3>
         </div>
@@ -161,7 +161,7 @@ const EventCard = ({
               ? months.tm[+start.slice(5, 7) - 1]
               : activeLang.value === "ru"
               ? months.ru[+start.slice(5, 7) - 1]
-              : months.tm[+start.slice(5, 7) - 1]
+              : months.en[+start.slice(5, 7) - 1]
             : null}
         </h3>
         <Separator className="h-[2px] bg-BLACK" />
@@ -172,7 +172,7 @@ const EventCard = ({
               ? months.tm[+end.slice(5, 7) - 1]
               : activeLang.value === "ru"
               ? months.ru[+end.slice(5, 7) - 1]
-              : months.tm[+end.slice(5, 7) - 1]
+              : months.en[+end.slice(5, 7) - 1]
             : null}
         </h3>
       </div>
@@ -209,7 +209,7 @@ const EventCard = ({
             ? months.tm[+end.slice(5, 7) - 1]
             : activeLang.value === "ru"
             ? months.ru[+end.slice(5, 7) - 1]
-            : months.tm[+end.slice(5, 7) - 1]}
+            : months.en[+end.slice(5, 7) - 1]}
         </h3>
         <Separator className="h-[2px] bg-LBROWN" />
 
@@ -219,7 +219,7 @@ const EventCard = ({
             ? months.tm[+start.slice(5, 7) - 1]
             : activeLang.value === "ru"
             ? months.ru[+start.slice(5, 7) - 1]
-            : months.tm[+start.slice(5, 7) - 1]}
+            : months.en[+start.slice(5, 7) - 1]}
         </h3>
       </div>
 
