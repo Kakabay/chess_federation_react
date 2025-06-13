@@ -7,15 +7,35 @@ const useExtractSectionTitle = (slug: string) => {
     activeLang.value
   );
 
-  // Handle loading and undefined data
   if (isLoading || !translationsData) {
-    return undefined; // Return undefined or some default value while loading or when data is not available
+    return undefined;
   }
 
-  // Filter the data once it's available
-  const sectionTitle = translationsData.find((item) => item.key === slug)?.text;
+  const item = translationsData.find((item) => item.key === slug);
 
-  return sectionTitle;
+  if (!item) return undefined;
+
+  // Для туркменского языка используем основное поле text
+  if (activeLang.value === "tk") {
+    return item.text;
+  }
+
+  // Для других языков ищем в translations
+  const translation = item.translations.find(
+    (t) => t.locale === activeLang.value
+  );
+
+  if (translation) {
+    try {
+      const attrData = JSON.parse(translation.attribute_data);
+      return attrData.text;
+    } catch (e) {
+      console.error("Error parsing attribute_data:", e);
+      return item.text; // Fallback на туркменский текст
+    }
+  }
+
+  return item.text; // Fallback если перевод не найден
 };
 
 export default useExtractSectionTitle;

@@ -1,20 +1,22 @@
-import chessService from '@/chess.service';
-import { Datum, Translation } from '@/types/homeSlider.type';
-import { useQuery } from '@tanstack/react-query';
+import chessService from "@/chess.service";
+import { Datum, Translation } from "@/types/homeSlider.type";
+import { useQuery } from "@tanstack/react-query";
 
 export const useGetSlider = (lang: string) => {
   const { data, isLoading, isError, isSuccess } = useQuery({
-    queryKey: ['sliderData', lang],
+    queryKey: ["sliderData", lang],
     queryFn: () => chessService.getSlider(),
     select: ({ data }) => {
       // Function to handle translation logic
       const translatedData = data.data.map((item: Datum) => {
-        if (lang === 'en') {
+        if (lang === "tm") {
           return item; // English is the default, return as is
         }
 
         // Find the translation for the provided language
-        const translation = item.translations.find((t: Translation) => t.locale === lang);
+        const translation = item.translations.find(
+          (t: Translation) => t.locale === lang
+        );
 
         // If translation exists, parse the translation and replace fields
         if (translation) {

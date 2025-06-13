@@ -1,6 +1,6 @@
-import chessService from '@/chess.service';
-import { useQuery } from '@tanstack/react-query';
-import { Event } from '@/types/events.type';
+import chessService from "@/chess.service";
+import { useQuery } from "@tanstack/react-query";
+import { Event } from "@/types/events.type";
 
 interface IProps {
   lang: string;
@@ -8,32 +8,46 @@ interface IProps {
 }
 
 export const useGetEventsByDate = ({ date, lang }: IProps) => {
-  // const formattedDate = date.toLocaleDateString('en-CA');
   const { data, isLoading, isError, isSuccess } = useQuery({
-    queryKey: ['eventsData', date, lang],
+    queryKey: ["eventsData", date, lang],
     queryFn: () => chessService.getEventsByDate(date),
     select: (response) => {
-      // Function to handle translation
       const translateEvent = (event: Event): Event => {
+        // Для туркменского языка возвращаем оригинальные поля
+        if (lang === "tm") {
+          return event;
+        }
+
+        // Ищем перевод для текущего языка
         const translation = event.translations?.find((t) => t.locale === lang);
 
         if (translation) {
-          const translatedAttributes = JSON.parse(translation.attribute_data);
-          return {
-            ...event,
-            name_of_event: translatedAttributes.name_of_event || event.name_of_event,
-            place: translatedAttributes.place || event.place,
-          };
+          try {
+            const translatedAttributes = JSON.parse(translation.attribute_data);
+            return {
+              ...event,
+              name_of_event:
+                translatedAttributes.name_of_event || event.name_of_event,
+              place: translatedAttributes.place || event.place,
+            };
+          } catch (e) {
+            console.error("Error parsing attribute_data:", e);
+            // В случае ошибки парсинга возвращаем оригинальные данные
+            return event;
+          }
         }
 
+        // Если перевод не найден, возвращаем оригинальные данные
         return event;
       };
 
-      // Translate events in each category
+      // Обрабатываем все категории событий
       return {
-        past_events: response.data.data.past_events.map(translateEvent),
-        ongoing_events: response.data.data.ongoing_events.map(translateEvent),
-        future_events: response.data.data.future_events.map(translateEvent),
+        past_events: response.data.data.past_events?.map(translateEvent) || [],
+        ongoing_events:
+          response.data.data.ongoing_events?.map(translateEvent) || [],
+        future_events:
+          response.data.data.future_events?.map(translateEvent) || [],
       };
     },
   });

@@ -1,10 +1,10 @@
-import chessService from '@/chess.service';
+import chessService from "@/chess.service";
 // import { Datum, Translation } from '@/types/contactInfo.type';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from "@tanstack/react-query";
 
 export const useGetContactInfo = (lang: string) => {
   const { data, isLoading, isError, isSuccess } = useQuery({
-    queryKey: ['contactInfoData', lang],
+    queryKey: ["contactInfoData", lang],
     queryFn: () => chessService.getContactInfo(),
     // select: ({ data }) => {
     //   const translatedData = data.data.map((item: Datum) => {

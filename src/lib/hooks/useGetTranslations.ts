@@ -1,20 +1,22 @@
-import chessService from '@/chess.service';
-import { Datum, Translation } from '@/types/translations.type';
-import { useQuery } from '@tanstack/react-query';
+import chessService from "@/chess.service";
+import { Datum, Translation } from "@/types/translations.type";
+import { useQuery } from "@tanstack/react-query";
 
 export const useGetTranslations = (lang: string) => {
   const { data, isLoading, isError, isSuccess } = useQuery({
-    queryKey: ['translationsData', lang],
+    queryKey: ["translationsData", lang],
     queryFn: () => chessService.getTranslations(),
     select: ({ data }) => {
       // Handle the translation logic
       const translatedData = data.data.map((item: Datum) => {
-        if (lang === 'en') {
+        if (lang === "en") {
           return item; // English is default, return as is
         }
 
         // Find the translation for the provided language
-        const translation = item.translations.find((t: Translation) => t.locale === lang);
+        const translation = item.translations.find(
+          (t: Translation) => t.locale === lang
+        );
 
         // If translation exists, parse the translation and replace the relevant fields
         if (translation) {

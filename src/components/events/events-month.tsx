@@ -1,6 +1,6 @@
-import Container from '../layout/container';
-import EventCard from '../shared/event-card';
-import { Event } from '@/types/events.type';
+import Container from "../layout/container";
+import EventCard from "../shared/event-card";
+import { Event } from "@/types/events.type";
 
 interface Props {
   title: string;
@@ -49,7 +49,7 @@ const EventsMonth = ({ title, eventsData, isCurrent }: Props) => {
               start={item.start_event_date}
               name={item.name_of_event}
               place={item.place}
-              line={i !== 0 ? 'top' : 'none'}
+              line={i !== 0 ? "top" : "none"}
               link={item.link}
             />
           ))}
