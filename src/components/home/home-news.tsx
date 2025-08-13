@@ -40,9 +40,9 @@ const HomeNews = () => {
               key={news.id}
               id={news.id}
               animationDelay={i}
-              published_at={news.published_at}
-              title={news.title}
-              img={news.featured_images[0].path}
+              published_at={news?.published_at}
+              title={news?.title}
+              img={news?.featured_images?.[0]?.path ?? ""}
               type="big"
             />
           ))}
@@ -60,9 +60,9 @@ const HomeNews = () => {
                 <NewsCard
                   id={news.id}
                   animationDelay={i}
-                  published_at={news.published_at}
-                  title={news.title}
-                  img={news.featured_images[0].path}
+                  published_at={news?.published_at}
+                  title={news?.title}
+                  img={news?.featured_images?.[0]?.path ?? ""}
                   type="big"
                   titleClassName="!text-[16px] !leading-[150%]"
                 />
