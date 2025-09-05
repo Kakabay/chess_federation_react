@@ -56,7 +56,7 @@ const NewsSingle = () => {
             )}
 
           <div
-            className="news-inner w-full max-w-[800px] mx-auto flex font-medium md:font-normal flex-col gap-6 md:gap-10 font-[bitter] text-[14px] md:text-[20px] leading-[150%]"
+            className="news-inner w-full max-w-[800px] justify-center mx-auto flex font-medium md:font-normal flex-col gap-6 md:gap-10 font-[bitter] text-[14px] md:text-[20px] leading-[150%]"
             dangerouslySetInnerHTML={
               singleNewsData && {
                 __html: singleNewsData?.data?.content_html ?? "",
